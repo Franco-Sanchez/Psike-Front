@@ -7,10 +7,10 @@ export default function Avatar({url}){
 }
 
 const StyledAvatar = styled.div`
-width:60px;
-height:60px;
-border-radius:50%;
-border:none;
-background-image:url(${(props)=>props.url});
-background-size:cover;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  border:none;
+  background-image:url(${(props)=>props.url});
+  background-size:100% 100%;
 `
