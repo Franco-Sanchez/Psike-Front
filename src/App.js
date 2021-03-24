@@ -1,6 +1,7 @@
 import { css, Global } from "@emotion/react";
 import Documentation from "./components/Documentation";
 import Icon from "./components/UI/Icon";
+import Tabsession from "./components/UI/Tabsession";
 
 function App() {
   return (
@@ -15,8 +16,8 @@ function App() {
         `}
       />
 
-      <Documentation />
-      <Icon type="twitter" fill="blue" size="20"/>
+      <Documentation/>
+      <Tabsession>{"Login"}</Tabsession>
     </div>
   );
 }

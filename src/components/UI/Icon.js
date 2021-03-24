@@ -19,9 +19,6 @@ import {
  } from "react-icons/ri";
 
  import { IoIosAddCircle } from "react-icons/io";
-
-
-
  import { css } from "@emotion/react";
 
  const iconSet = {
@@ -40,7 +37,6 @@ import {
      chat:RiWechatLine,
      smile:RiUserSmileLine,
      survey:RiSurveyLine
-
  };
 
  function Icon({type,fill,size}){
