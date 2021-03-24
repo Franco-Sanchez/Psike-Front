@@ -1,5 +1,6 @@
 import { css, Global } from "@emotion/react";
 import Documentation from "./components/Documentation";
+import Icon from "./components/UI/Icon";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         `}
       />
       <Documentation />
+      <Icon type="twitter" fill="blue" size="20"/>
     </div>
   );
 }
