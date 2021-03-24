@@ -8,7 +8,7 @@ export function TagItemFill({ children }) {
 }
 
 const StyledDivFill = styled.div`
-  width: 150px;
+  width: max-content;
   height: 45px;
   background: #dfeaff;
   border-radius: 10px;
@@ -17,22 +17,18 @@ const StyledDivFill = styled.div`
   justify-content: center;
   p {
     color: #2b4170;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 `;
 const StyledDiv = styled.div`
-  width: 100px;
+  width: max-content;
   background: #ffffff;
   border: 1px solid #ffa85f;
   border-radius: 10px;
   padding: 5px 8px;
   display: flex;
   justify-content: center;
-  
+
   p {
     color: #ffa85f;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 `;

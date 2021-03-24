@@ -67,9 +67,9 @@ export default function Documentation() {
         <ContentXXSB>Autoestima</ContentXXSB>
       </TagItem>
       <TagItemFill>
-        <ContentM>Temperamental</ContentM>
+        <ContentM>Terapia de pareja</ContentM>
       </TagItemFill>
-      
+
     </div>
   );
 }
