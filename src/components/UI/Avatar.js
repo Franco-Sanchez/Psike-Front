@@ -12,5 +12,5 @@ height:60px;
 border-radius:50%;
 border:none;
 background-image:url(${(props)=>props.url});
-background-size:cover;
+background-size:100% 100%;
 `
