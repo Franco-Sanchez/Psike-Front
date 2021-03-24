@@ -26,7 +26,9 @@ import TabPrice from "./UI/TabPrice";
 import FormField from "./Containers/FormField";
 import { TagItem, TagItemFill } from "./UI/Tag";
 import InputField from "./UI/Input";
-import { RiMailLine, RiAttachmentLine } from "react-icons/ri";
+import Icon from "./UI/Icon";
+import OptionContainer from "./Containers/SelectContainer";
+import SelectItem from "./UI/Select";
 
 export default function Documentation() {
   return (
@@ -56,7 +58,7 @@ export default function Documentation() {
       {/* Form Field- Input with icon */}
       <FormField>
         <ContentXSB>Email</ContentXSB>
-        <RiMailLine />
+        <Icon type="email" />
         <InputField type="text" placeholder="coloca aqui tu nombre" />
       </FormField>
       {/* Form Field- Input without icon */}
@@ -66,7 +68,7 @@ export default function Documentation() {
       </FormField>
       {/* Select Component */}
       <OptionContainer>
-        <RiAttachmentLine />
+        <Icon type="arrowDrop" />
         <SelectItem name={"pets"}>
           <option value="">Ranking</option>
           <option value="dog">Dog</option>
