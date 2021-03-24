@@ -28,6 +28,7 @@ import { TagItem, TagItemFill } from "./UI/Tag";
 import InputField from "./UI/Input";
 import { RiMailLine } from "react-icons/ri";
 import MultiSelect from "./UI/MultiSelect";
+import CardContainer from "./Containers/CardContainer";
 
 export default function Documentation() {
   return (
@@ -78,6 +79,10 @@ export default function Documentation() {
         <ContentM>Terapia de pareja</ContentM>
       </TagItemFill>
       {/* Multi Select */}
+      {/* Phycologist small card  */}
+      <CardContainer>
+        
+      </CardContainer>
     </div>
   );
 }
