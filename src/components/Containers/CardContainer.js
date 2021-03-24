@@ -11,5 +11,11 @@ const StyledDiv = styled.div`
   width: 303px;
   border-radius: 20px;
   padding: 14px;
-  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  :hover {
+    box-shadow: 8px 17px 14px rgba(0, 0, 0, 0.25);
+    transition: 300ms;
+  }
 `;
