@@ -30,10 +30,12 @@ import Icon from "./UI/Icon";
 import OptionContainer from "./Containers/SelectContainer";
 import SelectItem from "./UI/Select";
 import { colors } from "../ui";
+import MultiSelect from "./UI/MultiSelect";
 
 export default function Documentation() {
   return (
     <div>
+      <MultiSelect />
       {/* TITULOS */}
       <Heading1>Heading1</Heading1>
       <Heading2>Heading2</Heading2>
@@ -96,6 +98,7 @@ export default function Documentation() {
       <TagItemFill>
         <ContentM>Terapia de pareja</ContentM>
       </TagItemFill>
+      {/* Multi Select */}
     </div>
   );
 }
