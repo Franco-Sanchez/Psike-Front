@@ -35,3 +35,6 @@ const sizes = {
     'medium': {width:"387px" , height:"48px",size:"18px",border:"none",color:`${colors.white}`},
     'large': {width:"374px" , height:"73px",size:"24px",border:"none",color:`${colors.white}`}
   }
+
+
+
