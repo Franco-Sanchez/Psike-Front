@@ -9,7 +9,7 @@ const options = [
   { value: "strawberry", label: "Strawberry" },
   { value: "vanilla", label: "Vanilla" },
 ];
-// Recibir las options y el setSelectedOption que es el metodo on change
+// TODO: Recibir las options y el setSelectedOption que es el metodo on change
 export default function MultiSelect() {
   const [selectedOption, setSelectedOption] = useState(null);
   const colourStyles = {
@@ -20,12 +20,10 @@ export default function MultiSelect() {
       border: "none",
       outline: "none",
       border: 0,
-      // This line disable the blue border
       boxShadow: "none",
       borderRadius: "20px",
       ":focus": {
         outline: "none",
-        border: "1px solid red",
       },
     }),
 
@@ -75,7 +73,7 @@ export default function MultiSelect() {
   const DropdownIndicator = (props) => {
     return (
       <components.DropdownIndicator {...props}>
-        <Icon type={"add"} size={20}  fill={colors.orange}/>
+        <Icon type={"add"} size={20} fill={colors.orange} />
       </components.DropdownIndicator>
     );
   };
@@ -97,7 +95,6 @@ export default function MultiSelect() {
 }
 
 const ContentSelect = styled.div`
-  margin: 20px;
   font-family: "Raleway";
   min-width: 300px;
 `;
