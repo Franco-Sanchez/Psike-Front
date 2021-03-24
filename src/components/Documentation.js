@@ -22,6 +22,7 @@ import {
   Heading6,
 } from "./text/Heading";
 import FormField from "./UI/FormField";
+import TabPrice from "./UI/TabPrice";
 
 export default function Documentation() {
   return (
@@ -57,6 +58,11 @@ export default function Documentation() {
         <ContentXSB>Contraseña</ContentXSB>
         <input type="password" placeholder="****" />
       </FormField>
+
+      {/* Tabs Price */}
+      <TabPrice price={120}/>
+      <TabPrice price={125} size="small"/>
     </div>
+    
   );
 }
