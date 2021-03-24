@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { colors } from "../../ui";
 
 export default function FormField({ children }) {
   return <StyledDiv>{children}</StyledDiv>;
@@ -12,6 +13,6 @@ const StyledDiv = styled.div`
   margin-bottom: 24px;
   gap: 8px;
   p {
-    color: #455064;
+    color: ${colors.black};
   }
 `;

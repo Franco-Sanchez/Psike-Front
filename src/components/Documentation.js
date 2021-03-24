@@ -62,10 +62,10 @@ export default function Documentation() {
       </FormField>
       {/* Tags */}
       <TagItem>
-      <ContentXXSB>Autoestima</ContentXXSB>
+        <ContentXXSB>Autoestima</ContentXXSB>
       </TagItem>
       <TagItemFill>
-      <ContentM>Temperamental</ContentM>
+        <ContentM>Temperamental</ContentM>
       </TagItemFill>
     </div>
   );
