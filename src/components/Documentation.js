@@ -22,6 +22,8 @@ import {
   Heading6,
 } from "./text/Heading";
 import FormField from "./UI/FormField";
+import SelectItem from "./UI/Select";
+import { RiAttachmentLine } from "react-icons/ri";
 
 export default function Documentation() {
   return (
@@ -57,6 +59,19 @@ export default function Documentation() {
         <ContentXSB>Contraseña</ContentXSB>
         <input type="password" placeholder="****" />
       </FormField>
+      {/* Select Component */}
+      <OptionContainer>
+        <RiAttachmentLine />
+        <SelectItem name={"pets"}>
+          <option value="">Ranking</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="hamster">Hamster</option>
+          <option value="parrot">Parrot</option>
+          <option value="spider">Spider</option>
+          <option value="goldfish">Goldfish</option>
+        </SelectItem>
+      </OptionContainer>
     </div>
   );
 }
