@@ -12,7 +12,13 @@ const StyledDiv = styled.div`
   flex-direction: column;
   margin-bottom: 24px;
   gap: 8px;
+  position: relative;
   p {
     color: ${colors.black};
+  }
+  svg {
+    position: absolute;
+    top: 43px;
+    left: 10px;
   }
 `;

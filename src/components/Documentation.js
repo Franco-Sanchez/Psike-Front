@@ -24,6 +24,7 @@ import {
 import FormField from "./Containers/FormField";
 import { TagItem, TagItemFill } from "./UI/Tag";
 import InputField from "./UI/Input";
+import { RiMailLine } from "react-icons/ri";
 
 export default function Documentation() {
   return (
@@ -50,15 +51,16 @@ export default function Documentation() {
       <ContentXXS>ContentExtraExtraSmall</ContentXXS>
       <ContentXXSB>ContentExtraExtraSmallBold</ContentXXSB>
       <hr />
-      {/* Form Field */}
+      {/* Form Field- Input with icon */}
       <FormField>
         <ContentXSB>Email</ContentXSB>
+        <RiMailLine />
         <InputField type="text" placeholder="coloca aqui tu nombre" />
       </FormField>
-
+      {/* Form Field- Input without icon */}
       <FormField>
         <ContentXSB>Contraseña</ContentXSB>
-        <InputField type="password" placeholder="****" />
+        <InputField type="password" placeholder="****"></InputField>
       </FormField>
       {/* Tags */}
       <TagItem>
@@ -67,6 +69,7 @@ export default function Documentation() {
       <TagItemFill>
         <ContentM>Temperamental</ContentM>
       </TagItemFill>
+      
     </div>
   );
 }

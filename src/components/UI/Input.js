@@ -19,10 +19,9 @@ const StyledInput = styled.input`
   font-size: 18px;
   line-height: 21px;
   color: ${colors.black};
-  padding: 13px 20px;
+  padding: 13px 35px;
   border-radius: 10px;
   border: none;
-  padding-left: 30px;
 
   &::placeholder {
     color: ${colors.gray_ligth2};
