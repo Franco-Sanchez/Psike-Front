@@ -1,5 +1,18 @@
 import React from "react";
-import { Content, ContentLarge, ContentSmall } from "./text/Content";
+import {
+  Content,
+  ContentXL,
+  ContentS,
+  ContentSB,
+  ContentSBB,
+  ContentL,
+  ContentM,
+  ContentMB,
+  ContentXS,
+  ContentXSB,
+  ContentXXS,
+  ContentXXSB,
+} from "./text/Content";
 import {
   Heading1,
   Heading2,
@@ -8,6 +21,7 @@ import {
   Heading5,
   Heading6,
 } from "./text/Heading";
+import FormField from "./UI/FormField";
 
 export default function Documentation() {
   return (
@@ -21,9 +35,24 @@ export default function Documentation() {
       <Heading6>Heading6</Heading6>
       <hr />
       {/* Contents */}
-      <ContentLarge>ContentLarge</ContentLarge>
+      <ContentXL>ContentExtraLarge</ContentXL>
+      <ContentL>ContentLarge</ContentL>
+      <ContentM>ContentMedium</ContentM>
+      <ContentMB>ContentMediumBold</ContentMB>
       <Content>Content</Content>
-      <ContentSmall>ContentSmall</ContentSmall>
+      <ContentS>ContentSmall</ContentS>
+      <ContentSB>ContentSmallBold</ContentSB>
+      <ContentSBB>ContentSmallBold</ContentSBB>
+      <ContentXS>ContentExtraSmall</ContentXS>
+      <ContentXSB>ContentExtraSmallBold</ContentXSB>
+      <ContentXXS>ContentExtraExtraSmall</ContentXXS>
+      <ContentXXSB>ContentExtraExtraSmallBold</ContentXXSB>
+      <hr />
+      {/* Form Field */}
+      <FormField>
+        <label>Nombre</label>
+        <input type="text" placeholder="coloca aqui tu nombre" />
+      </FormField>
     </div>
   );
 }
