@@ -122,7 +122,9 @@ export default function Documentation() {
         <Image
           url="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg"
           size="small"
-        />
+        >
+          <TabPrice price={125} size="small" />
+        </Image>
       </CardContainer>
     </div>
   );

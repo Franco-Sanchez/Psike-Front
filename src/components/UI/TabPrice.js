@@ -37,8 +37,9 @@ const StyledTabPrice = styled.div(
     ${props.size === "small" &&
     `width:100px;
      height:45px;
-     background-color:${props.bg ? props.bg : colors.white};
-     color:${props.color ? props.color : colors.gray_ligth};
+     margin: 5px;
+     background-color:${props.bg ? props.bg :"rgba(255, 255, 255, 0.8);"};
+     color:${props.color ? props.color : colors.gray_ligth2};
      & :first-of-type {
       font-size: 10px;
      }

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
-export default function Imagen({ url, size }) {
-  return <StyledImage url={url} size={size} />;
+export default function Imagen({ url, size, children }) {
+  return <StyledImage url={url} size={size} >{children}</StyledImage>;
 }
 
 const StyledImage = styled.div`
@@ -13,6 +13,9 @@ const StyledImage = styled.div`
   width: ${(props) => sizes[props.size].width};
   height: ${(props) => sizes[props.size].height};
   border-radius: 20px;
+  display: flex; 
+  justify-content: flex-end;
+  align-items: flex-end;
 `;
 
 const sizes = {
