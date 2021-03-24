@@ -29,10 +29,16 @@ import InputField from "./UI/Input";
 import { RiMailLine } from "react-icons/ri";
 import Avatar from "./UI/Avatar";
 import Imagen from "./UI/Image";
+import Icon from "./UI/Icon";
+import OptionContainer from "./Containers/SelectContainer";
+import SelectItem from "./UI/Select";
+import { colors } from "../ui";
+import MultiSelect from "./UI/MultiSelect";
 
 export default function Documentation() {
   return (
     <div>
+      <MultiSelect />
       {/* TITULOS */}
       <Heading1>Heading1</Heading1>
       <Heading2>Heading2</Heading2>
@@ -58,7 +64,7 @@ export default function Documentation() {
       {/* Form Field- Input with icon */}
       <FormField>
         <ContentXSB>Email</ContentXSB>
-        <RiMailLine />
+        <Icon type="email" />
         <InputField type="text" placeholder="coloca aqui tu nombre" />
       </FormField>
       {/* Form Field- Input without icon */}
@@ -66,6 +72,24 @@ export default function Documentation() {
         <ContentXSB>Contraseña</ContentXSB>
         <InputField type="password" placeholder="****"></InputField>
       </FormField>
+      {/* Select Component */}
+      <OptionContainer>
+      <Icon type="arrowDrop" size="25" fill={`${colors.orange}`} />
+        <SelectItem name={"ranking"}>
+          <option value="">Ranking</option>
+          <option value="asc">Asendente</option>
+          <option value="desc">Desendente</option>
+        </SelectItem>
+      </OptionContainer>
+
+      <OptionContainer>
+      <Icon type="lizer" size="25" fill={`${colors.orange}`} />
+        <SelectItem name={"ranking"}>
+          <option value="">Price</option>
+          <option value="asc">Asendente</option>
+          <option value="desc">Desendente</option>
+        </SelectItem>
+      </OptionContainer>
 
       {/* Tabs Price */}
       <TabPrice price={120} />
@@ -82,6 +106,7 @@ export default function Documentation() {
       <Imagen size="small" url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"/>
       <Imagen size="medium" url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"/>
       <Imagen size="large" url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"/>
+      {/* Multi Select */}
     </div>
   );
 }
