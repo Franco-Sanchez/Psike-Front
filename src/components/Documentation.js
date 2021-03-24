@@ -29,6 +29,7 @@ import InputField from "./UI/Input";
 import Icon from "./UI/Icon";
 import OptionContainer from "./Containers/SelectContainer";
 import SelectItem from "./UI/Select";
+import { colors } from "../ui";
 
 export default function Documentation() {
   return (
@@ -68,15 +69,20 @@ export default function Documentation() {
       </FormField>
       {/* Select Component */}
       <OptionContainer>
-        <Icon type="arrowDrop" />
-        <SelectItem name={"pets"}>
+      <Icon type="arrowDrop" size="25" fill={`${colors.orange}`} />
+        <SelectItem name={"ranking"}>
           <option value="">Ranking</option>
-          <option value="dog">Dog</option>
-          <option value="cat">Cat</option>
-          <option value="hamster">Hamster</option>
-          <option value="parrot">Parrot</option>
-          <option value="spider">Spider</option>
-          <option value="goldfish">Goldfish</option>
+          <option value="asc">Asendente</option>
+          <option value="desc">Desendente</option>
+        </SelectItem>
+      </OptionContainer>
+
+      <OptionContainer>
+      <Icon type="lizer" size="25" fill={`${colors.orange}`} />
+        <SelectItem name={"ranking"}>
+          <option value="">Price</option>
+          <option value="asc">Asendente</option>
+          <option value="desc">Desendente</option>
         </SelectItem>
       </OptionContainer>
 

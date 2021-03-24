@@ -12,7 +12,15 @@ const StyledSelect = styled.select`
   border: none;
   border-radius: 10px;
   height: 48px;
-  width: max-content;
-  padding: 16px;
+  padding: 16px 35px 16px 16px;
   cursor: pointer;
+  color: ${colors.gray_ligth2};
+  font-family: "Inter";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 19px;
+  /* :focus{
+    color: red; 
+  } */
 `;
