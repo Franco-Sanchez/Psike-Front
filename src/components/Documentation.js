@@ -22,6 +22,7 @@ import {
   Heading6,
 } from "./text/Heading";
 import FormField from "./UI/FormField";
+import { TagItem, TagItemFill } from "./UI/Tag";
 
 export default function Documentation() {
   return (
@@ -57,6 +58,13 @@ export default function Documentation() {
         <ContentXSB>Contraseña</ContentXSB>
         <input type="password" placeholder="****" />
       </FormField>
+      {/* Tags */}
+      <TagItem>
+      <ContentXXSB>Autoestima</ContentXXSB>
+      </TagItem>
+      <TagItemFill>
+      <ContentM>Dependencia Emocinal</ContentM>
+      </TagItemFill>
     </div>
   );
 }
