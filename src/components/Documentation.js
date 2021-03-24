@@ -23,6 +23,10 @@ import {
 } from "./text/Heading";
 import FormField from "./UI/FormField";
 import TabPrice from "./UI/TabPrice";
+import FormField from "./Containers/FormField";
+import { TagItem, TagItemFill } from "./UI/Tag";
+import InputField from "./UI/Input";
+import { RiMailLine } from "react-icons/ri";
 
 export default function Documentation() {
   return (
@@ -49,20 +53,28 @@ export default function Documentation() {
       <ContentXXS>ContentExtraExtraSmall</ContentXXS>
       <ContentXXSB>ContentExtraExtraSmallBold</ContentXXSB>
       <hr />
-      {/* Form Field */}
+      {/* Form Field- Input with icon */}
       <FormField>
         <ContentXSB>Email</ContentXSB>
-        <input type="text" placeholder="coloca aqui tu nombre" />
+        <RiMailLine />
+        <InputField type="text" placeholder="coloca aqui tu nombre" />
       </FormField>
+      {/* Form Field- Input without icon */}
       <FormField>
         <ContentXSB>Contraseña</ContentXSB>
-        <input type="password" placeholder="****" />
+        <InputField type="password" placeholder="****"></InputField>
       </FormField>
 
       {/* Tabs Price */}
-      <TabPrice price={120}/>
-      <TabPrice price={125} size="small"/>
+      <TabPrice price={120} />
+      <TabPrice price={125} size="small" />
+      {/* Tags */}
+      <TagItem>
+        <ContentXXSB>Autoestima</ContentXXSB>
+      </TagItem>
+      <TagItemFill>
+        <ContentM>Terapia de pareja</ContentM>
+      </TagItemFill>
     </div>
-    
   );
 }
