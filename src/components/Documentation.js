@@ -63,7 +63,7 @@ export default function Documentation() {
       <ContentXXSB>Autoestima</ContentXXSB>
       </TagItem>
       <TagItemFill>
-      <ContentM>Dependencia Emocinal</ContentM>
+      <ContentM>Temperamental</ContentM>
       </TagItemFill>
     </div>
   );
