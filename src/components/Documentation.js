@@ -26,11 +26,16 @@ import TabPrice from "./UI/TabPrice";
 import FormField from "./Containers/FormField";
 import { TagItem, TagItemFill } from "./UI/Tag";
 import InputField from "./UI/Input";
-import { RiMailLine } from "react-icons/ri";
+import Icon from "./UI/Icon";
+import OptionContainer from "./Containers/SelectContainer";
+import SelectItem from "./UI/Select";
+import { colors } from "../ui";
+import MultiSelect from "./UI/MultiSelect";
 
 export default function Documentation() {
   return (
     <div>
+      <MultiSelect />
       {/* TITULOS */}
       <Heading1>Heading1</Heading1>
       <Heading2>Heading2</Heading2>
@@ -56,7 +61,7 @@ export default function Documentation() {
       {/* Form Field- Input with icon */}
       <FormField>
         <ContentXSB>Email</ContentXSB>
-        <RiMailLine />
+        <Icon type="email" />
         <InputField type="text" placeholder="coloca aqui tu nombre" />
       </FormField>
       {/* Form Field- Input without icon */}
@@ -64,6 +69,28 @@ export default function Documentation() {
         <ContentXSB>Contraseña</ContentXSB>
         <InputField type="password" placeholder="****"></InputField>
       </FormField>
+<<<<<<< HEAD
+=======
+      {/* Select Component */}
+      <OptionContainer>
+      <Icon type="arrowDrop" size="25" fill={`${colors.orange}`} />
+        <SelectItem name={"ranking"}>
+          <option value="">Ranking</option>
+          <option value="asc">Asendente</option>
+          <option value="desc">Desendente</option>
+        </SelectItem>
+      </OptionContainer>
+
+      <OptionContainer>
+      <Icon type="lizer" size="25" fill={`${colors.orange}`} />
+        <SelectItem name={"ranking"}>
+          <option value="">Price</option>
+          <option value="asc">Asendente</option>
+          <option value="desc">Desendente</option>
+        </SelectItem>
+      </OptionContainer>
+
+>>>>>>> f778803910bf58c1ed5a787e991c4c8f3b56ad38
       {/* Tabs Price */}
       <TabPrice price={120} />
       <TabPrice price={125} size="small" />
@@ -74,6 +101,7 @@ export default function Documentation() {
       <TagItemFill>
         <ContentM>Terapia de pareja</ContentM>
       </TagItemFill>
+      {/* Multi Select */}
     </div>
   );
 }
