@@ -69,8 +69,6 @@ export default function Documentation() {
         <ContentXSB>Contraseña</ContentXSB>
         <InputField type="password" placeholder="****"></InputField>
       </FormField>
-<<<<<<< HEAD
-=======
       {/* Select Component */}
       <OptionContainer>
       <Icon type="arrowDrop" size="25" fill={`${colors.orange}`} />
@@ -90,7 +88,6 @@ export default function Documentation() {
         </SelectItem>
       </OptionContainer>
 
->>>>>>> f778803910bf58c1ed5a787e991c4c8f3b56ad38
       {/* Tabs Price */}
       <TabPrice price={120} />
       <TabPrice price={125} size="small" />
