@@ -22,6 +22,7 @@ const StyledInput = styled.input`
   padding: 13px 20px;
   border-radius: 10px;
   border: none;
+  padding-left: 30px;
 
   &::placeholder {
     color: ${colors.gray_ligth2};
