@@ -50,8 +50,12 @@ export default function Documentation() {
       <hr />
       {/* Form Field */}
       <FormField>
-        <label>Nombre</label>
+        <ContentXSB>Email</ContentXSB>
         <input type="text" placeholder="coloca aqui tu nombre" />
+      </FormField>
+      <FormField>
+        <ContentXSB>Contraseña</ContentXSB>
+        <input type="password" placeholder="****" />
       </FormField>
     </div>
   );

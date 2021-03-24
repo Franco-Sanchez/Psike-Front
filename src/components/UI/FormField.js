@@ -10,14 +10,9 @@ const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
-  label {
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
+  gap: 8px;
+  p {
     color: #455064;
-    gap: 8px;
   }
   input {
     height: 48px;
