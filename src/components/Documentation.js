@@ -75,7 +75,7 @@ export default function Documentation() {
       </FormField>
       {/* Select Component */}
       <OptionContainer>
-      <Icon type="arrowDrop" size="25" fill={`${colors.orange}`} />
+        <Icon type="arrowDrop" size="25" fill={`${colors.orange}`} />
         <SelectItem name={"ranking"}>
           <option value="">Ranking</option>
           <option value="asc">Asendente</option>
@@ -84,7 +84,7 @@ export default function Documentation() {
       </OptionContainer>
 
       <OptionContainer>
-      <Icon type="lizer" size="25" fill={`${colors.orange}`} />
+        <Icon type="lizer" size="25" fill={`${colors.orange}`} />
         <SelectItem name={"ranking"}>
           <option value="">Price</option>
           <option value="asc">Asendente</option>
@@ -102,15 +102,27 @@ export default function Documentation() {
       <TagItemFill>
         <ContentM>Terapia de pareja</ContentM>
       </TagItemFill>
-      <Avatar url = "https://cnnespanol.cnn.com/wp-content/uploads/2019/12/s_64a163f16ecbb099e52f2f8271f73cbbfcfc9034be4d646f7375e4db1ca6f3d7_1573501883482_ap_19001106049831-1.jpg?quality=100&strip=info&w=320&h=240&crop=1"/>
-      <Avatar url = "https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"/>
-      <Image size="small" url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"/>
-      <Image size="medium" url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"/>
-      <Image size="large" url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"/>
+      <Avatar url="https://cnnespanol.cnn.com/wp-content/uploads/2019/12/s_64a163f16ecbb099e52f2f8271f73cbbfcfc9034be4d646f7375e4db1ca6f3d7_1573501883482_ap_19001106049831-1.jpg?quality=100&strip=info&w=320&h=240&crop=1" />
+      <Avatar url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg" />
+      <Image
+        size="small"
+        url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"
+      />
+      <Image
+        size="medium"
+        url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"
+      />
+      <Image
+        size="large"
+        url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"
+      />
       {/* Multi Select */}
       {/* Phycologist small card  */}
       <CardContainer>
-        
+        <Image
+          url="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg"
+          size="small"
+        />
       </CardContainer>
     </div>
   );
