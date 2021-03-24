@@ -21,6 +21,8 @@ import {
   Heading5,
   Heading6,
 } from "./text/Heading";
+
+import TabPrice from "./UI/TabPrice";
 import FormField from "./Containers/FormField";
 import { TagItem, TagItemFill } from "./UI/Tag";
 import InputField from "./UI/Input";
@@ -75,6 +77,10 @@ export default function Documentation() {
           <option value="goldfish">Goldfish</option>
         </SelectItem>
       </OptionContainer>
+
+      {/* Tabs Price */}
+      <TabPrice price={120} />
+      <TabPrice price={125} size="small" />
       {/* Tags */}
       <TagItem>
         <ContentXXSB>Autoestima</ContentXXSB>
