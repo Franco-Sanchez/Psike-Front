@@ -21,7 +21,7 @@ import {
   Heading5,
   Heading6,
 } from "./text/Heading";
-import FormField from "./UI/FormField";
+
 import TabPrice from "./UI/TabPrice";
 import FormField from "./Containers/FormField";
 import { TagItem, TagItemFill } from "./UI/Tag";
