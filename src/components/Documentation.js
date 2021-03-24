@@ -21,8 +21,9 @@ import {
   Heading5,
   Heading6,
 } from "./text/Heading";
-import FormField from "./UI/FormField";
+import FormField from "./Containers/FormField";
 import { TagItem, TagItemFill } from "./UI/Tag";
+import InputField from "./UI/Input";
 
 export default function Documentation() {
   return (
@@ -52,11 +53,12 @@ export default function Documentation() {
       {/* Form Field */}
       <FormField>
         <ContentXSB>Email</ContentXSB>
-        <input type="text" placeholder="coloca aqui tu nombre" />
+        <InputField type="text" placeholder="coloca aqui tu nombre" />
       </FormField>
+
       <FormField>
         <ContentXSB>Contraseña</ContentXSB>
-        <input type="password" placeholder="****" />
+        <InputField type="password" placeholder="****" />
       </FormField>
       {/* Tags */}
       <TagItem>
