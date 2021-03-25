@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
-export default function Imagen({ url, size, children }) {
-  return <StyledImage url={url} size={size} >{children}</StyledImage>;
+export default function Image({ url, size, children,classname }) {
+  return <StyledImage className = {classname} url={url} size={size} >{children}</StyledImage>;
 }
 
 const StyledImage = styled.div`
