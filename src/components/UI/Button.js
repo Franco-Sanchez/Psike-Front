@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import colors from "../../ui";
+import {colors} from "../../ui";
 
 export default function Button({ color, type, size, children }) {
   return (
@@ -10,33 +10,18 @@ export default function Button({ color, type, size, children }) {
 }
 
 const StyledButton = styled.button`
-  width: ${(props) =>
-    props.size === "small-schedule" || "small" || "medium" || "large"
-      ? sizes[props.size].width
-      : "144px"};
-  height: ${(props) =>
-    props.size === "small-schedule" || "small" || "medium" || "large"
-      ? sizes[props.size].height
-      : "48px"};
+  width: ${(props) =>sizes[props.size].width};
+  height: ${(props) =>sizes[props.size].height};
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: ${(props) =>
-    props.size === "small-schedule" || "small" || "medium" || "large"
-      ? sizes[props.size].border
-      : "144px"};
-  color: ${(props) =>
-    props.size === "small-schedule" || "small" || "medium" || "large"
-      ? sizes[props.size].color
-      : "144px"};
+  border: ${(props) => sizes[props.size].border};
+  color: ${(props) => sizes[props.size].color};
   font-family: Raleway;
   font-style: normal;
   font-weight: 800;
-  font-size: ${(props) =>
-    props.size === "small-schedule" || "small" || "medium" || "large"
-      ? sizes[props.size].size
-      : "16px"};
+  font-size: ${(props) => sizes[props.size].size};
   line-height: 28px;
   border-radius: 10px;
   background-color: ${(props) => props.color};

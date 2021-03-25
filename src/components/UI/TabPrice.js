@@ -32,7 +32,7 @@ const StyledTabPrice = styled.div(
     justify-content: center;
     align-items: center;
     border-radius: 20px;
-    margin: 10px 0;
+  
 
     ${props.size === "small" &&
     `width:100px;
