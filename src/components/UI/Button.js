@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import colors from "../../ui";
+import {colors} from "../../ui";
 
 export default function Button({color,type,size,children}){
   return (

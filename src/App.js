@@ -17,7 +17,6 @@ function App() {
       />
 
       <Documentation/>
-      <Tabsession>{"Login"}</Tabsession>
     </div>
   );
 }
