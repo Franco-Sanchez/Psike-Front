@@ -26,7 +26,6 @@ import TabPrice from "./UI/TabPrice";
 import FormField from "./Containers/FormField";
 import { TagItem, TagItemFill } from "./UI/Tag";
 import InputField from "./UI/Input";
-import { RiMailLine } from "react-icons/ri";
 import Avatar from "./UI/Avatar";
 import Image from "./UI/Image";
 import Icon from "./UI/Icon";
@@ -35,6 +34,10 @@ import SelectItem from "./UI/Select";
 import { colors } from "../ui";
 import MultiSelect from "./UI/MultiSelect";
 import CardShow from "./Containers/CardShow";
+import CardPsychology from "./UI/CardPsychology";
+import CardSpecialties from "./UI/CardSpecialties";
+import CardSchedule from "./UI/CardSchedule";
+import CardComent from "./UI/CardComent";
 
 export default function Documentation() {
   return (
@@ -75,7 +78,7 @@ export default function Documentation() {
       </FormField>
       {/* Select Component */}
       <OptionContainer>
-      <Icon type="arrowDrop" size="25" fill={`${colors.orange}`} />
+        <Icon type="arrowDrop" size="25" fill={`${colors.orange}`} />
         <SelectItem name={"ranking"}>
           <option value="">Ranking</option>
           <option value="asc">Asendente</option>
@@ -84,7 +87,7 @@ export default function Documentation() {
       </OptionContainer>
 
       <OptionContainer>
-      <Icon type="lizer" size="25" fill={`${colors.orange}`} />
+        <Icon type="lizer" size="25" fill={`${colors.orange}`} />
         <SelectItem name={"ranking"}>
           <option value="">Price</option>
           <option value="asc">Asendente</option>
@@ -102,6 +105,7 @@ export default function Documentation() {
       <TagItemFill>
         <ContentM>Terapia de pareja</ContentM>
       </TagItemFill>
+<<<<<<< HEAD
       <Avatar url = "https://cnnespanol.cnn.com/wp-content/uploads/2019/12/s_64a163f16ecbb099e52f2f8271f73cbbfcfc9034be4d646f7375e4db1ca6f3d7_1573501883482_ap_19001106049831-1.jpg?quality=100&strip=info&w=320&h=240&crop=1"/>
       <Avatar url = "https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"/>
       <Image size="small" url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"/>
@@ -109,6 +113,38 @@ export default function Documentation() {
       <Image size="large" url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"/>
       {/* Multi Select */}
       <CardShow></CardShow>
+=======
+      <Avatar url="https://cnnespanol.cnn.com/wp-content/uploads/2019/12/s_64a163f16ecbb099e52f2f8271f73cbbfcfc9034be4d646f7375e4db1ca6f3d7_1573501883482_ap_19001106049831-1.jpg?quality=100&strip=info&w=320&h=240&crop=1" />
+      <Avatar url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg" />
+      <Image
+        size="small"
+        url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"
+      />
+      <Image
+        size="medium"
+        url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"
+      />
+      <Image
+        size="large"
+        url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"
+      />
+      {/* Multi Select */}
+      {/* Phycologist small card  */}
+
+      <CardPsychology
+        name={"Sofia Muñoz"}
+        bio={
+          "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto Lorem Ipsum es simplemente el texto de relleno de            las imprentas y archivos de texto Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto"
+        }
+        price={50}
+        coments={20}
+        ranking={4.8}
+      />
+      {/* Especialidades card ,  Schedule card, Coment card   */}
+      <CardSpecialties />
+      <CardSchedule />
+      <CardComent />
+>>>>>>> 5bcf40accf42ce72826b84858db45274e3b12bd2
     </div>
   );
 }
