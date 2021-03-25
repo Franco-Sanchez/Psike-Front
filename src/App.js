@@ -43,22 +43,22 @@ function App() {
         .signIn()
         .then(() => {
           let event = {
-            summary: "Google I/O 2021 PRUEBA GRECIA",
+            summary: "Google I/O 2021 PRUEBA GRECIAFINAL",
             location: "800 Howard St., San Francisco, CA 94103",
             description:
               "A chance to hear more about Google's developer products.",
             start: {
-              dateTime: "2021-03-28T09:00:00-07:00",
+              dateTime: "2021-03-26T09:00:00-07:00",
               timeZone: "America/Los_Angeles",
             },
             end: {
-              dateTime: "2021-03-28T17:00:00-07:00",
+              dateTime: "2021-03-26T17:00:00-07:00",
               timeZone: "America/Los_Angeles",
             },
-            recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
             attendees: [
-              { email: "lpage@example.com" },
-              { email: "sbrin@example.com" },
+              { email: "carlostuna015@gmail.com" },
+              { email: "diegopumacode@gmail.com" },
+              { email: "francorsr98@gmail.com" },
             ],
             reminders: {
               useDefault: false,
@@ -67,14 +67,6 @@ function App() {
                 { method: "popup", minutes: 10 },
               ],
             },
-            conferenceData: {
-              createRequest: {
-                requestId: "PRUEBA1",
-                conferenceSolutionKey: {
-                  type: "hangoutsMeet",
-                },
-              },
-            },
           };
 
           let request = gapi.client.calendar.events.insert({
@@ -82,9 +74,27 @@ function App() {
             resource: event,
           });
 
+          let eventPatch = {
+            conferenceData: {
+              createRequest: { requestId: "7qxalsvy0e" },
+            },
+          };
+
           request.execute(function (event) {
-            window.open(event.htmlLink);
-            // appendPre("Event created: " + event.htmlLink);
+            console.log(event);
+            // window.open(event.htmlLink);
+
+            gapi.client.calendar.events
+              .patch({
+                calendarId: "primary",
+                eventId: `${event.id}`,
+                resource: eventPatch,
+                sendNotifications: true,
+                conferenceDataVersion: 1,
+              })
+              .execute(function (event) {
+                console.log("Conference created for event: %s", event.htmlLink);
+              });
           });
         });
     });
