@@ -9,6 +9,7 @@ import Profile from "./pages/Profile";
 import Psychologists from "./pages/Psychologists";
 import ShowPsychologist from "./pages/ShowPsychologist";
 import SignUp from "./pages/SignUp";
+import { colors } from "./ui";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+          }
+          body{
+            background: ${colors.white};
           }
         `}
       />

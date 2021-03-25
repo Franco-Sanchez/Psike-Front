@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export default function Imagen({ url, size, children }) {
+export default function Image({ url, size, children }) {
   return <StyledImage url={url} size={size} >{children}</StyledImage>;
 }
 
