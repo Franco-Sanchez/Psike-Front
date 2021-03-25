@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 import { colors } from "../../ui";
 import { ContentXS, ContentXSB, ContentXXSB } from "../text/Content";
 import { Heading6 } from "../text/Heading";
@@ -7,54 +6,54 @@ import Icon from "./Icon";
 import Imagen from "./Image";
 import TabPrice from "./TabPrice";
 import { TagItem } from "./Tag";
+import CardContainer from "../Containers/CardContainer";
 
-export default function CardPsychology() {
+export default function CardPsychology({ name, bio, price, coments, ranking }) {
+  const specialties = [
+    "Ansiedad",
+    "Depresión",
+    "Control de Ira",
+    "Terapia de pareja",
+    "Sexualidad e identidad",
+  ];
+
   return (
-    <StyledCardPsychology>
-      <Imagen
-        url="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg"
-        size="small"
-      >
-        <TabPrice price={125} size="small" />
-      </Imagen>
-      <Heading6>Lic. Theresa Mullins</Heading6>
-      <ContentXXSB>Psicologa Clínica</ContentXXSB>
-      <div className="tagsContainer">
-        <TagItem>
-          <ContentXXSB>Autoestima</ContentXXSB>
-        </TagItem>
-        <TagItem>
-          <ContentXXSB>Terapia de Parjea</ContentXXSB>
-        </TagItem>
-        <TagItem>
-          <ContentXXSB>Ansiedad</ContentXXSB>
-        </TagItem>
-        <TagItem>
-          <ContentXXSB>Manejo de Ira</ContentXXSB>
-        </TagItem>
-      </div>
-      <div className="bioContainer">
-        <ContentXS>
-          Lorem Ipsum es simplemente el texto de relleno de las imprentas y
-          archivos de texto Lorem Ipsum es simplemente el texto de relleno de
-          las imprentas y archivos de texto Lorem Ipsum es simplemente el texto
-          de relleno de las imprentas y archivos de texto Lorem Ipsum es
-          simplemente el texto de relleno de las imprentas y archivos de texto
-        </ContentXS>
-      </div>
-
-      <div className="stadisticsContainer" style={{}}>
-        <div className="stadisticsItem">
-          <Icon type="chat" fill={`${colors.pink1}`} size="25" />
-          <ContentXSB>10</ContentXSB>
+    <CardContainer>
+      <StyledCardPsychology>
+        <Imagen
+          url="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg"
+          size="small"
+        >
+          <TabPrice price={price} size="small" />
+        </Imagen>
+        <Heading6>Lic. {name}</Heading6>
+        <ContentXXSB>Psicologa Clínica</ContentXXSB>
+        <div className="tagsContainer">
+          {specialties.map((spe) => (
+            <>
+              <TagItem>
+                <ContentXXSB>{spe}</ContentXXSB>
+              </TagItem>
+            </>
+          ))}
+        </div>
+        <div className="bioContainer">
+          <ContentXS>{bio}</ContentXS>
         </div>
 
-        <div className="stadisticsItem">
-          <Icon type="start" fill={`${colors.orange}`} size="25" />
-          <ContentXSB>4.5</ContentXSB>
+        <div className="stadisticsContainer">
+          <div className="stadisticsItem">
+            <Icon type="chat" fill={colors.pink1} size="25" />
+            <ContentXSB>{coments}</ContentXSB>
+          </div>
+
+          <div className="stadisticsItem">
+            <Icon type="start" fill={colors.orange} size="25" />
+            <ContentXSB>{ranking}</ContentXSB>
+          </div>
         </div>
-      </div>
-    </StyledCardPsychology>
+      </StyledCardPsychology>
+    </CardContainer>
   );
 }
 const StyledCardPsychology = styled.div`

@@ -26,7 +26,6 @@ import TabPrice from "./UI/TabPrice";
 import FormField from "./Containers/FormField";
 import { TagItem, TagItemFill } from "./UI/Tag";
 import InputField from "./UI/Input";
-import { RiMailLine } from "react-icons/ri";
 import Avatar from "./UI/Avatar";
 import Image from "./UI/Image";
 import Icon from "./UI/Icon";
@@ -34,7 +33,6 @@ import OptionContainer from "./Containers/SelectContainer";
 import SelectItem from "./UI/Select";
 import { colors } from "../ui";
 import MultiSelect from "./UI/MultiSelect";
-import CardContainer from "./Containers/CardContainer";
 import CardPsychology from "./UI/CardPsychology";
 
 export default function Documentation() {
@@ -119,11 +117,18 @@ export default function Documentation() {
       />
       {/* Multi Select */}
       {/* Phycologist small card  */}
-      <CardContainer>
-        <CardPsychology />
-      </CardContainer>
+
+      <CardPsychology
+        name={"Sofia Muñoz"}
+        bio={
+          "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto Lorem Ipsum es simplemente el texto de relleno de            las imprentas y archivos de texto Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto"
+        }
+        price={50}
+        coments={20}
+        ranking={4.8}
+      />
+
       {/* Especialidades card  */}
-      <CardContainer></CardContainer>
     </div>
   );
 }
