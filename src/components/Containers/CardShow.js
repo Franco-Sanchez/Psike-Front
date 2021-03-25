@@ -82,17 +82,12 @@ const StyledCard = styled.div`
       display: flex;
       flex-direction: column;
       width: 100%;
-      height: auto;
-      padding-right: 0px;
+
     }
   }
 `;
 const ContainerImg = styled.div`
   position: relative;
-  &:first-of-type {
-    position: relative;
-    top: 0;
-  }
   @media (max-width: 768px) {
     & {
       width: 100%;
@@ -105,29 +100,23 @@ const ContainerImg = styled.div`
 const ShowSection = styled.div`
   width: 100%;
   height: auto;
-  padding: 30px;
+
   @media (max-width: 768px) {
     & {
       width: 100%;
       height: auto;
-      padding-top: 0px;
-      padding-left: 0px;
-    }
-  }
-  @media (max-width: 375px) {
-    & {
-      width: 100%;
+
     }
   }
 `;
 const SectionHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  width:100%;
   @media (max-width: 768px) {
     & {
       display: flex;
       justify-content: space-between;
-      padding-right: 0px;
     }
   }
 `;
