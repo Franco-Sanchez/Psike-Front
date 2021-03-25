@@ -3,7 +3,7 @@ import CardContainer from "../Containers/CardContainer";
 
 export default function CardSpecialties() {
   return (
-    <CardContainer size="specialties">
+    <CardContainer type="specialties">
       <StyledCard></StyledCard>
     </CardContainer>
   );

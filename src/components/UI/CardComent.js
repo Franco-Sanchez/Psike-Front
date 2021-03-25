@@ -3,7 +3,7 @@ import CardContainer from "../Containers/CardContainer";
 
 export default function CardComent() {
   return (
-    <CardContainer size="specialties">
+    <CardContainer type="coment">
       <StyledCard></StyledCard>
     </CardContainer>
   );

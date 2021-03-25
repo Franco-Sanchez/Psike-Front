@@ -3,12 +3,12 @@ import CardContainer from "../Containers/CardContainer";
 
 export default function CardSchedule() {
   return (
-    <CardContainer size="specialties">
+    <CardContainer type="schedule">
       <StyledCard></StyledCard>
     </CardContainer>
   );
 }
 
 const StyledCard = styled.div`
-  width: 100%;
+  /* width: 100%; */
 `;

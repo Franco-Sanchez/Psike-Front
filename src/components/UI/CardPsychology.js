@@ -18,7 +18,7 @@ export default function CardPsychology({ name, bio, price, coments, ranking }) {
   ];
 
   return (
-    <CardContainer>
+    <CardContainer >
       <StyledCardPsychology>
         <Imagen
           url="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg"

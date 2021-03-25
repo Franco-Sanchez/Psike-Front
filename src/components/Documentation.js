@@ -130,11 +130,9 @@ export default function Documentation() {
         coments={20}
         ranking={4.8}
       />
-      {/* Especialidades card  */}
+      {/* Especialidades card ,  Schedule card, Coment card   */}
       <CardSpecialties />
-      {/* Schedule card  */}
       <CardSchedule />
-      {/* Coment card  */}
       <CardComent />
     </div>
   );
