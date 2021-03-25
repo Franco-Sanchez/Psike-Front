@@ -37,6 +37,7 @@ function App() {
           <Redirect from="*" to="/404" />
         </Switch>
       </Router>
+      <Documentation/>
     </div>
   );
 }

@@ -22,4 +22,8 @@ const StyledDiv = styled.div`
     box-shadow: 8px 17px 14px rgba(0, 0, 0, 0.25);
     transition: 300ms;
   }
+  @media (max-width: 375px) {
+    height: 100%;
+    width: 100%;
+  }
 `;
