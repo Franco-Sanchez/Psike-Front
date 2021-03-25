@@ -14,21 +14,18 @@ export default function CardShow() {
     <CardContainer type="schedule">
       <StyledCard>
         <ContainerImg>
-          <ShowImg>
-            <Image
-              classname="img-small"
-              size="medium"
-              url="https://img.freepik.com/foto-gratis/hombre-negocios-usando-tableta-digital-mientras-colega-segundo-plano_107420-17056.jpg?size=626&ext=jpg&ga=GA1.2.1587176078.1613088000"
+          <Image
+            classname="img-small"
+            size="medium"
+            url="https://img.freepik.com/foto-gratis/hombre-negocios-usando-tableta-digital-mientras-colega-segundo-plano_107420-17056.jpg?size=626&ext=jpg&ga=GA1.2.1587176078.1613088000"
+          >
+            <TabPrice
+              price={20.0}
+              size="normal"
+              bg="rgba(202, 214, 236, 0.8)"
+              color={`${colors.black}`}
             />
-            <ShowPrice>
-              <TabPrice
-                price={20.0}
-                size="normal"
-                bg="rgba(202, 214, 236, 0.8)"
-                color={`${colors.black}`}
-              />
-            </ShowPrice>
-          </ShowImg>
+          </Image>
         </ContainerImg>
 
         <ShowSection>
@@ -89,65 +86,21 @@ const StyledCard = styled.div`
       padding-right: 0px;
     }
   }
-  @media (max-width: 375px) {
-    & {
-      width: 100%;
-    }
-  }
 `;
 const ContainerImg = styled.div`
+  position: relative;
+  &:first-of-type {
+    position: relative;
+    top: 0;
+  }
   @media (max-width: 768px) {
     & {
       width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-  }
-  @media (max-width: 375px) {
-    & {
-      width: 100%;
-      height: auto;
       display: flex;
       justify-content: center;
       align-items: center;
     }
   }
-`;
-const ShowImg = styled.div`
-  width: 461px;
-  height: 306px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-  & .img-small {
-    @media (max-width: 375px) {
-      & {
-        width: 300px;
-        height: 300px;
-      }
-    }
-  }
-  @media (max-width: 768px) {
-    & {
-      display: flex;
-      padding-left: 10px;
-    }
-  }
-
-  @media (max-width: 375px) {
-    & {
-      width: 80%;
-      display: flex;
-      height: auto;
-    }
-  }
-`;
-const ShowPrice = styled.div`
-  position: absolute;
-  display: flex;
-  padding-right: 19px;
 `;
 const ShowSection = styled.div`
   width: 100%;

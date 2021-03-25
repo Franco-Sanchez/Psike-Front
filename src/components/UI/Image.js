@@ -16,6 +16,14 @@ const StyledImage = styled.div`
   display: flex; 
   justify-content: flex-end;
   align-items: flex-end;
+  padding:10px;
+  @media (max-width: 768px) {
+    & {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }
 `;
 
 const sizes = {
