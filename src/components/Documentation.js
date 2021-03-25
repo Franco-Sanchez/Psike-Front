@@ -26,7 +26,6 @@ import TabPrice from "./UI/TabPrice";
 import FormField from "./Containers/FormField";
 import { TagItem, TagItemFill } from "./UI/Tag";
 import InputField from "./UI/Input";
-import { RiMailLine } from "react-icons/ri";
 import Avatar from "./UI/Avatar";
 import Image from "./UI/Image";
 import Icon from "./UI/Icon";
@@ -34,9 +33,8 @@ import OptionContainer from "./Containers/SelectContainer";
 import SelectItem from "./UI/Select";
 import { colors } from "../ui";
 import MultiSelect from "./UI/MultiSelect";
-import CardContainer from "./Containers/CardContainer";
-import TagsContainer from "./Containers/TagsContainers";
-import StadisticsContainer from "./Containers/CardStadisticsContainer";
+import CardPsychology from "./UI/CardPsychology";
+import CardSpecialties from "./UI/CardSpecialties";
 
 export default function Documentation() {
   return (
@@ -120,59 +118,18 @@ export default function Documentation() {
       />
       {/* Multi Select */}
       {/* Phycologist small card  */}
-      <CardContainer>
-        <Image
-          url="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg"
-          size="small"
-        >
-          <TabPrice price={125} size="small" />
-        </Image>
-        <Heading6>Lic. Theresa Mullins</Heading6>
-        <ContentXXSB>Psicologa Clínica</ContentXXSB>
-        <TagsContainer>
-          <TagItem>
-            <ContentXXSB>Autoestima</ContentXXSB>
-          </TagItem>
-          <TagItem>
-            <ContentXXSB>Terapia de Parjea</ContentXXSB>
-          </TagItem>
-          <TagItem>
-            <ContentXXSB>Ansiedad</ContentXXSB>
-          </TagItem>
-          <TagItem>
-            <ContentXXSB>Manejo de Ira</ContentXXSB>
-          </TagItem>
-        </TagsContainer>
-        <div
-          style={{
-            height: "50px",
-            overflow: "hidden",
-          }}
-        >
-          <ContentXS>
-            Lorem Ipsum es simplemente el texto de relleno de las imprentas y
-            archivos de texto Lorem Ipsum es simplemente el texto de relleno de
-            las imprentas y archivos de texto Lorem Ipsum es simplemente el
-            texto de relleno de las imprentas y archivos de texto Lorem Ipsum es
-            simplemente el texto de relleno de las imprentas y archivos de texto
-          </ContentXS>
-        </div>
 
-        <div style={{
-          display:"flex",
-          justifyContent: "flex-end",
-        }}>
-          <StadisticsContainer>
-            <Icon type="chat" fill={`${colors.pink1}`} size="25" />
-            <ContentXSB>10</ContentXSB>
-          </StadisticsContainer>
-
-          <StadisticsContainer>
-            <Icon type="start" fill={`${colors.orange}`} size="25" />
-            <ContentXSB>4.5</ContentXSB>
-          </StadisticsContainer>
-        </div>
-      </CardContainer>
+      <CardPsychology
+        name={"Sofia Muñoz"}
+        bio={
+          "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto Lorem Ipsum es simplemente el texto de relleno de            las imprentas y archivos de texto Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto"
+        }
+        price={50}
+        coments={20}
+        ranking={4.8}
+      />
+      {/* Especialidades card  */}
+      <CardSpecialties size="specialties" />
     </div>
   );
 }
