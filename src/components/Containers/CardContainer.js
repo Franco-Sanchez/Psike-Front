@@ -7,11 +7,11 @@ export default function CardContainer({ size, children }) {
 const StyledDiv = styled.div`
   height: ${(props) =>
     props.size === "specialties" || "schedule" || "coment"
-      ? sizes[props.size].width
+      ? types[props.size].height
       : "373px"};
   width: ${(props) =>
     props.size === "specialties" || "schedule" || "coment"
-      ? sizes[props.size].height
+      ? types[props.size].width
       : "303px"};
   background: #ffffff;
   border-radius: 20px;
@@ -24,7 +24,7 @@ const StyledDiv = styled.div`
   }
 `;
 
-const sizes = {
+const types = {
   specialties: { width: "340px", height: "390px" },
   schedule: { width: "1040px", height: "390px" },
   coment: { width: "400px", height: "300px" },

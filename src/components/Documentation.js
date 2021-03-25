@@ -35,6 +35,8 @@ import { colors } from "../ui";
 import MultiSelect from "./UI/MultiSelect";
 import CardPsychology from "./UI/CardPsychology";
 import CardSpecialties from "./UI/CardSpecialties";
+import CardSchedule from "./UI/CardSchedule";
+import CardComent from "./UI/CardComent";
 
 export default function Documentation() {
   return (
@@ -129,7 +131,11 @@ export default function Documentation() {
         ranking={4.8}
       />
       {/* Especialidades card  */}
-      <CardSpecialties size="specialties" />
+      <CardSpecialties />
+      {/* Schedule card  */}
+      <CardSchedule />
+      {/* Coment card  */}
+      <CardComent />
     </div>
   );
 }
