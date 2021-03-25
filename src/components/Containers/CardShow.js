@@ -6,10 +6,12 @@ import Button from "../UI/Button";
 import Icon from "../UI/Icon";
 import Image from "../UI/Image";
 import TabPrice from "../UI/TabPrice";
+import CardContainer from "./CardContainer";
 
 export default function CardShow() {
   const icons = ["fb", "google", "linkedin", "slack", "twitter"];
   return (
+    <CardContainer type="schedule">
     <StyledCard>
       <div className="show-img">
         <Image
@@ -66,14 +68,14 @@ export default function CardShow() {
         </div>
       </div>
     </StyledCard>
+    </CardContainer>
   );
 }
 
 const StyledCard = styled.div`
-  margin: 10px;
+  margin-top:0px;
   width: 100%;
-  height: auto;
-  border: 1px solid black;
+  height: 375px;
   display: flex;
   padding: 18px;
   gap: 27px;
@@ -94,7 +96,6 @@ const StyledCard = styled.div`
   & .show-section {
     width: 70%;
     height: auto;
-    padding-top: 50px;
     padding-bottom: 47px;
     & .section-header {
       display: flex;

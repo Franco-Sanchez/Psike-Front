@@ -38,6 +38,7 @@ import CardPsychology from "./UI/CardPsychology";
 import CardSpecialties from "./UI/CardSpecialties";
 import CardSchedule from "./UI/CardSchedule";
 import CardComent from "./UI/CardComent";
+import Button from "./UI/Button";
 
 export default function Documentation() {
   return (
@@ -105,29 +106,12 @@ export default function Documentation() {
       <TagItemFill>
         <ContentM>Terapia de pareja</ContentM>
       </TagItemFill>
-<<<<<<< HEAD
       <Avatar url = "https://cnnespanol.cnn.com/wp-content/uploads/2019/12/s_64a163f16ecbb099e52f2f8271f73cbbfcfc9034be4d646f7375e4db1ca6f3d7_1573501883482_ap_19001106049831-1.jpg?quality=100&strip=info&w=320&h=240&crop=1"/>
       <Avatar url = "https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"/>
       <Image size="small" url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"/>
       <Image size="medium" url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"/>
       <Image size="large" url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"/>
       {/* Multi Select */}
-      <CardShow></CardShow>
-=======
-      <Avatar url="https://cnnespanol.cnn.com/wp-content/uploads/2019/12/s_64a163f16ecbb099e52f2f8271f73cbbfcfc9034be4d646f7375e4db1ca6f3d7_1573501883482_ap_19001106049831-1.jpg?quality=100&strip=info&w=320&h=240&crop=1" />
-      <Avatar url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg" />
-      <Image
-        size="small"
-        url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"
-      />
-      <Image
-        size="medium"
-        url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"
-      />
-      <Image
-        size="large"
-        url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"
-      />
       {/* Multi Select */}
       {/* Phycologist small card  */}
 
@@ -144,7 +128,9 @@ export default function Documentation() {
       <CardSpecialties />
       <CardSchedule />
       <CardComent />
->>>>>>> 5bcf40accf42ce72826b84858db45274e3b12bd2
+
+      <CardShow></CardShow>
+      <Button size="small" color={colors.orange} type="submit">Login</Button>
     </div>
   );
 }
