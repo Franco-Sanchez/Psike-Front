@@ -17,16 +17,13 @@ import SignUp from "./pages/SignUp";
 
 function App() {
   let gapi = window.gapi;
-  let CLIENT_ID =
-    "55420826679-ta7gh9fm2j3596fhk8setcqpkcka6d8g.apps.googleusercontent.com";
-  let API_KEY = "AIzaSyCKfwRJJ8JnkUUcxG5Lz2bwdvoM819yn5s";
+  let CLIENT_ID = "55420826679-ta7gh9fm2j3596fhk8setcqpkcka6d8g.apps.googleusercontent.com";
+  let API_KEY = "AIzaSyB4FREPsJE4KoZ-hvHsTHG2Ke4h7W05JrU";
   let DISCOVERY_DOCS = [
     "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
   ];
   let SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
-  // client_id = 55420826679-ta7gh9fm2j3596fhk8setcqpkcka6d8g.apps.googleusercontent.com
-  // cliente secret = XoSdFreNpY9k558dtvQjBmcN
-  // api key = AIzaSyCKfwRJJ8JnkUUcxG5Lz2bwdvoM819yn5s
+
 
   const handleClick = () => {
     gapi.load("client:auth2", () => {
@@ -46,16 +43,16 @@ function App() {
         .signIn()
         .then(() => {
           let event = {
-            summary: "Google I/O 2015",
+            summary: "Google I/O 2021",
             location: "800 Howard St., San Francisco, CA 94103",
             description:
               "A chance to hear more about Google's developer products.",
             start: {
-              dateTime: "2015-05-28T09:00:00-07:00",
+              dateTime: "2021-05-28T09:00:00-07:00",
               timeZone: "America/Los_Angeles",
             },
             end: {
-              dateTime: "2015-05-28T17:00:00-07:00",
+              dateTime: "2021-05-28T17:00:00-07:00",
               timeZone: "America/Los_Angeles",
             },
             recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
