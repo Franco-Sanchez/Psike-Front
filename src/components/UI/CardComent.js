@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import CardContainer from "../Containers/CardContainer";
 
-export default function CardSpecialties() {
+export default function CardComent() {
   return (
-    <CardContainer type="specialties">
+    <CardContainer type="coment">
       <StyledCard></StyledCard>
     </CardContainer>
   );
