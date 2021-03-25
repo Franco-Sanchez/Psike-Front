@@ -34,6 +34,7 @@ import SelectItem from "./UI/Select";
 import { colors } from "../ui";
 import MultiSelect from "./UI/MultiSelect";
 import CardPsychology from "./UI/CardPsychology";
+import CardSpecialties from "./UI/CardSpecialties";
 
 export default function Documentation() {
   return (
@@ -127,8 +128,8 @@ export default function Documentation() {
         coments={20}
         ranking={4.8}
       />
-
       {/* Especialidades card  */}
+      <CardSpecialties size="specialties" />
     </div>
   );
 }

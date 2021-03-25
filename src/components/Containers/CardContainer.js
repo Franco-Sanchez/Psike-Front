@@ -5,10 +5,16 @@ export default function CardContainer({ size, children }) {
 }
 
 const StyledDiv = styled.div`
+  height: ${(props) =>
+    props.size === "specialties" || "schedule" || "coment"
+      ? sizes[props.size].width
+      : "373px"};
+  width: ${(props) =>
+    props.size === "specialties" || "schedule" || "coment"
+      ? sizes[props.size].height
+      : "303px"};
   background: #ffffff;
   border-radius: 20px;
-  height: 373px;
-  width: 303px;
   border-radius: 20px;
   padding: 14px;
 
@@ -18,6 +24,8 @@ const StyledDiv = styled.div`
   }
 `;
 
-// const sizes = {
-//   'medium': {width:"144px",height:"48px"},
-// }
+const sizes = {
+  specialties: { width: "340px", height: "390px" },
+  schedule: { width: "1040px", height: "390px" },
+  coment: { width: "400px", height: "300px" },
+};
