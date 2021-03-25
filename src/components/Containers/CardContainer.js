@@ -5,10 +5,11 @@ export default function CardContainer({ children }) {
 }
 
 const StyledDiv = styled.div`
+width:100%;
   background: #ffffff;
   border-radius: 20px;
   height: 373px;
-  width: 303px;
+
   border-radius: 20px;
   padding: 14px;
   display: flex;

@@ -123,7 +123,12 @@ const StyledFilterSection = styled.div`
 
 const StyledPsychologists = styled.div`
   display: grid;
-
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   grid-gap: 10px;
+  justify-content:center;
+  align-items:center;
+  margin:0 auto;
+  & > div{
+    margin:0 auto;
+  }
 `;
