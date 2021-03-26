@@ -40,4 +40,10 @@ const StyledHeader = styled.div`
     display: flex;
     gap: 16px;
   }
+  @media (min-width: 320px) {
+    .header {
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+  }
 `;

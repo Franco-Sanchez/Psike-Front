@@ -47,13 +47,17 @@ export default function LandingContent() {
 
 const StyledLanding = styled.div`
   & .landing {
-    margin: 10% 0px;
+    margin: 5% 0px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     gap: 20px;
     .landing-content {
       width: 45%;
+      p,
+      h1 {
+        color: ${colors.black};
+      }
     }
   }
   & .iconscontainer {
@@ -67,6 +71,34 @@ const StyledLanding = styled.div`
       gap: 10px;
       width: 50%;
       margin: 15px 0px;
+      p {
+        color: ${colors.gray};
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    .landing {
+      justify-content: space-between;
+      width: 109%;
+      .landing-content {
+        margin: 10% 0;
+        width: 85%;
+      }
+    }
+
+    .landing-image {
+      border: 1px solid red;
+      display: none;
+      /* width: 55%; */
+    }
+  }
+
+  @media (max-width: 425px) {
+    .landing {
+      width: 160%;
+    }
+    .landing-content {
+      margin: 20% 0;
     }
   }
 `;
