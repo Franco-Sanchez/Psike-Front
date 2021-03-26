@@ -1,22 +1,24 @@
 import styled from "@emotion/styled";
 
-export default function CardContainer({ children }) {
-  return <StyledDiv>{children}</StyledDiv>;
+export default function CardContainer({ type, children }) {
+  return <StyledDiv type={type}>{children}</StyledDiv>;
 }
 
+const types = {
+  specialties: { width: "340px", height: "390px" },
+  schedule: { width: "100%", height: "auto" },
+  coment: { width: "400px", height: "300px" },
+};
+
 const StyledDiv = styled.div`
-width:100%;
+  height: ${(props) => (props.type ? types[props.type].height : "373px")};
+  width: ${(props) => (props.type ? types[props.type].width : "303px")};
   background: #ffffff;
   border-radius: 20px;
-  height: 373px;
-
   border-radius: 20px;
   padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
   :hover {
-    box-shadow: 8px 17px 14px rgba(0, 0, 0, 0.25);
+    box-shadow: 8px 17px 14px rgba(0, 0, 0, 0.04);
     transition: 300ms;
   }
 `;

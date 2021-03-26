@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
-export default function Image({ url, size, children }) {
-  return <StyledImage url={url} size={size} >{children}</StyledImage>;
+export default function Image({ url, size, children,classname }) {
+  return <StyledImage className = {classname} url={url} size={size} >{children}</StyledImage>;
 }
 
 const StyledImage = styled.div`
@@ -16,6 +16,14 @@ const StyledImage = styled.div`
   display: flex; 
   justify-content: flex-end;
   align-items: flex-end;
+  padding:10px;
+  @media (max-width: 768px) {
+    & {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }
 `;
 
 const sizes = {

@@ -26,7 +26,6 @@ export default function MultiSelect() {
       fontFamily: "Raleway",
       border: "none",
       outline: "none",
-      border: 0,
       boxShadow: "none",
       borderRadius: "10px",
       ":focus": {
