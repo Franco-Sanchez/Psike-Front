@@ -42,7 +42,7 @@ export const StyledCard = styled.div`
     justify-content: space-between;
 
     & .is-prev, .is-next {
-      padding: 3px;
+      padding: 2px;
       ${flex};
       justify-content: center;
       border-radius: 10px;
@@ -67,7 +67,7 @@ export const StyledCard = styled.div`
     }
 
     & .is-today {
-      padding: 3px;
+      padding: 4px;
       border: 1px solid ${colors.gray_ligth};
       border-radius: 5px;
       color: ${colors.blue_ligth};
