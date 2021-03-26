@@ -1,7 +1,11 @@
 import styled from "@emotion/styled";
 
-export default function Image({ url, size, children,classname }) {
-  return <StyledImage className = {classname} url={url} size={size} >{children}</StyledImage>;
+export default function Image({ url, size, children, classname }) {
+  return (
+    <StyledImage className={classname} url={url} size={size}>
+      {children}
+    </StyledImage>
+  );
 }
 
 const StyledImage = styled.div`
@@ -10,13 +14,17 @@ const StyledImage = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  width: "100%";
+  width: ${(props) =>
+    props.size === "large" ? sizes[props.size].width : "100%"};
   height: ${(props) => sizes[props.size].height};
   border-radius: 20px;
-  display: flex; 
+  /* display: flex;
   justify-content: flex-end;
-  align-items: flex-end;
-  padding:10px;
+  align-items: flex-end; */
+  padding: 10px;
+  border-radius: ${(props) =>
+    props.size === "large" ? sizes[props.size].borderRadius : ""};
+
   @media (max-width: 768px) {
     & {
       width: 100%;
@@ -29,5 +37,5 @@ const StyledImage = styled.div`
 const sizes = {
   small: { width: "275px", height: "143px" },
   medium: { width: "461px", height: "306px" },
-  large: { width: "456px", height: "665px" },
+  large: { width: "456px", height: "665px", borderRadius: "0px 50px" },
 };
