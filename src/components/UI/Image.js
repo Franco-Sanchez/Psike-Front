@@ -10,7 +10,7 @@ const StyledImage = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  width: ${(props) => sizes[props.size].width};
+  width: "100%";
   height: ${(props) => sizes[props.size].height};
   border-radius: 20px;
   display: flex; 

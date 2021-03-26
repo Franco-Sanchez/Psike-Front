@@ -16,8 +16,14 @@ const StyledDiv = styled.div`
   background-color: #ffffff;
   border-radius: 20px;
   padding: 14px;
+  
+  
   :hover {
-    box-shadow: 8px 17px 14px rgba(0, 0, 0, 0.25);
+    box-shadow: 8px 17px 14px rgba(0, 0, 0, 0.04);
     transition: 300ms;
+  }
+  @media (max-width: 375px) {
+    height: 100%;
+    width: 100%;
   }
 `;
