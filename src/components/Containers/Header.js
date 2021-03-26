@@ -26,7 +26,6 @@ export default function Header() {
 
 const StyledHeader = styled.div`
   .header {
-    /* margin: 30px 50px 0px 50px; */
     display: flex;
     justify-content: space-between;
     align-items: center;

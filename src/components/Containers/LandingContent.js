@@ -87,9 +87,7 @@ const StyledLanding = styled.div`
     }
 
     .landing-image {
-      border: 1px solid red;
       display: none;
-      /* width: 55%; */
     }
   }
 
