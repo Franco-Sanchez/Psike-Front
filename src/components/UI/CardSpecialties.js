@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
 import CardContainer from "../Containers/CardContainer";
-import { ContentL, ContentSB, ContentXSB } from "../text/Content";
+import Pagination from "../Containers/Pagination";
+import { ContentL, ContentXSB } from "../text/Content";
 import { TagItemFill } from "./Tag";
 
 export default function CardSpecialties() {
+
   const specialties = [
     {
       id: 1,
@@ -54,24 +56,33 @@ export default function CardSpecialties() {
     },
   ];
 
-  // const keys = Object.keys(specialties);
-  // const numOfpages = specialties
-
+  function numSubespecialties() {
+    let counter = 0;
+    specialties.forEach((item) => (counter += item.subespecialties.length));
+    return counter;
+  }
+  const limit = 4;
+  const pages = Math.ceil(numSubespecialties() / limit);
+  const currentPage = 1;
+  
   return (
     <CardContainer type="specialties">
       <StyledCard>
         <ContentL>Especialidades</ContentL>
 
-        {specialties.map((key) => (
-          <>
-            <ContentXSB>{key.name}</ContentXSB>
-            <div className="especialtiesComents">
-              {key.subespecialties.map((item) => (
-                <TagItemFill>{item}</TagItemFill>
-              ))}
-            </div>
-          </>
-        ))}
+        {specialties
+          .slice((currentPage - 1) * limit, currentPage * limit)
+          .map((key) => (
+            <>
+              <ContentXSB>{key.name}</ContentXSB>
+              <div className="especialtiesComents">
+                {key.subespecialties.map((item) => (
+                  <TagItemFill>{item}</TagItemFill>
+                ))}
+              </div>
+            </>
+          ))}
+        <Pagination pages={pages} />
       </StyledCard>
     </CardContainer>
   );
