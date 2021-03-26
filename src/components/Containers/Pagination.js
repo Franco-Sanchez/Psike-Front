@@ -2,9 +2,8 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { useState } from "react";
-import CardSpecialties from "../UI/CardSpecialties";
 
-export default function Pagination({ pages }) {
+export default function Pagination({ pages, onClick }) {
   const listItems = [];
   const [page, setPage] = useState(1);
 
@@ -24,7 +23,7 @@ export default function Pagination({ pages }) {
   }
 
   return (
-    <UlStyle>
+    <UlStyle onClick={onClick}>
       <LiStyle key="start" data={page}></LiStyle>
       {listItems}
       <LiStyle key="finish" data={page}></LiStyle>

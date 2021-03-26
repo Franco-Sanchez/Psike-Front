@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
+import { useState } from "react";
 import CardContainer from "../Containers/CardContainer";
 import Pagination from "../Containers/Pagination";
 import { ContentL, ContentXSB } from "../text/Content";
 import { TagItemFill } from "./Tag";
 
 export default function CardSpecialties() {
-
   const specialties = [
     {
       id: 1,
@@ -61,17 +61,21 @@ export default function CardSpecialties() {
     specialties.forEach((item) => (counter += item.subespecialties.length));
     return counter;
   }
-  const limit = 4;
+  const limit = 7;
   const pages = Math.ceil(numSubespecialties() / limit);
-  const currentPage = 1;
-  
+  console.log(pages);
+  let [currentPage, setPage] = useState(1);
+  if (currentPage > pages) {
+    currentPage = 1;
+  }
+
   return (
     <CardContainer type="specialties">
       <StyledCard>
         <ContentL>Especialidades</ContentL>
 
         {specialties
-          .slice((currentPage - 1) * limit, currentPage * limit)
+          .slice((currentPage - 1) * (limit - 3), currentPage * (limit - 3))
           .map((key) => (
             <>
               <ContentXSB>{key.name}</ContentXSB>
@@ -82,7 +86,7 @@ export default function CardSpecialties() {
               </div>
             </>
           ))}
-        <Pagination pages={pages} />
+        <Pagination pages={pages} onClick={() => setPage(currentPage + 1)} />
       </StyledCard>
     </CardContainer>
   );
