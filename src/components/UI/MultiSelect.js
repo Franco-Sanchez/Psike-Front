@@ -7,7 +7,14 @@ import Icon from "./Icon";
 const options = [
   { value: "chocolate", label: "Chocolate" },
   { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
+  { value: "vanilla1", label: "Vanilla1" },
+  { value: "vanilla2", label: "Vanilla2" },
+  { value: "vanilla3", label: "Vanilla3" },
+  { value: "vanilla4", label: "Vanilla4" },
+  { value: "vanilla5", label: "Vanilla5" },
+  { value: "vanilla6", label: "Vanilla6" },
+  { value: "vanilla7", label: "Vanilla7" },
+  { value: "vanilla8", label: "Vanilla8" },
 ];
 // TODO: Recibir las options y el setSelectedOption que es el metodo on change
 export default function MultiSelect() {
@@ -19,12 +26,12 @@ export default function MultiSelect() {
       fontFamily: "Raleway",
       border: "none",
       outline: "none",
-      border: 0,
       boxShadow: "none",
-      borderRadius: "20px",
+      borderRadius: "10px",
       ":focus": {
         outline: "none",
       },
+      padding: "6px 10px 6px 10px"
     }),
 
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {

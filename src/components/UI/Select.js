@@ -20,6 +20,7 @@ const StyledSelect = styled.select`
   font-style: normal;
   font-weight: 600;
   line-height: 19px;
+  outline: none;
   /* :focus{
     color: red; 
   } */
