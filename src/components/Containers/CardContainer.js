@@ -17,6 +17,11 @@ const StyledDiv = styled.div`
   border-radius: 20px;
   border-radius: 20px;
   padding: 14px;
+  position: relative;
+  & .pagination {
+    position: absolute;
+    bottom: 10px;
+  }
   :hover {
     box-shadow: 8px 17px 14px rgba(0, 0, 0, 0.25);
     transition: 300ms;

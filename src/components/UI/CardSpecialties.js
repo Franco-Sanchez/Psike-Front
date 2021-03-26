@@ -86,8 +86,10 @@ export default function CardSpecialties() {
               </div>
             </>
           ))}
-        <Pagination pages={pages} onClick={() => setPage(currentPage + 1)} />
       </StyledCard>
+      <div className="pagination">
+        <Pagination pages={pages} onClick={() => setPage(currentPage + 1)} />
+      </div>
     </CardContainer>
   );
 }

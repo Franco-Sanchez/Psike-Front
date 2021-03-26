@@ -2,12 +2,13 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { useState } from "react";
+import { colors } from "../../ui";
 
 export default function Pagination({ pages, onClick }) {
   const listItems = [];
   const [page, setPage] = useState(1);
 
-  for (let i = 1; i <= pages; i++) {
+  for (let i = 0; i < pages; i++) {
     listItems.push(
       <LiStyle
         key={i}
@@ -16,25 +17,16 @@ export default function Pagination({ pages, onClick }) {
           setPage(i);
         }}
         data={page}
-      >
-        {i}
-      </LiStyle>
+      ></LiStyle>
     );
   }
 
-  return (
-    <UlStyle onClick={onClick}>
-      <LiStyle key="start" data={page}></LiStyle>
-      {listItems}
-      <LiStyle key="finish" data={page}></LiStyle>
-    </UlStyle>
-  );
+  return <UlStyle onClick={onClick}>{listItems}</UlStyle>;
 }
 
 const selected = css`
   border-radius: 50%;
-  background-color: #2d9cdb;
-  color: white;
+  background-color: ${colors.orange};
 `;
 const UlStyle = styled.ul`
   height: 30px;
@@ -44,14 +36,15 @@ const UlStyle = styled.ul`
   flex-direction: row;
 `;
 const LiStyle = styled.li`
-  width: 26px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   display: flex;
+  margin-right: 13px;
   justify-content: center;
   list-style-type: none;
   text-align: center;
   align-items: center;
-  color: #4f4f4f;
-  fill: #4f4f4f;
+  background-color: ${colors.gray_ligth};
+  border-radius: 50%;
   ${(prop) => (prop.selector == prop.data ? selected : "")}
 `;
