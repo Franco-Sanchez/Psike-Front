@@ -39,10 +39,12 @@ import CardSpecialties from "./UI/CardSpecialties";
 import CardSchedule from "./UI/CardSchedule";
 import CardComent from "./UI/CardComent";
 import Button from "./UI/Button";
+import PaymentModal from "./UI/PaymentModal";
 
 export default function Documentation() {
   return (
     <div>
+      <PaymentModal/>
       {/* <MultiSelect /> */}
       {/* TITULOS */}
       {/* <Heading1>Heading1</Heading1>
@@ -128,7 +130,7 @@ export default function Documentation() {
       {/* <CardSpecialties />
       <CardSchedule />
       <CardComent /> */}
-      <CardSpecialties />
+      {/* <CardSpecialties /> */}
       {/* <CardShow></CardShow> */}
       {/* <Button size="small" color={colors.orange} type="submit">Login</Button> */}
     </div>

@@ -112,6 +112,7 @@ function App() {
           }
           body{
             background: ${colors.white};
+            font-family: Raleway;
           }
         `}
       />
