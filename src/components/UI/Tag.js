@@ -1,11 +1,20 @@
 import styled from "@emotion/styled";
 import { colors } from "../../ui";
+import { ContentM, ContentXXSB } from "../text/Content";
 
 export function TagItem({ children }) {
-  return <StyledDiv>{children}</StyledDiv>;
+  return (
+    <StyledDiv>
+      <ContentXXSB>{children}</ContentXXSB>
+    </StyledDiv>
+  );
 }
 export function TagItemFill({ children }) {
-  return <StyledDivFill>{children}</StyledDivFill>;
+  return (
+    <StyledDivFill>
+      <ContentM>{children}</ContentM>
+    </StyledDivFill>
+  );
 }
 
 const StyledDivFill = styled.div`

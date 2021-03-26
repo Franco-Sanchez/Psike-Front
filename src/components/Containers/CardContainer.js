@@ -17,8 +17,14 @@ const StyledDiv = styled.div`
   border-radius: 20px;
   border-radius: 20px;
   padding: 14px;
+  
+  
   :hover {
     box-shadow: 8px 17px 14px rgba(0, 0, 0, 0.04);
     transition: 300ms;
+  }
+  @media (max-width: 375px) {
+    height: 100%;
+    width: 100%;
   }
 `;

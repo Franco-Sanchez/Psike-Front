@@ -128,8 +128,8 @@ export default function Documentation() {
       {/* <CardSpecialties />
       <CardSchedule />
       <CardComent /> */}
-
-      <CardShow></CardShow>
+      <CardSpecialties />
+      {/* <CardShow></CardShow> */}
       {/* <Button size="small" color={colors.orange} type="submit">Login</Button> */}
     </div>
   );
