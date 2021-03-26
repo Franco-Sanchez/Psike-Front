@@ -75,7 +75,7 @@ export default function CardSpecialties() {
         <ContentL>Especialidades</ContentL>
 
         {specialties
-          .slice((currentPage - 1) * (limit - 3), currentPage * (limit - 3))
+          .slice((currentPage - 1) * (limit - 4), currentPage * (limit - 4))
           .map((key) => (
             <>
               <ContentXSB>{key.name}</ContentXSB>
@@ -86,16 +86,26 @@ export default function CardSpecialties() {
               </div>
             </>
           ))}
+        <div className="pagination">
+          <Pagination pages={pages} onClick={() => setPage(currentPage + 1)} />
+        </div>
       </StyledCard>
-      <div className="pagination">
-        <Pagination pages={pages} onClick={() => setPage(currentPage + 1)} />
-      </div>
     </CardContainer>
   );
 }
 
 const StyledCard = styled.div`
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  .pagination {
+    position: absolute;
+    bottom: 0px;
+    align-self: center;
+  }
   & .especialtiesComents {
     display: flex;
     flex-wrap: wrap;
