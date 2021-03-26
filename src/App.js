@@ -110,8 +110,12 @@ function App() {
             padding: 0;
             box-sizing: border-box;
           }
-          body{
+          body {
             background: ${colors.white};
+            background-image: url("/src/Images/landing.svg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
           }
         `}
       />
@@ -124,14 +128,17 @@ function App() {
           <Route path="/signup" component={SignUp} />
           <Route path="/psychologists" component={Psychologists} />
           <Route path="/psychologist/:id" component={ShowPsychologist} />
-          <Route path="/psychologist/:id/specialty#1" component={ShowPsychologist} />
+          <Route
+            path="/psychologist/:id/specialty#1"
+            component={ShowPsychologist}
+          />
           <Route path="/profile" component={Profile} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/404" component={NotFound} />
           <Redirect from="*" to="/404" />
         </Switch>
       </Router>
-      <Documentation/>
+      {/* <Documentation /> */}
     </div>
   );
 }
