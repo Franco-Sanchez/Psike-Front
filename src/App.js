@@ -18,7 +18,7 @@ import { colors } from "./ui";
 
 function App() {
   let gapi = window.gapi;
-  let CLIENT_ID =
+  let clientId =
     "55420826679-ta7gh9fm2j3596fhk8setcqpkcka6d8g.apps.googleusercontent.com";
   let API_KEY = "AIzaSyB4FREPsJE4KoZ-hvHsTHG2Ke4h7W05JrU";
   let DISCOVERY_DOCS = [
@@ -32,7 +32,7 @@ function App() {
 
       gapi.client.init({
         apiKey: API_KEY,
-        clientId: CLIENT_ID,
+        clientId: clientId,
         discoveryDocs: DISCOVERY_DOCS,
         scope: SCOPES,
       });
@@ -83,7 +83,6 @@ function App() {
 
           request.execute(function (event) {
             console.log(event);
-            // window.open(event.htmlLink);
 
             gapi.client.calendar.events
               .patch({
@@ -95,6 +94,7 @@ function App() {
               })
               .execute(function (event) {
                 console.log("Conference created for event: %s", event.htmlLink);
+                window.open(event.htmlLink);
               });
           });
         });
@@ -110,12 +110,18 @@ function App() {
             padding: 0;
             box-sizing: border-box;
           }
-          body{
+          body {
             background: ${colors.white};
+            background-image: url("/src/Images/landing.svg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 50px 50px 0px 50px;
           }
         `}
       />
       {/*<button onClick={handleClick}>Separar cita</button>*/}
+      {/* <button onClick={handleClick}>Separar cita</button> */}
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
@@ -124,7 +130,10 @@ function App() {
           <Route path="/signup" component={SignUp} />
           <Route path="/psychologists" component={Psychologists} />
           <Route path="/psychologist/:id" component={ShowPsychologist} />
-          <Route path="/psychologist/:id/specialty#1" component={ShowPsychologist} />
+          <Route
+            path="/psychologist/:id/specialty#1"
+            component={ShowPsychologist}
+          />
           <Route path="/profile" component={Profile} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/404" component={NotFound} />
@@ -132,6 +141,7 @@ function App() {
         </Switch>
       </Router>
       {/*<Documentation/>*/}
+      {/* <Documentation /> */}
     </div>
   );
 }

@@ -13,8 +13,7 @@ const types = {
 const StyledDiv = styled.div`
   height: ${(props) => (props.type ? types[props.type].height : "373px")};
   width: ${(props) => (props.type ? types[props.type].width : "303px")};
-  background: #ffffff;
-  border-radius: 20px;
+  background-color: #ffffff;
   border-radius: 20px;
   padding: 14px;
   

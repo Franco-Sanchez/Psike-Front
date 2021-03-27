@@ -68,6 +68,8 @@ export default function Documentation() {
       <hr /> */}
       {/* Form Field- Input with icon */}
       {/* <FormField>
+        -- CONVERT A TAG LABEL WITH THE SAME STYLES --
+        const StyledLabel = ContentXSB.withComponent('label')
         <ContentXSB>Email</ContentXSB>
         <Icon type="email" />
         <InputField type="text" placeholder="coloca aqui tu nombre" />
@@ -128,6 +130,7 @@ export default function Documentation() {
       {/* <CardSpecialties />
       <CardSchedule />
       <CardComent /> */}
+      <CardSchedule />
       <CardSpecialties />
       {/* <CardShow></CardShow> */}
       {/* <Button size="small" color={colors.orange} type="submit">Login</Button> */}
