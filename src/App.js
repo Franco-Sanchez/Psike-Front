@@ -115,7 +115,7 @@ function App() {
           }
         `}
       />
-      <button onClick={handleClick}>Separar cita</button>
+      {/*<button onClick={handleClick}>Separar cita</button>*/}
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
@@ -131,7 +131,7 @@ function App() {
           <Redirect from="*" to="/404" />
         </Switch>
       </Router>
-      <Documentation/>
+      {/*<Documentation/>*/}
     </div>
   );
 }
