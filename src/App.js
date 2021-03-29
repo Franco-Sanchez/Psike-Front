@@ -5,6 +5,7 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
+import MenuMobile from "./components/Containers/MenuMobile";
 import Documentation from "./components/Documentation";
 import PageContent from "./components/layout/PageContent";
 import Dashboard from "./pages/Dashboard";
@@ -103,7 +104,7 @@ function App() {
   };
 
   return (
-    <>
+    <div id="App">
       <Global
         styles={css`
           * {
@@ -116,14 +117,16 @@ function App() {
             background: ${colors.white};
             width: 100%;
           }
-          a, button{
-            cursor:pointer;
+          a,
+          button {
+            cursor: pointer;
           }
         `}
       />
 
       <Router>
-        <PageContent>
+        {/* <MenuMobile pageWrapId={"page-wrap"} outerContainerId={"App"} /> */}
+        <PageContent id="page-wrap">
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/documentation" component={Documentation} />
@@ -142,7 +145,7 @@ function App() {
           </Switch>
         </PageContent>
       </Router>
-    </>
+    </div>
   );
 }
 
