@@ -15,7 +15,7 @@ const StyledImage = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   width: ${(props) =>
-    props.size === "large" ? sizes[props.size].width : "100%"};
+    props.size === "large" || "square" ? sizes[props.size].width : "100%"};
   height: ${(props) => sizes[props.size].height};
   border-radius: 20px;
   /* display: flex;
