@@ -4,22 +4,26 @@ const sizes = {
   tiny: {
     width: "100px",
     height: "30px",
+    padding:"5px 10px",
     size: "12px",
   },
   small: {
     width: "144px",
     height: "48px",
+    padding:"6px 15px",
     size: "16px",
   },
   medium: {
     width: "387px",
     height: "48px",
     size: "18px",
+    padding:"10px 20px",
   },
   large: {
     width: "374px",
     height: "73px",
     size: "24px",
+    padding:"12px 25px",
   },
 };
 
@@ -30,6 +34,7 @@ export default function Button({
   outline,
   type,
   children,
+  onClick
 }) {
   if (!sizes[size]) size = "medium";
   return (
@@ -39,6 +44,7 @@ export default function Button({
       bg={bg}
       color={color}
       type={type}
+      onClick = {onClick}
     >
       {children}
     </StyledButton>
@@ -47,8 +53,7 @@ export default function Button({
 
 const StyledButton = styled.button`
   outline: none;
-  min-width: ${(props) => sizes[props.size].width};
-  height: ${(props) => sizes[props.size].height};
+  padding:${(props) => sizes[props.size].padding};
   display: flex;
   justify-content: center;
   align-items: center;

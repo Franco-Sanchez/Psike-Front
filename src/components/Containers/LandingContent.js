@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { colors } from "../../ui";
 import { ContentMB, ContentS } from "../text/Content";
-import { Heading1 } from "../text/Heading";
+import { Heading1, Heading2 } from "../text/Heading";
 import Button from "../UI/Button";
 import Icon from "../UI/Icon";
 import Image from "../UI/Image";
@@ -47,13 +47,12 @@ export default function LandingContent() {
 
 const StyledLanding = styled.div`
   & .landing {
-    margin: 5% 0px;
+    margin: 20px 0px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+
     gap: 20px;
     .landing-content {
-      width: 45%;
       p,
       h1 {
         color: ${colors.black};
@@ -64,7 +63,6 @@ const StyledLanding = styled.div`
     margin: 35px 0px;
     display: flex;
     flex-wrap: wrap;
-
     .benefits {
       display: flex;
       align-items: center;
@@ -79,24 +77,32 @@ const StyledLanding = styled.div`
   @media (max-width: 768px) {
     .landing {
       justify-content: space-between;
-      width: 109%;
+
       .landing-content {
         margin: 10% 0;
-        width: 85%;
+        h1 {
+          font-size: 3rem;
+          line-height: 3rem;
+        }
       }
     }
-
     .landing-image {
       display: none;
     }
   }
-
   @media (max-width: 425px) {
     .landing {
-      width: 160%;
     }
     .landing-content {
+      p:first-of-type {
+        text-align: center;
+      }
       margin: 20% 0;
+      h1 {
+        text-align: center;
+        font-size: 3rem;
+        line-height: 3rem;
+      }
     }
   }
 `;
