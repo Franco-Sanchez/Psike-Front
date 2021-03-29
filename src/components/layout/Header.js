@@ -19,8 +19,7 @@ export default function Header() {
         </a>
       </div>
       <div className="menu-mobile" id="menu-mobile">
-        Burger
-       
+        <MenuMobile/>
       </div>
       <div className="navigation" >
         <NavLink to="/dashboard" activeClassName="selected">
@@ -52,6 +51,7 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 80px;
+  height: auto;
   .logo {
     font-weight: 900;
     font-size: 1.8rem;

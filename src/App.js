@@ -5,7 +5,6 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import MenuMobile from "./components/Containers/MenuMobile";
 import Documentation from "./components/Documentation";
 import PageContent from "./components/layout/PageContent";
 import Dashboard from "./pages/Dashboard";
@@ -125,7 +124,6 @@ function App() {
       />
 
       <Router>
-        {/* <MenuMobile pageWrapId={"page-wrap"} outerContainerId={"App"} /> */}
         <PageContent id="page-wrap">
           <Switch>
             <Route exact path="/" component={Home} />
