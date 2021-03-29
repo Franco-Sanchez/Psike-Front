@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import { colors } from "../../ui";
 
-export default function SelectItem({ name, children }) {
-  return <StyledSelect name={name}>{children}</StyledSelect>;
+export default function SelectItem({ name, children, onChange }) {
+  return <StyledSelect name={name} onChange={onChange}>{children}</StyledSelect>;
 }
 
 const StyledSelect = styled.select`

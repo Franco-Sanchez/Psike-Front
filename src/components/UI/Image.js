@@ -18,9 +18,9 @@ const StyledImage = styled.div`
     props.size === "large" ? sizes[props.size].width : "100%"};
   height: ${(props) => sizes[props.size].height};
   border-radius: 20px;
-  /* display: flex;
+  display: flex;
   justify-content: flex-end;
-  align-items: flex-end; */
+  align-items: flex-end;
   padding: 10px;
   border-radius: ${(props) =>
     props.size === "large" ? sizes[props.size].borderRadius : ""};

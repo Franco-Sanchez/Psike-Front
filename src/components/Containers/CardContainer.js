@@ -6,7 +6,7 @@ export default function CardContainer({ type, children }) {
 
 const types = {
   specialties: { width: "340px", height: "390px" },
-  schedule: { width: "100%", height: "auto" },
+  schedule: { width: "100%", height: "400px" },
   coment: { width: "400px", height: "300px" },
 };
 

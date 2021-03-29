@@ -9,7 +9,7 @@ export const fetchPsychologists = createAsyncThunk(
     });
 
     const data = await response.json();
-    console.log(data)
+    console.log(data);
     if (!response.ok) {
       console.log(data);
       throw new Error("Something went wrong");
@@ -24,6 +24,17 @@ const psychologistsSlice = createSlice({
     status: "idle",
     error: null,
     items: [],
+    filterItems: [],
+    categories: [],
+    filterCategories: [],
+    filterRanking: null,
+    filterPrice: null,
+  },
+  reducers: {
+    setFilters: (state, action) => {
+      let { name, value } = action.payload;
+      state[name] = value;
+    },
   },
   extraReducers: {
     [fetchPsychologists.pending]: (state, action) => {
@@ -33,6 +44,18 @@ const psychologistsSlice = createSlice({
     [fetchPsychologists.fulfilled]: (state, action) => {
       state.status = "succeded";
       state.items = action.payload.psychologists;
+      let r = [];
+      state.items.forEach((element) => {
+        element.specialties.forEach((spe) => {
+          r.push(spe);
+        });
+      });
+      state.categories = r
+        .filter((v, i, a) => a.findIndex((t) => t.name === v.name) === i)
+        .map((item) => {
+          return { value: item.name, label: item.name };
+        });
+      state.filterItems = state.items;
     },
 
     [fetchPsychologists.error]: (state, action) => {
@@ -41,5 +64,5 @@ const psychologistsSlice = createSlice({
     },
   },
 });
-
+export const { setFilters } = psychologistsSlice.actions;
 export default psychologistsSlice.reducer;
