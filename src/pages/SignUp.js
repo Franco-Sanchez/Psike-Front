@@ -1,18 +1,26 @@
 import styled from "@emotion/styled";
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { ContentXS } from "../components/text/Content";
 import { Heading3 } from "../components/text/Heading";
 import Tabsession from "../components/UI/Tabsession";
-import SignError from "../features/signup/SignError";
+import SingError from "../features/signup/SignError";
 import SignForm from "../features/signup/SignForm";
+import { cleanError } from "../features/signup/signSlice";
 import { colors } from "../ui";
 
 export default function SignUp() {
   const token = useSelector((state) => state.signup.token);
   const history = useHistory();
- 
+  const error = useSelector((state) => state.signup.errors);
+  const dispatch = useDispatch();
+  if(error){
+    setTimeout(()=>{
+      dispatch(cleanError())
+    },1000);
+  }
+
     if (token) {
       sessionStorage.setItem("token", token);
       history.push("/dashboard");
@@ -29,7 +37,8 @@ export default function SignUp() {
         </Link>
       </SignLink>
       <Heading3>Registrate</Heading3>
-      <SignError />
+      {error && 
+      <SingError/>}
       <SignForm />
       <Link to="/login">
         <ContentXS>ya tienes una cuenta ? Ingresar</ContentXS>

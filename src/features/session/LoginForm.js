@@ -19,19 +19,26 @@ export default function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validLogin(email, password)) {
+    if (validLogin(email, password) === true) {
       dispatch(fetchLogin({ email, password }));
     }
   };
 
   function validLogin(email, password) {
     function validEmail(email) {
-      return email.match(/\S+@\S+\.\S+/i) || !email.length == 0
-        ? false
-        : setValidEmail(true);
+      if (/\S+@gmail\.com/i.test(email)) {
+        return true;
+      } else {
+        setValidEmail(true);
+        setTimeout(() => setValidEmail(false), 1000);
+      }
     }
+
     function validPassword(password) {
-      return password.length >= 6 ? false : setValidPassword(true);
+      return password.length >= 6
+        ? true
+        : (setValidPassword(true),
+          setTimeout(() => setValidPassword(false), 1000));
     }
     return validEmail(email), validPassword(password);
   }
@@ -46,21 +53,25 @@ export default function LoginForm() {
           onChange={(e) => setEmail(e.target.value)}
         />
         {validEmail && (
-          <SpanError>
-            el campo no pude estar vacio y debe contener @gmail.com...
-          </SpanError>
+          <ContentXS>
+            <SpanError>
+              el campo no pude estar vacio y debe contener @gmail.com...
+            </SpanError>
+          </ContentXS>
         )}
       </ContainerInput>
 
       <ContainerInput>
         <ContentXS>Contraseña</ContentXS>
         <InputField
-          type="contraseña"
+          type="password"
           placeholder="******"
           onChange={(e) => setPassword(e.target.value)}
         />
         {validPassword && (
-          <SpanError>el password tiene que ser mayor a 6 digitos</SpanError>
+          <ContentXS>
+            <SpanError>el password tiene que ser mayor a 6 digitos</SpanError>
+          </ContentXS>
         )}
       </ContainerInput>
 
@@ -72,7 +83,7 @@ export default function LoginForm() {
         type="submit"
         disabled={status === "login"}
       >
-        {status === "loading" ? "Ingresando..." : "Iniciar Sesion"}
+        {status === "loading" ? "Ingresando..." : "Iniciar Session"}
       </Button>
     </FormLogin>
   );

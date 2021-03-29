@@ -13,9 +13,9 @@ export const fetchSign = createAsyncThunk(
     });
 
     const data = await response.json();
-    console.log(data);
+    /*console.log(data);*/
     if (!response.ok) {
-      throw new Error(data.errors.message);
+      throw new Error("el correo ya ha sido tomado");
     }
     return data;
   }
@@ -25,9 +25,14 @@ const signSlice = createSlice({
   name: "sign",
   initialState: {
     token: sessionStorage.getItem("token"),
-    error: null
+    error: null,
   },
-  reducers: {},
+  reducers: {
+    cleanError(state) {
+      state.errors = null;
+    },
+  },
+
   extraReducers: {
     [fetchSign.pending]: (state, action) => {
       state.status = "loading";
@@ -38,9 +43,11 @@ const signSlice = createSlice({
     },
     [fetchSign.rejected]: (state, action) => {
       state.status = "failed";
-      state.errors = JSON.parse(action.error.message);
+      state.errors = action.error.message;
+      //state.error = "El correo ya existe";
     },
   },
 });
 
 export default signSlice.reducer;
+export const { cleanError } = signSlice.actions;

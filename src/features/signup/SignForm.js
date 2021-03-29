@@ -24,42 +24,54 @@ export default function SignForm() {
   const [validPassword, setValidPassword] = useState(false);
 
   // const token = useSelector((state) => state.signup.token);
-  
+
   // useEffect(() => {
   //   if (token) {
   //     sessionStorage.setItem("token", token);
   //     history.push("/dashboard");
   //   }
   // }, [token]);
-  
+
+  // if(status=="loading"){
+  //   setTimeout(()=>{
+  //     dispatch(cleanError())
+  //   },1000);
+  // }
+
   const handleSubmitSign = async (e) => {
     e.preventDefault();
-    if (!validSign(name, lastname, email, password)) {
+    if (validSign(name, lastname, email, password) === true) {
       await dispatch(fetchSign({ name, lastname, email, password }));
     }
   };
 
   const validSign = (name, lastname, email, password) => {
-  function validName(name) {
-   return !name.length == 0 ? false : setValidName(true);
-   }
-  function validLastName(lastname) {
-  return !lastname.length == 0 ? false : setValidLast(true);
-  }
-  function validEmail(email) {
-  return email.match(/\S+@\S+\.\S+/i) || !email.length == 0
-  ? false
-  : setValidEmail(true);
-  }
-  function validPassword(password) {
-  return password.length >= 6 ? false : setValidPassword(true);
-  }
-  return (
-  validName(name),
-  validLastName(lastname),
-  validEmail(email),
-  validPassword(password)
-  );
+    function validName(name) {
+      return !name.length == 0
+        ? true
+        : (setValidName(true), setTimeout(setValidName, 2000));
+    }
+    function validLastName(lastname) {
+      return !lastname.length == 0
+        ? true
+        : (setValidLast(true), setTimeout(setValidLast, 2000));
+    }
+    function validEmail(email) {
+      return email.match(/\S+@\S+\.\S+/i) || !email.length == 0
+        ? true
+        : (setValidEmail(true), setTimeout(setValidEmail, 1000));
+    }
+    function validPassword(password) {
+      return password.length >= 6
+        ? true
+        : (setValidPassword(true), setTimeout(setValidPassword, 1000));
+    }
+    return (
+      validName(name),
+      validLastName(lastname),
+      validEmail(email),
+      validPassword(password)
+    );
   };
 
   return (
@@ -77,7 +89,12 @@ export default function SignForm() {
           placeholder="Nombre"
           onChange={(e) => setName(e.target.value)}
         />
-        {validName && <ContentXS> <SpanError>el campo no puede estar vacio</SpanError> </ContentXS> }
+        {validName && (
+          <ContentXS>
+            {" "}
+            <SpanError>el campo no puede estar vacio</SpanError>{" "}
+          </ContentXS>
+        )}
       </ContainerInput>
 
       <ContainerInput>
@@ -87,7 +104,11 @@ export default function SignForm() {
           placeholder="Apellido"
           onChange={(e) => setLastname(e.target.value)}
         />
-        {validLastName && <ContentXS><SpanError>el campo no puede estar vacio</SpanError></ContentXS>}
+        {validLastName && (
+          <ContentXS>
+            <SpanError>el campo no puede estar vacio</SpanError>
+          </ContentXS>
+        )}
       </ContainerInput>
 
       <ContainerInput>
@@ -102,9 +123,9 @@ export default function SignForm() {
         />
         {validEmail && (
           <ContentXS>
-          <SpanError>
-            el campo no pude estar vacio y debe contener @gmail.com...
-          </SpanError>
+            <SpanError>
+              el campo no pude estar vacio y debe contener @gmail.com...
+            </SpanError>
           </ContentXS>
         )}
       </ContainerInput>
@@ -117,7 +138,9 @@ export default function SignForm() {
           onChange={(e) => setPassword(e.target.value)}
         />
         {validPassword && (
-         <ContentXS><SpanError>el password tiene que ser mayor a 6 digitos</SpanError></ContentXS>
+          <ContentXS>
+            <SpanError>el password tiene que ser mayor a 6 digitos</SpanError>
+          </ContentXS>
         )}
       </ContainerInput>
 
@@ -129,7 +152,7 @@ export default function SignForm() {
         type="submit"
         disabled={status === "loading"}
       >
-        {status === "loading" ? "Cargando..." : "Registrate"}
+        {status === "loading" ? "Cargando..." : "Iniciar Session"};
       </Button>
     </FormSign>
   );

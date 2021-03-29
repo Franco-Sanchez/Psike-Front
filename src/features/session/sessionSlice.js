@@ -29,6 +29,9 @@ const sessionSlice = createSlice({
     error: null,
   },
   reducers: {
+    cleanError(state) {
+      state.error = null;
+    },
     killToken: (state) => {
       sessionStorage.removeItem("token");
       state.token = null;
@@ -42,12 +45,15 @@ const sessionSlice = createSlice({
       state.error = null;
       state.token = action.payload.token;
       state.email = action.payload.email;
+      state.status = "succeeded";
     },
     [fetchLogin.rejected]: (state, action) => {
-      state.error = action.error.message;
+      //state.error = action.error.message;
+      state.error = "Correo o Contraseña incorrecta";
+      state.status = "rejected";
     },
   },
 });
 
-export const { killToken } = sessionSlice.actions;
+export const { killToken, cleanError } = sessionSlice.actions;
 export default sessionSlice.reducer;

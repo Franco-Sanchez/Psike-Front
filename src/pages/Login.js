@@ -1,17 +1,28 @@
 import styled from "@emotion/styled";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { Heading3 } from "../components/text/Heading";
 import Tabsession from "../components/UI/Tabsession";
 import LoginForm from "../features/session/LoginForm";
 import SessionError from "../features/session/SessionError";
+import { cleanError } from "../features/session/sessionSlice";
 import { colors } from "../ui";
+
 
 export default function Login() {
   const history = useHistory();
   const token = useSelector((state) => state.session.token);
-
+  const error = useSelector((state)=>state.session.error)
+  const dispatch = useDispatch();
+ 
+  
+   if(error) {
+   setTimeout(()=>{
+      dispatch(cleanError())
+    },1000)
+  }
+  
  
     if (token) {
       sessionStorage.setItem("token", token);
@@ -29,7 +40,7 @@ export default function Login() {
         </Link>
       </LoginLink>
       <Heading3>Iniciar Sesion</Heading3>
-      <SessionError />
+      {error && <SessionError/>}
       <LoginForm />
     </ContainerLogin>
   );
@@ -39,7 +50,7 @@ const ContainerLogin = styled.div`
   display: flex;
   flex-direction: column;
   //width: 100%;
-  height: 100vh;
+  height: auto;
   justify-content: center;
   align-items: center;
   gap: 10px;
