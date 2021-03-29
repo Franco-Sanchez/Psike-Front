@@ -35,6 +35,7 @@ const StyledImage = styled.div`
 `;
 
 const sizes = {
+  square: { width: "203px", height: "203px" },
   small: { width: "275px", height: "143px" },
   medium: { width: "461px", height: "306px" },
   large: { width: "450px", height: "600px", borderRadius: "0px 50px" },
