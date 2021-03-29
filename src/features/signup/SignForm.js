@@ -113,11 +113,11 @@ export default function SignForm() {
         <ContentXS>Contraseña</ContentXS>
         <InputField
           type="password"
-          placeholder="********"
+          placeholder="******"
           onChange={(e) => setPassword(e.target.value)}
         />
         {validPassword && (
-         <ContentXS><SpanError>el password tiene que ser mayor a 8 digitos</SpanError></ContentXS>
+         <ContentXS><SpanError>el password tiene que ser mayor a 6 digitos</SpanError></ContentXS>
         )}
       </ContainerInput>
 

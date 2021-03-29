@@ -56,11 +56,11 @@ export default function LoginForm() {
         <ContentXS>Contraseña</ContentXS>
         <InputField
           type="contraseña"
-          placeholder="********"
+          placeholder="******"
           onChange={(e) => setPassword(e.target.value)}
         />
         {validPassword && (
-          <SpanError>el password tiene que ser mayor a 8 digitos</SpanError>
+          <SpanError>el password tiene que ser mayor a 6 digitos</SpanError>
         )}
       </ContainerInput>
 
