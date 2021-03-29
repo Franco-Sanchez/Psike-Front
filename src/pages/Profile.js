@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import Image from "../components/UI/Image";
 import InputField from "../components/UI/Input";
@@ -13,11 +13,25 @@ import Button from "../components/UI/Button";
 
 export default function Profile() {
   const [value, setValue] = useState("");
+  const [image, setImage] = useState();
+  const [preview, setPreview] = useState();
   const options = useMemo(() => countryList().getData(), []);
   const changeHandler = (value) => {
     setValue(value);
   };
   const fileInputRef = useRef();
+
+  useEffect(() => {
+    if (image) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(image);
+    } else {
+      setPreview(null);
+    }
+  }, [image]);
 
   return (
     <>
@@ -25,7 +39,11 @@ export default function Profile() {
         <form>
           <div className="profile-photo">
             <Image
-              url="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*"
+              url={
+                preview
+                  ? `${preview}`
+                  : `https://pngimage.net/wp-content/uploads/2018/06/icono-usuario-png-5.png`
+              }
               size="square"
             />
             <button
@@ -41,6 +59,15 @@ export default function Profile() {
               type="file"
               style={{ display: "none" }}
               ref={fileInputRef}
+              accept="iamge/*"
+              onChange={(event) => {
+                const file = event.target.files[0];
+                if (file && file.type.substr(0, 5) == "image") {
+                  setImage(file);
+                } else {
+                  setImage(null);
+                }
+              }}
             ></input>
           </div>
           <div className="profile-inputs">
