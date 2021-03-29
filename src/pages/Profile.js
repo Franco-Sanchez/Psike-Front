@@ -34,8 +34,8 @@ export default function Profile() {
   }, [image]);
 
   return (
-    <>
-      <StyledPersonalInfoSection>
+    <StyledContiner>
+      <div>
         <form>
           <div className="profile-photo">
             <Image
@@ -113,17 +113,16 @@ export default function Profile() {
             </FormField>
           </div>
         </form>
-      </StyledPersonalInfoSection>
-      <Button size="medium" bg={colors.blue_ligth}>
-        Guardar
-      </Button>
-    </>
+      </div>
+      <div className="save-button">
+        <Button bg={colors.blue_ligth}>Guardar</Button>
+      </div>
+    </StyledContiner>
   );
 }
 
-const StyledPersonalInfoSection = styled.div`
+const StyledContiner = styled.div`
   form {
-    border: 1px solid red;
     width: fit-content;
     margin: auto;
     display: flex;
@@ -139,7 +138,6 @@ const StyledPersonalInfoSection = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    border: 1px solid blue;
   }
   .button-image {
     background-color: rgba(255, 255, 255, 0.7);
@@ -149,5 +147,12 @@ const StyledPersonalInfoSection = styled.div`
     position: absolute;
     top: 140px;
     right: 130px;
+  }
+  .save-button {
+    width: 387px;
+    margin-inline-start: auto;
+    button {
+      width: 100%;
+    }
   }
 `;
