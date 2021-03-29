@@ -6,6 +6,7 @@ import {
   Switch,
 } from "react-router-dom";
 import Documentation from "./components/Documentation";
+import PageContent from "./components/layout/PageContent";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -102,45 +103,46 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       <Global
         styles={css`
           * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: Raleway;
           }
           body {
             background: ${colors.white};
-            background-image: url("/src/Images/landing.svg");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            margin: 50px 50px 0px 50px;
+            width: 100%;
+          }
+          a, button{
+            cursor:pointer;
           }
         `}
       />
-      {/* <button onClick={handleClick}>Separar cita</button> */}
+
       <Router>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/documentation" component={Documentation} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={SignUp} />
-          <Route path="/psychologists" component={Psychologists} />
-          <Route path="/psychologist/:id" component={ShowPsychologist} />
-          <Route
-            path="/psychologist/:id/specialty#1"
-            component={ShowPsychologist}
-          />
-          <Route path="/profile" component={Profile} />
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/404" component={NotFound} />
-          <Redirect from="*" to="/404" />
-        </Switch>
+        <PageContent>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/documentation" component={Documentation} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/psychologists" component={Psychologists} />
+            <Route path="/psychologist/:id" component={ShowPsychologist} />
+            <Route
+              path="/psychologist/:id/specialty#1"
+              component={ShowPsychologist}
+            />
+            <Route path="/profile" component={Profile} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/404" component={NotFound} />
+            <Redirect from="*" to="/404" />
+          </Switch>
+        </PageContent>
       </Router>
-      {/* <Documentation /> */}
-    </div>
+    </>
   );
 }
 

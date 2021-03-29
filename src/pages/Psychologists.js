@@ -12,7 +12,7 @@ const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export default function Psychologists() {
   return (
-    <StyledPage>
+    <>
       <StyledFilterSection>
         <MultiSelect />
 
@@ -35,7 +35,6 @@ export default function Psychologists() {
             </SelectItem>
           </OptionContainer>
         </FilterSelects>
-        <Button size="small">Filtrar</Button>
       </StyledFilterSection>
       <StyledPsychologists>
         {array.map((a, i) => (
@@ -51,22 +50,9 @@ export default function Psychologists() {
           />
         ))}
       </StyledPsychologists>
-    </StyledPage>
+    </>
   );
 }
-
-const StyledPage = styled.div`
-  max-width: 1240px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  @media (max-width: 950px) {
-    & {
-      padding: 0 10px;
-    }
-  }
-`;
 
 const StyledFilterSection = styled.div`
   display: grid;
@@ -87,13 +73,11 @@ const FilterSelects = styled.div`
 
 const StyledPsychologists = styled.div`
   width: 100%;
+  margin:20px 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 10px;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
-  & > div {
-    margin: 0 auto;
-  }
+
 `;
