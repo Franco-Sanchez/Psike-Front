@@ -17,43 +17,39 @@ export default function CardPsychology({ name, bio, price, coments, ranking }) {
     "Sexualidad e identidad",
   ];
 
-  return ( 
-    <CardContainer type={"schedule"}>
-      <StyledCardPsychology>
-        <Imagen
-          url="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg"
-          size="small"
-        >
-          <TabPrice price={price} size="small" />
-        </Imagen>
-        <Heading6>Lic. {name}</Heading6>
-        <ContentXXSB>Psicologa Clínica</ContentXXSB>
-        <div className="tagsContainer">
-          {specialties.map((spe) => (
-            <>
-              <TagItem>
-                <ContentXXSB>{spe}</ContentXXSB>
-              </TagItem>
-            </>
-          ))}
-        </div>
-        <div className="bioContainer">
-          <ContentXS>{bio}</ContentXS>
-        </div>
-
-        <div className="stadisticsContainer">
-          <div className="stadisticsItem">
-            <Icon type="chat" fill={colors.pink1} size="25" />
-            <ContentXSB>{coments}</ContentXSB>
+  return (
+    <>
+      <CardContainer type={"schedule"}>
+        <StyledCardPsychology>
+          <Imagen
+            url="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg"
+            size="small"
+          >
+            <TabPrice price={price} size="small" />
+          </Imagen>
+          <Heading6>Lic. {name}</Heading6>
+          <ContentXXSB>Psicologa Clínica</ContentXXSB>
+          <div className="tagsContainer">
+              <p>asd</p>
+          </div>
+          <div className="bioContainer">
+            <ContentXS>{bio}</ContentXS>
           </div>
 
-          <div className="stadisticsItem">
-            <Icon type="start" fill={colors.orange} size="25" />
-            <ContentXSB>{ranking}</ContentXSB>
+          <div className="stadisticsContainer">
+            <div className="stadisticsItem">
+              <Icon type="chat" fill={colors.pink1} size="25" />
+              <ContentXSB>{coments}</ContentXSB>
+            </div>
+
+            <div className="stadisticsItem">
+              <Icon type="start" fill={colors.orange} size="25" />
+              <ContentXSB>{ranking}</ContentXSB>
+            </div>
           </div>
-        </div>
-      </StyledCardPsychology>
-    </CardContainer>
+        </StyledCardPsychology>
+      </CardContainer>
+    </>
   );
 }
 const StyledCardPsychology = styled.div`

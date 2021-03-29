@@ -1,16 +1,24 @@
 import styled from "@emotion/styled";
 import React from "react";
 import OptionContainer from "../components/Containers/SelectContainer";
-import Button from "../components/UI/Button";
 import Icon from "../components/UI/Icon";
 import MultiSelect from "../components/UI/MultiSelect";
 import SelectItem from "../components/UI/Select";
 import { colors } from "../ui";
 import CardPsychology from "../components/UI/CardPsychology";
-
-const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPsychologists } from "../features/psychologists/PsychologistsSlice";
 
 export default function Psychologists() {
+  const dispatch = useDispatch();
+  const psychologists = useSelector((state) => state.psychologists.items);
+  const status = useSelector((state) => state.psychologists.status);
+
+  if (status === "idle") {
+    console.log("raa");
+    dispatch(fetchPsychologists());
+  }
+
   return (
     <>
       <StyledFilterSection>
@@ -37,16 +45,14 @@ export default function Psychologists() {
         </FilterSelects>
       </StyledFilterSection>
       <StyledPsychologists>
-        {array.map((a, i) => (
+        {psychologists.map((item) => (
           <CardPsychology
-            key={i}
-            name={"Juanita"}
-            bio={
-              "Psicoterapeuta conductual contextual, con formación en Terapia Integral de Pareja (ICBT), Terapia de Activación Conductual para la Depresión (AC), Terapia Racional Emotivo Conductual (TREC) y Terapia Cognitivo Conductual (TCC)"
-            }
-            price={12.5}
-            coments={12}
-            ranking={4.5}
+            key={Math.random()}
+            name={item.name + " " + item.lastname}
+            bio={item.biography}
+            price={item.price}
+            coments={item.comments_total}
+            ranking={item.ranking_total}
           />
         ))}
       </StyledPsychologists>
@@ -73,11 +79,10 @@ const FilterSelects = styled.div`
 
 const StyledPsychologists = styled.div`
   width: 100%;
-  margin:20px 0;
+  margin: 20px 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 10px;
   justify-content: center;
   align-items: center;
-
 `;

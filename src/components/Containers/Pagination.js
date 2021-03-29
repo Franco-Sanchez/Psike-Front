@@ -46,5 +46,5 @@ const LiStyle = styled.li`
   align-items: center;
   background-color: ${colors.gray_ligth};
   border-radius: 50%;
-  ${(prop) => (prop.selector == prop.data ? selected : "")}
+  ${(prop) => (prop.selector === prop.data ? selected : "")}
 `;

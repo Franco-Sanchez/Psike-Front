@@ -1,6 +1,5 @@
 import React from "react";
 import { colors } from "../../ui";
-import { Heading5 } from "../text/Heading";
 import Button from "../UI/Button";
 import styled from "@emotion/styled";
 import { NavLink, useHistory } from "react-router-dom";
