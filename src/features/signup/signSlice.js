@@ -4,7 +4,6 @@ import { BASE_URI } from "../../app/config";
 export const fetchSign = createAsyncThunk(
   "signup/fetchSign",
   async (credentials) => {
-    console.log(credentials);
     const response = await fetch(`${BASE_URI}/signup`, {
       method: "POST",
       headers: {

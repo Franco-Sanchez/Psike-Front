@@ -28,33 +28,33 @@ export default function SignForm() {
 
   const handleSubmitSign = async (e) => {
     e.preventDefault();
-    if (validSign(name, lastname, email, password)) {
+    if (!validSign(name, lastname, email, password)) {
       await dispatch(fetchSign({ name, lastname, email, password }));
       viewLogin();
     }
   };
 
   const validSign = (name, lastname, email, password) => {
-    function validName(name) {
-      return !name.length == 0 ? false : setValidName(true);
-    }
-    function validLastName(lastname) {
-      return !lastname.length == 0 ? false : setValidLast(true);
-    }
-    function validEmail(email) {
-      return email.match(/\S+@\S+\.\S+/i) || !email.length == 0
-        ? false
-        : setValidEmail(true);
-    }
-    function validPassword(password) {
-      return password.length >= 8 ? false : setValidPassword(true);
-    }
-    return (
-      validName(name),
-      validLastName(lastname),
-      validEmail(email),
-      validPassword(password)
-    );
+  function validName(name) {
+   return !name.length == 0 ? false : setValidName(true);
+   }
+  function validLastName(lastname) {
+  return !lastname.length == 0 ? false : setValidLast(true);
+  }
+  function validEmail(email) {
+  return email.match(/\S+@\S+\.\S+/i) || !email.length == 0
+  ? false
+  : setValidEmail(true);
+  }
+  function validPassword(password) {
+  return password.length >= 6 ? false : setValidPassword(true);
+  }
+  return (
+  validName(name),
+  validLastName(lastname),
+  validEmail(email),
+  validPassword(password)
+  );
   };
 
   return (

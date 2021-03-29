@@ -19,7 +19,7 @@ export default function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validLogin(email, password)) {
+    if (!validLogin(email, password)) {
       dispatch(fetchLogin({ email, password }));
     }
   };
@@ -31,7 +31,7 @@ export default function LoginForm() {
         : setValidEmail(true);
     }
     function validPassword(password) {
-      return password.length >= 8 ? false : setValidPassword(true);
+      return password.length >= 6 ? false : setValidPassword(true);
     }
     return validEmail(email), validPassword(password);
   }
