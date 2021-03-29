@@ -39,10 +39,10 @@ export default function LoginForm() {
   return (
     <FormLogin onSubmit={handleSubmit}>
       <ContainerInput>
-        <ContentXS>Email Address</ContentXS>
+        <ContentXS>Correo Electronico</ContentXS>
         <InputField
           type="email"
-          placeholder="Email"
+          placeholder="Correo Electronico"
           onChange={(e) => setEmail(e.target.value)}
         />
         {validEmail && (
@@ -53,9 +53,9 @@ export default function LoginForm() {
       </ContainerInput>
 
       <ContainerInput>
-        <ContentXS>Password</ContentXS>
+        <ContentXS>Contraseña</ContentXS>
         <InputField
-          type="password"
+          type="contraseña"
           placeholder="********"
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -72,7 +72,7 @@ export default function LoginForm() {
         type="submit"
         disabled={status === "login"}
       >
-        {status === "loading" ? "loading..." : "Login"}
+        {status === "loading" ? "Ingresando..." : "Iniciar Sesion"}
       </Button>
     </FormLogin>
   );

@@ -12,24 +12,23 @@ export default function Login() {
   const history = useHistory();
   const token = useSelector((state) => state.session.token);
 
-  useEffect(() => {
+ 
     if (token) {
       sessionStorage.setItem("token", token);
-      history.push("/psychologists");
+      history.push("/dashboard");
     }
-  }, [token]);
 
   return (
     <ContainerLogin>
       <LoginLink>
         <Link to="/login">
-          <Tabsession color={colors.orange}>Login</Tabsession>
+          <Tabsession color={colors.orange}>Iniciar Sesion</Tabsession>
         </Link>
         <Link to="/signup">
-          <Tabsession>Sign-up</Tabsession>
+          <Tabsession>Registrate</Tabsession>
         </Link>
       </LoginLink>
-      <Heading3>Log in to your account</Heading3>
+      <Heading3>Iniciar Sesion</Heading3>
       <SessionError />
       <LoginForm />
     </ContainerLogin>
@@ -39,7 +38,7 @@ export default function Login() {
 const ContainerLogin = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  //width: 100%;
   height: 100vh;
   justify-content: center;
   align-items: center;
@@ -52,7 +51,7 @@ const ContainerLogin = styled.div`
   }
   @media (max-width: 375px) {
     & {
-      width: 100vw;
+      width: 100%;
       height: 100vh;
       display: flex;
       flex-direction: column;

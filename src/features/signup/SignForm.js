@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Button from "../../components/UI/Button";
 import { colors } from "../../ui";
@@ -22,15 +22,20 @@ export default function SignForm() {
   const [validLastName, setValidLast] = useState(false);
   const [validEmail, setValidEmail] = useState(false);
   const [validPassword, setValidPassword] = useState(false);
-  const viewLogin = () => {
-    history.push("/login");
-  };
 
+  // const token = useSelector((state) => state.signup.token);
+  
+  // useEffect(() => {
+  //   if (token) {
+  //     sessionStorage.setItem("token", token);
+  //     history.push("/dashboard");
+  //   }
+  // }, [token]);
+  
   const handleSubmitSign = async (e) => {
     e.preventDefault();
     if (!validSign(name, lastname, email, password)) {
       await dispatch(fetchSign({ name, lastname, email, password }));
-      viewLogin();
     }
   };
 
@@ -66,51 +71,53 @@ export default function SignForm() {
         </ContentXS>
       </SignText>
       <ContainerInput>
-        <ContentXS>Name</ContentXS>
+        <ContentXS>Nombre</ContentXS>
         <InputField
           type="text"
-          placeholder="Name"
+          placeholder="Nombre"
           onChange={(e) => setName(e.target.value)}
         />
-        {validName && <SpanError>el campo no puede estar vacio</SpanError>}
+        {validName && <ContentXS> <SpanError>el campo no puede estar vacio</SpanError> </ContentXS> }
       </ContainerInput>
 
       <ContainerInput>
-        <ContentXS>LastName</ContentXS>
+        <ContentXS>Apellido</ContentXS>
         <InputField
           type="text"
-          placeholder="LastName"
+          placeholder="Apellido"
           onChange={(e) => setLastname(e.target.value)}
         />
-        {validLastName && <SpanError>el campo no puede estar vacio</SpanError>}
+        {validLastName && <ContentXS><SpanError>el campo no puede estar vacio</SpanError></ContentXS>}
       </ContainerInput>
 
       <ContainerInput>
-        <ContentXS>Email Address</ContentXS>
+        <ContentXS>Correo Electronico</ContentXS>
         <ContainerEmail>
           <Icon type="email" size="18" fiil={colors.black} />
         </ContainerEmail>
         <InputField
           type="email"
-          placeholder="Email"
+          placeholder="Correo Electronico"
           onChange={(e) => setEmail(e.target.value)}
         />
         {validEmail && (
+          <ContentXS>
           <SpanError>
             el campo no pude estar vacio y debe contener @gmail.com...
           </SpanError>
+          </ContentXS>
         )}
       </ContainerInput>
 
       <ContainerInput>
-        <ContentXS>Password</ContentXS>
+        <ContentXS>Contraseña</ContentXS>
         <InputField
           type="password"
           placeholder="********"
           onChange={(e) => setPassword(e.target.value)}
         />
         {validPassword && (
-          <SpanError>el password tiene que ser mayor a 8 digitos</SpanError>
+         <ContentXS><SpanError>el password tiene que ser mayor a 8 digitos</SpanError></ContentXS>
         )}
       </ContainerInput>
 
@@ -122,7 +129,7 @@ export default function SignForm() {
         type="submit"
         disabled={status === "loading"}
       >
-        {status === "loading" ? "loading..." : "Sign-up"}
+        {status === "loading" ? "Cargando..." : "Registrate"}
       </Button>
     </FormSign>
   );

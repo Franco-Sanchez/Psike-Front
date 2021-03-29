@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { ContentXS } from "../components/text/Content";
 import { Heading3 } from "../components/text/Heading";
 import Tabsession from "../components/UI/Tabsession";
@@ -10,21 +10,29 @@ import SignForm from "../features/signup/SignForm";
 import { colors } from "../ui";
 
 export default function SignUp() {
+  const token = useSelector((state) => state.signup.token);
+  const history = useHistory();
+ 
+    if (token) {
+      sessionStorage.setItem("token", token);
+      history.push("/dashboard");
+    }
+
   return (
     <ContainerSign>
       <SignLink>
         <Link to="/login">
-          <Tabsession>Login</Tabsession>
+          <Tabsession>Iniciar Sesion</Tabsession>
         </Link>
         <Link to="/signup">
-          <Tabsession color={colors.orange}>Sign-up</Tabsession>
+          <Tabsession color={colors.orange}>Registrate</Tabsession>
         </Link>
       </SignLink>
-      <Heading3>Sign up for an account</Heading3>
+      <Heading3>Registrate</Heading3>
       <SignError />
       <SignForm />
       <Link to="/login">
-        <ContentXS>ya tienes una cuenta ? Login</ContentXS>
+        <ContentXS>ya tienes una cuenta ? Ingresar</ContentXS>
       </Link>
     </ContainerSign>
   );
@@ -33,20 +41,21 @@ export default function SignUp() {
 const ContainerSign = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  //width: 100%;
   height: 100vh;
   justify-content: center;
   align-items: center;
   gap: 10px;
   & h3 {
     color: ${colors.blue};
+    text-align:center;
   }
   & a {
     text-decoration: none;
   }
   @media (max-width: 375px) {
     & {
-      width: 100vw;
+      width: 100%;
       height: 100%;
       padding-top:10px;
       display: flex;

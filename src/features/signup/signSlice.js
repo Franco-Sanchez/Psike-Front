@@ -24,10 +24,8 @@ export const fetchSign = createAsyncThunk(
 const signSlice = createSlice({
   name: "sign",
   initialState: {
-    /*token: sessionStorage.setItem("token"),*/
-    user: null,
-    status: "idle",
-    error: {},
+    token: sessionStorage.getItem("token"),
+    error: null
   },
   reducers: {},
   extraReducers: {
@@ -35,6 +33,7 @@ const signSlice = createSlice({
       state.status = "loading";
     },
     [fetchSign.fulfilled]: (state, action) => {
+      state.token = action.payload.token;
       state.status = "succeeded";
     },
     [fetchSign.rejected]: (state, action) => {
