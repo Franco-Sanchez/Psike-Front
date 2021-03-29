@@ -35,6 +35,9 @@ const sessionSlice = createSlice({
     },
   },
   extraReducers: {
+    [fetchLogin.pending]: (state, action) => {
+      state.status = "loading";
+    },
     [fetchLogin.fulfilled]: (state, action) => {
       state.error = null;
       state.token = action.payload.token;

@@ -23,7 +23,7 @@ export default function Login() {
     <ContainerLogin>
       <LoginLink>
         <Link to="/login">
-          <Tabsession>Login</Tabsession>
+          <Tabsession color={colors.orange}>Login</Tabsession>
         </Link>
         <Link to="/signup">
           <Tabsession>Sign-up</Tabsession>

@@ -1,6 +1,5 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Button from "../../components/UI/Button";
 import { colors } from "../../ui";
@@ -9,27 +8,54 @@ import { fetchSign } from "./signSlice";
 import { ContentXS } from "../../components/text/Content";
 import InputField from "../../components/UI/Input";
 import Icon from "../../components/UI/Icon";
+import { SpanError } from "../session/LoginForm";
 
 export default function SignForm() {
   const dispatch = useDispatch();
   const history = useHistory();
-
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const status = useSelector((state) => state.signup.status);
+  const [validName, setValidName] = useState(false);
+  const [validLastName, setValidLast] = useState(false);
+  const [validEmail, setValidEmail] = useState(false);
+  const [validPassword, setValidPassword] = useState(false);
   const viewLogin = () => {
     history.push("/login");
   };
 
   const handleSubmitSign = async (e) => {
     e.preventDefault();
-    await dispatch(fetchSign({ name, lastname, email, password }));
-    viewLogin();
+    if (validSign(name, lastname, email, password)) {
+      await dispatch(fetchSign({ name, lastname, email, password }));
+      viewLogin();
+    }
   };
 
-  //setForm({ ...form, [e.target.name]: e.target.value })
+  const validSign = (name, lastname, email, password) => {
+    function validName(name) {
+      return !name.length == 0 ? false : setValidName(true);
+    }
+    function validLastName(lastname) {
+      return !lastname.length == 0 ? false : setValidLast(true);
+    }
+    function validEmail(email) {
+      return email.match(/\S+@\S+\.\S+/i) || !email.length == 0
+        ? false
+        : setValidEmail(true);
+    }
+    function validPassword(password) {
+      return password.length >= 8 ? false : setValidPassword(true);
+    }
+    return (
+      validName(name),
+      validLastName(lastname),
+      validEmail(email),
+      validPassword(password)
+    );
+  };
 
   return (
     <FormSign onSubmit={handleSubmitSign}>
@@ -46,6 +72,7 @@ export default function SignForm() {
           placeholder="Name"
           onChange={(e) => setName(e.target.value)}
         />
+        {validName && <SpanError>el campo no puede estar vacio</SpanError>}
       </ContainerInput>
 
       <ContainerInput>
@@ -55,6 +82,7 @@ export default function SignForm() {
           placeholder="LastName"
           onChange={(e) => setLastname(e.target.value)}
         />
+        {validLastName && <SpanError>el campo no puede estar vacio</SpanError>}
       </ContainerInput>
 
       <ContainerInput>
@@ -67,15 +95,23 @@ export default function SignForm() {
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
+        {validEmail && (
+          <SpanError>
+            el campo no pude estar vacio y debe contener @gmail.com...
+          </SpanError>
+        )}
       </ContainerInput>
 
       <ContainerInput>
         <ContentXS>Password</ContentXS>
         <InputField
           type="password"
-          placeholder="******"
+          placeholder="********"
           onChange={(e) => setPassword(e.target.value)}
         />
+        {validPassword && (
+          <SpanError>el password tiene que ser mayor a 8 digitos</SpanError>
+        )}
       </ContainerInput>
 
       <Button
@@ -84,8 +120,9 @@ export default function SignForm() {
         bg={colors.blue_ligth}
         color={colors.white}
         type="submit"
+        disabled={status === "loading"}
       >
-        Sign up
+        {status === "loading" ? "loading..." : "Sign-up"}
       </Button>
     </FormSign>
   );

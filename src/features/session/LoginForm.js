@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 import { fetchLogin } from "./sessionSlice";
@@ -13,37 +13,55 @@ export default function LoginForm() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [validEmail, setValidEmail] = useState(false);
+  const [validPassword, setValidPassword] = useState(false);
+  const status = useSelector((state) => state.session.status);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(fetchLogin({ email, password }));
-    console.log("button submit");
+    if (validLogin(email, password)) {
+      dispatch(fetchLogin({ email, password }));
+    }
   };
 
-  useEffect(() => {
-    console.log(email);
-    console.log(password);
-    /*console.log(data.token);*/
-  }, [email, password]);
+  function validLogin(email, password) {
+    function validEmail(email) {
+      return email.match(/\S+@\S+\.\S+/i) || !email.length == 0
+        ? false
+        : setValidEmail(true);
+    }
+    function validPassword(password) {
+      return password.length >= 8 ? false : setValidPassword(true);
+    }
+    return validEmail(email), validPassword(password);
+  }
 
   return (
     <FormLogin onSubmit={handleSubmit}>
       <ContainerInput>
         <ContentXS>Email Address</ContentXS>
         <InputField
-          type="text"
+          type="email"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
+        {validEmail && (
+          <SpanError>
+            el campo no pude estar vacio y debe contener @gmail.com...
+          </SpanError>
+        )}
       </ContainerInput>
 
       <ContainerInput>
         <ContentXS>Password</ContentXS>
         <InputField
           type="password"
-          placeholder="******"
+          placeholder="********"
           onChange={(e) => setPassword(e.target.value)}
         />
+        {validPassword && (
+          <SpanError>el password tiene que ser mayor a 8 digitos</SpanError>
+        )}
       </ContainerInput>
 
       <Button
@@ -52,8 +70,9 @@ export default function LoginForm() {
         bg={colors.blue_ligth}
         color={colors.white}
         type="submit"
+        disabled={status === "login"}
       >
-        Login
+        {status === "loading" ? "loading..." : "Login"}
       </Button>
     </FormLogin>
   );
@@ -82,3 +101,8 @@ const ContainerInput = styled.div`
   gap: 15px;
   margin-bottom: 10px;
 `;
+
+const SpanError = styled.span`
+  color: red;
+`;
+export { SpanError };

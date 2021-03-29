@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ContentXS } from "../components/text/Content";
 import { Heading3 } from "../components/text/Heading";
@@ -16,13 +17,13 @@ export default function SignUp() {
           <Tabsession>Login</Tabsession>
         </Link>
         <Link to="/signup">
-          <Tabsession>Sign-up</Tabsession>
+          <Tabsession color={colors.orange}>Sign-up</Tabsession>
         </Link>
       </SignLink>
       <Heading3>Sign up for an account</Heading3>
       <SignError />
       <SignForm />
-      <Link to="/signup">
+      <Link to="/login">
         <ContentXS>ya tienes una cuenta ? Login</ContentXS>
       </Link>
     </ContainerSign>
