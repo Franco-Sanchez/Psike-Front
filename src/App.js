@@ -121,6 +121,8 @@ function App() {
           }
         `}
       />
+      {/*<button onClick={handleClick}>Separar cita</button>*/}
+      {/* <button onClick={handleClick}>Separar cita</button> */}
 
       <Router>
         <PageContent>
