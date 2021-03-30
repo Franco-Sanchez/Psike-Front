@@ -30,6 +30,14 @@ export default function CardSchedule() {
     orderedSchedule = [...orderedSchedule, schedule.splice(0,3)]
   }
 
+  const goPastDay = () => {
+    // if(day.getDay() !== new Date().getDay()) {
+      setDay(new Date(day.setDate((day.getDate() - 1))))
+    // }
+  };
+
+  const goNextDay = () => setDay(new Date(day.setDate((day.getDate() + 1))))
+
   return (
     <CardContainer type="schedule">
       <ContentL>Horarios</ContentL>
@@ -53,17 +61,24 @@ export default function CardSchedule() {
             ever since the 1500s.
           </Content>
           <ContainerHours>
-            <Icon styles={arrow} type="arrowLeft" size={50} fill={colors.orange} />
+            <Icon onClick={goPastDay} styles={arrow} type="arrowLeft" size={50} fill={colors.orange} />
             <StyledOrderedSchedule>
               {orderedSchedule.map(schedule => (
                 <StyledRow>
                   {schedule.map(_item => (
-                    <Button size="small" outline disabled={taken} css={buttonHour}>13:00 a 13:45</Button>
+                    <Button 
+                      size="small"
+                      outline
+                      disabled={taken}
+                      css={buttonHour}
+                    >
+                      13:00 a 13:45
+                    </Button>
                   ))}
                 </StyledRow>
               ))}
             </StyledOrderedSchedule>
-            <Icon styles={arrow} type="arrow" size={50} fill={colors.orange} />
+            <Icon onClick={goNextDay} styles={arrow} type="arrow" size={50} fill={colors.orange} />
           </ContainerHours>
         </ContainerSchedule>
       </StyledCard>

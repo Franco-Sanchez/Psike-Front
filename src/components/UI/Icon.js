@@ -48,7 +48,7 @@ const iconSet = {
   userheart:RiUserHeartLine
 };
 
-function Icon({ type, fill, size, styles }) {
+function Icon({ type, fill, size, styles, onClick }) {
   const IconComponent = iconSet[type];
   return (
     <IconComponent
@@ -57,6 +57,7 @@ function Icon({ type, fill, size, styles }) {
         font-size: ${size}px;
         ${styles};
       `}
+      onClick={onClick}
     />
   );
 }
