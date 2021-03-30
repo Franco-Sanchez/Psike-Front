@@ -48,13 +48,14 @@ const iconSet = {
   userheart:RiUserHeartLine
 };
 
-function Icon({ type, fill, size }) {
+function Icon({ type, fill, size, styles }) {
   const IconComponent = iconSet[type];
   return (
     <IconComponent
       css={css`
         fill: ${fill};
         font-size: ${size}px;
+        ${styles};
       `}
     />
   );

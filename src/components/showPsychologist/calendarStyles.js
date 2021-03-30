@@ -1,18 +1,19 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { theme } from '../../theme';
 import { colors} from '../../ui';
 
-const flex = `
+const flex = css`
   display: flex;
   align-items: center;
 `
 
-const gridGap = `
+const gridGap = css`
   display: grid;
   gap: 10px;
 `
 
-const gridColumns = `
+const gridColumns = css`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 `

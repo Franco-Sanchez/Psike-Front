@@ -2,26 +2,26 @@ import styled from "@emotion/styled";
 import { colors } from "../../ui";
 const sizes = {
   tiny: {
-    width: "100px",
-    height: "30px",
+    // width: "100px",
+    // height: "30px",
     padding:"5px 10px",
     size: "12px",
   },
   small: {
-    width: "144px",
-    height: "48px",
+    // width: "144px",
+    // height: "48px",
     padding:"6px 15px",
     size: "16px",
   },
   medium: {
-    width: "387px",
-    height: "48px",
+    // width: "387px",
+    // height: "48px",
     size: "18px",
     padding:"10px 20px",
   },
   large: {
-    width: "374px",
-    height: "73px",
+    // width: "374px",
+    // height: "73px",
     size: "24px",
     padding:"12px 25px",
   },
@@ -34,7 +34,9 @@ export default function Button({
   outline,
   type,
   children,
-  onClick
+  onClick,
+  disabled,
+  css
 }) {
   if (!sizes[size]) size = "medium";
   return (
@@ -45,6 +47,8 @@ export default function Button({
       color={color}
       type={type}
       onClick = {onClick}
+      disabled={disabled}
+      css={css}
     >
       {children}
     </StyledButton>
@@ -58,7 +62,7 @@ const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: "1px solid transparent";
+  border: 1px solid transparent;
   border-radius: 10px;
   color: ${(props) => props.color};
   font-family: Raleway;
@@ -68,6 +72,7 @@ const StyledButton = styled.button`
   line-height: 28px;
   background-color: ${(props) => props.bg};
   cursor: pointer;
+  ${props => props.css}
   ${(props) => props.outline 
     ? (`
      border:3px solid ${colors.blue_ligth};
@@ -75,8 +80,12 @@ const StyledButton = styled.button`
      color:${colors.blue_ligth}
     `)
     : "border:1px solid transparent"};
-  
   &:hover {
     opacity: 0.8;
+  }
+
+  &:disabled {
+    border-color: rgba(94, 129, 244, 0.5);
+    color: rgba(94, 129, 244, 0.5);
   }
 `;
