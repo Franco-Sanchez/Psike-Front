@@ -17,6 +17,7 @@ const StyledPageContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-top: 1%;
   @media (max-width: 950px) {
     & {
       width: 100%;

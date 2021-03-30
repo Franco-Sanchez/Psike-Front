@@ -124,7 +124,7 @@ function App() {
       />
 
       <Router>
-        <PageContent id="page-wrap">
+        <PageContent >
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/documentation" component={Documentation} />
