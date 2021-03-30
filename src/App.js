@@ -103,7 +103,7 @@ function App() {
   };
 
   return (
-    <>
+    <div id="App">
       <Global
         styles={css`
           * {
@@ -116,8 +116,9 @@ function App() {
             background: ${colors.white};
             width: 100%;
           }
-          a, button{
-            cursor:pointer;
+          a,
+          button {
+            cursor: pointer;
           }
         `}
       />
@@ -125,7 +126,7 @@ function App() {
       {/* <button onClick={handleClick}>Separar cita</button> */}
 
       <Router>
-        <PageContent>
+        <PageContent >
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/documentation" component={Documentation} />
@@ -144,7 +145,7 @@ function App() {
           </Switch>
         </PageContent>
       </Router>
-    </>
+    </div>
   );
 }
 
