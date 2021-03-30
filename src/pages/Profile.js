@@ -12,10 +12,12 @@ import { colors } from "../ui";
 import Button from "../components/UI/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
-import { fetchShowProfile } from "../features/profile/profileSlice";
+import {
+  fetchShowProfile,
+  fetchUpdateProfile,
+} from "../features/profile/profileSlice";
 
 export default function Profile() {
-  // const [value, setValue] = useState("");
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
   const options = useMemo(() => countryList().getData(), []);
@@ -24,13 +26,7 @@ export default function Profile() {
   const fileInputRef = useRef();
   const dispatch = useDispatch();
   const infoUser = useSelector((state) => state.profile.profile);
-
-  useEffect(() => {
-    dispatch(fetchShowProfile(tokenLogin));
-  }, []);
-  // const changeHandler = (value) => {
-  //   setValue(value);
-  // };
+  const status = useSelector((state) => state.profile.status);
   const [form, setForm] = useState({
     name: infoUser.name,
     lastname: infoUser.lastname,
@@ -41,10 +37,18 @@ export default function Profile() {
     avatar: null,
   });
 
+  console.log(infoUser);
+  if (status === "idle") {
+    dispatch(fetchShowProfile(tokenLogin));
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    //const formData = new FormData();
-    console.log("debo enviar esta info  a la API");
+    const formData = new FormData();
+    for (let key in form) {
+      formData.append(key, form[key]);
+    }
+    dispatch(fetchUpdateProfile({ formData, tokenLogin }));
   };
 
   const {
@@ -56,7 +60,7 @@ export default function Profile() {
     email,
   } = form;
 
-  console.log(form);
+  console.log("form",form);
 
   useEffect(() => {
     if (image) {
@@ -95,12 +99,15 @@ export default function Profile() {
               <Icon type="camera" size={50} fill={colors.black} />
             </button>
             <input
+              id="profile-avatar"
+              name="avatar"
               type="file"
               style={{ display: "none" }}
               ref={fileInputRef}
               accept="iamge/*"
-              onChange={(event) => {
-                const file = event.target.files[0];
+              onChange={(e) => {
+                setForm({ ...form, [e.target.name]: e.target.files[0] });
+                const file = e.target.files[0];
                 if (file && file.type.substr(0, 5) == "image") {
                   setImage(file);
                 } else {
