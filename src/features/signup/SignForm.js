@@ -41,7 +41,7 @@ export default function SignForm() {
       return (/\S+@gmail\.com/i.test(email)) || !email.length == 0  ? true : setValidEmail(true)
     }
     function validPassword(password) {
-      return password.length >= 6 && /^\d{7}$/.test(password) ? true : setValidPassword(true)
+      return password.length >= 6 && password.split(' ').length === 1 ? true : setValidPassword(true)
     }
     return (
       validName(name),

@@ -34,7 +34,7 @@ export default function LoginForm() {
     }
 
     function validPassword(password) {
-      return password.length >= 6 &&  /^\d{6}$/.test(password) ? true : (setValidPassword(true))
+      return password.length >= 6 &&  password.split(' ').length === 1 ? true : (setValidPassword(true))
     }
     return validEmail(email), validPassword(password);
   }
