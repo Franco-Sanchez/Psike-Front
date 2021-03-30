@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import sessionReducer from '../features/session/sessionSlice';
+import signReducer from '../features/signup/signSlice';
 
-const store = configureStore({
+export default configureStore({
   reducer: {
-    
+    session:sessionReducer,
+    signup: signReducer
   }
 })
-
-export default store;
