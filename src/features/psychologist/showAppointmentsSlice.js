@@ -1,31 +1,47 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { BASE_URI } from "../../app/config";
 
-const fecthShowAppointments = createAsyncThunk('showAppointments/fetchShowAppointments', async () => {
+export const fetchShowAppointments = createAsyncThunk(
+  "showAppointments/fetchShowAppointments",
+  async ({ id }) => {
+    const response = await fetch(`${BASE_URI}/psychologists/${id}/appointments`);
+    const data = await response.json();
+    console.log(data);
+    if (!response.ok) {
+      throw new Error(data);
+    }
 
-})
+    return data;
+  }
+);
 
 const showAppointmentsSlice = createSlice({
-  name: 'showAppointments',
+  name: "showAppointments",
   initialState: {
     items: [],
-    status: 'idle',
-    error: null
+    status: "idle",
+    error: null,
   },
-  reducers: {},
+  reducers: {
+    updateStatus(state) {
+      state.status = 'idle';
+    }
+  },
   extraReducers: {
-    [fecthShowAppointments.pending]: (state) => {
-      state.status = 'loading';
+    [fetchShowAppointments.pending]: (state) => {
+      state.status = "loading";
     },
-    [fecthShowAppointments.fulfilled]: (state, action) => {
-      state.status = 'succeeded';
+    [fetchShowAppointments.fulfilled]: (state, action) => {
+      state.status = "succeeded";
       state.single = action.payload.data;
       state.error = null;
     },
-    [fecthShowAppointments.rejected]: (state, action) => {
-      state.status = 'failed';
+    [fetchShowAppointments.rejected]: (state, action) => {
+      state.status = "failed";
       state.error = action.error.message;
-    }
-  }
-})
+    },
+  },
+});
 
+export const { updateStatus } = showAppointmentsSlice.actions;
 export default showAppointmentsSlice.reducer;

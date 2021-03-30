@@ -17,7 +17,7 @@ export const ContainerHours = styled.div`
 `
 
 export const StyledOrderedSchedule = styled.div`
-  width: max-content;
+  // width: max-content;
   display: grid;
   gap: 10px;
 ` 

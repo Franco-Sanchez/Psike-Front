@@ -1,31 +1,47 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { BASE_URI } from "../../app/config";
 
-const fecthShowPsychologist = createAsyncThunk('showPsychologist/fetchShowPsychologist', async () => {
+export const fetchShowPsychologist = createAsyncThunk(
+  "showPsychologist/fetchShowPsychologist",
+  async ({ id }) => {
+    const response = await fetch(`${BASE_URI}/psychologists/${id}`);
+    const data = await response.json();
+    console.log(data);
+    if(!response.ok) {
+      throw new Error(data)
+    }
 
-})
+    return { data };
+  }
+);
 
 const showPsychologistSlice = createSlice({
-  name: 'showPsychologist',
+  name: "showPsychologist",
   initialState: {
     single: {},
-    status: 'idle',
-    error: null
+    status: "idle",
+    error: null,
   },
-  reducers: {},
+  reducers: {
+    updateStatus(state) {
+      state.status = 'idle';
+    }
+  },
   extraReducers: {
-    [fecthShowPsychologist.pending]: (state) => {
-      state.status = 'loading';
+    [fetchShowPsychologist.pending]: (state) => {
+      state.status = "loading";
     },
-    [fecthShowPsychologist.fulfilled]: (state, action) => {
-      state.status = 'succeeded';
+    [fetchShowPsychologist.fulfilled]: (state, action) => {
+      state.status = "succeeded";
       state.single = action.payload.data;
       state.error = null;
     },
-    [fecthShowPsychologist.rejected]: (state, action) => {
-      state.status = 'failed';
+    [fetchShowPsychologist.rejected]: (state, action) => {
+      state.status = "failed";
       state.error = action.error.message;
-    }
-  }
-})
+    },
+  },
+});
 
+export const { updateStatus } = showPsychologistSlice.actions;
 export default showPsychologistSlice.reducer;

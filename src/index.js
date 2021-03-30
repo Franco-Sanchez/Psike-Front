@@ -18,8 +18,9 @@ const globalStyles = css`
 ReactDOM.render(
   <React.StrictMode>
     <Global styles={globalStyles}/>
-    <Provider store={store} />
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -14,9 +14,24 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { colors } from "../../ui";
 import Button from "./Button";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchShowPsychologist } from '../../features/psychologist/showPsychologistSlice';
+import { fetchShowAppointments } from '../../features/psychologist/showAppointmentsSlice';
 
-export default function CardSchedule() {
+export default function CardSchedule({ id }) {
   const [day, setDay] = useState(new Date());
+  const psychologist = useSelector(state => state.showPsychologist.single);
+  const appointments = useSelector(state => state.showAppointments.items);
+  const psychologistStatus = useSelector(state => state.showPsychologist.status);
+  const appointmentsStatus = useSelector(state => state.showAppointments.status);
+  const dispatch = useDispatch();
+
+  if(psychologistStatus === 'idle' && appointmentsStatus === 'idle') {
+    dispatch(fetchShowPsychologist({ id: 1 }))
+    // dispatch(fetchShowAppointments({ id: 1 }))
+  }
+
+  console.log(psychologist);
 
   const options = { weekday: "long", month: "long", day: "numeric" };
   const dateTimeFormat = new Intl.DateTimeFormat("es-ES", options);
@@ -107,6 +122,7 @@ const buttonHour = css`
   padding: 16px 27px;
   line-height: 19px;
   font-weight: 600;
+  // min-width: 50px;
 `
 const arrow = css`
   cursor: pointer;
