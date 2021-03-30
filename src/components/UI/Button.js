@@ -34,8 +34,9 @@ export default function Button({
   outline,
   type,
   children,
-  disabled=false,
-  onClick
+  disabled = false,
+  onClick,
+  form,
 }) {
   if (!sizes[size]) size = "medium";
   return (
@@ -46,7 +47,8 @@ export default function Button({
       color={color}
       type={type}
       disabled={disabled}
-      onClick = {onClick}
+      onClick={onClick}
+      form={form}
     >
       {children}
     </StyledButton>

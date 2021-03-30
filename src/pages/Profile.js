@@ -10,16 +10,53 @@ import OptionContainer from "../components/Containers/SelectContainer";
 import Icon from "../components/UI/Icon";
 import { colors } from "../ui";
 import Button from "../components/UI/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router";
+import { fetchShowProfile } from "../features/profile/profileSlice";
 
 export default function Profile() {
-  const [value, setValue] = useState("");
+  // const [value, setValue] = useState("");
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
   const options = useMemo(() => countryList().getData(), []);
-  const changeHandler = (value) => {
-    setValue(value);
-  };
+  const tokenLogin = useSelector((state) => state.session.token);
+  const tokenSignup = useSelector((state) => state.signup.token);
   const fileInputRef = useRef();
+  const dispatch = useDispatch();
+  const infoUser = useSelector((state) => state.profile.profile);
+
+  useEffect(() => {
+    dispatch(fetchShowProfile(tokenLogin));
+  }, []);
+  // const changeHandler = (value) => {
+  //   setValue(value);
+  // };
+  const [form, setForm] = useState({
+    name: infoUser.name,
+    lastname: infoUser.lastname,
+    identity_document: infoUser.identity_document,
+    nationality: infoUser.nationality,
+    birthdate: infoUser.birthdate,
+    email: infoUser.email,
+    avatar: null,
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    //const formData = new FormData();
+    console.log("debo enviar esta info  a la API");
+  };
+
+  const {
+    name,
+    lastname,
+    identity_document,
+    nationality,
+    birthdate,
+    email,
+  } = form;
+
+  console.log(form);
 
   useEffect(() => {
     if (image) {
@@ -33,10 +70,12 @@ export default function Profile() {
     }
   }, [image]);
 
+  if (!tokenLogin || !tokenSignup) return <Redirect to="/login" />;
+
   return (
     <StyledContiner>
       <div>
-        <form>
+        <form id="edit-profile-form" onSubmit={handleSubmit}>
           <div className="profile-photo">
             <Image
               url={
@@ -73,29 +112,74 @@ export default function Profile() {
           <div className="profile-inputs">
             <FormField>
               <ContentXSB>Nombres:</ContentXSB>
-              <InputField type="text" placeholder="Grecia Azucena"></InputField>
+              <InputField
+                name="name"
+                value={name}
+                type="text"
+                placeholder="Grecia Azucena"
+                onChange={(e) =>
+                  setForm({ ...form, [e.target.name]: e.target.value })
+                }
+              ></InputField>
             </FormField>
 
             <FormField>
               <ContentXSB>Apellidos:</ContentXSB>
-              <InputField type="text" placeholder="Delgado Muñoz"></InputField>
+              <InputField
+                name="lastname"
+                value={lastname}
+                type="text"
+                placeholder="Delgado Muñoz"
+                onChange={(e) =>
+                  setForm({ ...form, [e.target.name]: e.target.value })
+                }
+              ></InputField>
             </FormField>
 
             <FormField>
               <ContentXSB>Documento de Identidad:</ContentXSB>
-              <InputField type="text" placeholder="75915178"></InputField>
+              <InputField
+                name="identity_document"
+                value={identity_document}
+                type="text"
+                placeholder="75915178"
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    [e.target.name]: e.target.value,
+                  })
+                }
+              ></InputField>
             </FormField>
 
             <FormField>
               <ContentXSB>Fecha de Nacimiento:</ContentXSB>
-              <InputField type="date"></InputField>
+              <InputField
+                name="birthdate"
+                value={birthdate}
+                type="date"
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    [e.target.name]: e.target.value,
+                  })
+                }
+              ></InputField>
             </FormField>
 
             <FormField>
               <ContentXSB>Correo:</ContentXSB>
               <InputField
+                name="email"
+                value={email}
                 type="text"
                 placeholder="ejemplo@mail.com"
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    [e.target.name]: e.target.value,
+                  })
+                }
               ></InputField>
             </FormField>
 
@@ -104,7 +188,16 @@ export default function Profile() {
 
               <OptionContainer type="profile">
                 <Icon type="arrowDrop" size="25" fill={`${colors.orange}`} />
-                <SelectCountry name={"nacionalidad"}>
+                <SelectCountry
+                  name="nationality"
+                  value={nationality}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                >
                   {options.map((option) => (
                     <option>{option.label}</option>
                   ))}
@@ -115,7 +208,9 @@ export default function Profile() {
         </form>
       </div>
       <div className="save-button">
-        <Button bg={colors.blue_ligth}>Guardar</Button>
+        <Button form="edit-profile-form" type="submit" bg={colors.blue_ligth}>
+          Guardar
+        </Button>
       </div>
     </StyledContiner>
   );

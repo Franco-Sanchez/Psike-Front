@@ -1,9 +1,17 @@
 import styled from "@emotion/styled";
 import { colors } from "../../ui";
 
-export default function InputField({ type, placeholder, onChange }) {
+export default function InputField({
+  name,
+  value,
+  type,
+  placeholder,
+  onChange,
+}) {
   return (
     <StyledInput
+      name={name}
+      value={value}
       type={type}
       placeholder={placeholder}
       onChange={onChange}
