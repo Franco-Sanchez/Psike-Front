@@ -26,19 +26,15 @@ export default function LoginForm() {
 
   function validLogin(email, password) {
     function validEmail(email) {
-      if (/\S+@gmail\.com/i.test(email)) {
+      if (/\S+@gmail\.com/i.test(email)){
         return true;
       } else {
         setValidEmail(true);
-        setTimeout(() => setValidEmail(false), 1000);
       }
     }
 
     function validPassword(password) {
-      return password.length >= 6
-        ? true
-        : (setValidPassword(true),
-          setTimeout(() => setValidPassword(false), 1000));
+      return password.length >= 6 &&  /^\d{7}$/.test(password) ? true : (setValidPassword(true))
     }
     return validEmail(email), validPassword(password);
   }
@@ -55,7 +51,7 @@ export default function LoginForm() {
         {validEmail && (
           <ContentXS>
             <SpanError>
-              el campo no pude estar vacio y debe contener @gmail.com...
+              el campo no pude estar vacio y/o formato incorrecto
             </SpanError>
           </ContentXS>
         )}
@@ -70,7 +66,7 @@ export default function LoginForm() {
         />
         {validPassword && (
           <ContentXS>
-            <SpanError>el password tiene que ser mayor a 6 digitos</SpanError>
+            <SpanError>el password tiene que ser mayor a 6 digitos y no puede tener espacios</SpanError>
           </ContentXS>
         )}
       </ContainerInput>
@@ -81,7 +77,7 @@ export default function LoginForm() {
         bg={colors.blue_ligth}
         color={colors.white}
         type="submit"
-        disabled={status === "login"}
+        disabled={status === "loading" ? true : false}
       >
         {status === "loading" ? "Ingresando..." : "Iniciar Session"}
       </Button>

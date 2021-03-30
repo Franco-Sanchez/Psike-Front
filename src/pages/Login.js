@@ -14,17 +14,10 @@ export default function Login() {
   const history = useHistory();
   const token = useSelector((state) => state.session.token);
   const error = useSelector((state)=>state.session.error)
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();  
+  const tokenSignup = useSelector((state) => state.signup.token);
  
-  
-   if(error) {
-   setTimeout(()=>{
-      dispatch(cleanError())
-    },1000)
-  }
-  
- 
-    if (token) {
+    if (token || tokenSignup) {
       sessionStorage.setItem("token", token);
       history.push("/dashboard");
     }
@@ -40,7 +33,7 @@ export default function Login() {
         </Link>
       </LoginLink>
       <Heading3>Iniciar Sesion</Heading3>
-      {error && <SessionError/>}
+      <SessionError/>
       <LoginForm />
     </ContainerLogin>
   );
@@ -49,7 +42,6 @@ export default function Login() {
 const ContainerLogin = styled.div`
   display: flex;
   flex-direction: column;
-  //width: 100%;
   height: auto;
   justify-content: center;
   align-items: center;
@@ -63,7 +55,7 @@ const ContainerLogin = styled.div`
   @media (max-width: 375px) {
     & {
       width: 100%;
-      height: 100vh;
+      height: auto;
       display: flex;
       flex-direction: column;
       justify-content: center;

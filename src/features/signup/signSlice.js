@@ -17,6 +17,7 @@ export const fetchSign = createAsyncThunk(
     if (!response.ok) {
       throw new Error("el correo ya ha sido tomado");
     }
+    console.log(data);
     return data;
   }
 );
@@ -44,7 +45,6 @@ const signSlice = createSlice({
     [fetchSign.rejected]: (state, action) => {
       state.status = "failed";
       state.errors = action.error.message;
-      //state.error = "El correo ya existe";
     },
   },
 });

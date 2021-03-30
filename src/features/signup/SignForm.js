@@ -23,21 +23,6 @@ export default function SignForm() {
   const [validEmail, setValidEmail] = useState(false);
   const [validPassword, setValidPassword] = useState(false);
 
-  // const token = useSelector((state) => state.signup.token);
-
-  // useEffect(() => {
-  //   if (token) {
-  //     sessionStorage.setItem("token", token);
-  //     history.push("/dashboard");
-  //   }
-  // }, [token]);
-
-  // if(status=="loading"){
-  //   setTimeout(()=>{
-  //     dispatch(cleanError())
-  //   },1000);
-  // }
-
   const handleSubmitSign = async (e) => {
     e.preventDefault();
     if (validSign(name, lastname, email, password) === true) {
@@ -47,24 +32,16 @@ export default function SignForm() {
 
   const validSign = (name, lastname, email, password) => {
     function validName(name) {
-      return !name.length == 0
-        ? true
-        : (setValidName(true), setTimeout(setValidName, 2000));
+      return !name.length == 0 ? true : setValidName(true)
     }
     function validLastName(lastname) {
-      return !lastname.length == 0
-        ? true
-        : (setValidLast(true), setTimeout(setValidLast, 2000));
+      return !lastname.length == 0 ? true : setValidLast(true)
     }
     function validEmail(email) {
-      return email.match(/\S+@\S+\.\S+/i) || !email.length == 0
-        ? true
-        : (setValidEmail(true), setTimeout(setValidEmail, 1000));
+      return (/\S+@gmail\.com/i.test(email)) || !email.length == 0  ? true : setValidEmail(true)
     }
     function validPassword(password) {
-      return password.length >= 6
-        ? true
-        : (setValidPassword(true), setTimeout(setValidPassword, 1000));
+      return password.length >= 6 && /^\d{7}$/.test(password) ? true : setValidPassword(true)
     }
     return (
       validName(name),
@@ -139,7 +116,7 @@ export default function SignForm() {
         />
         {validPassword && (
           <ContentXS>
-            <SpanError>el password tiene que ser mayor a 6 digitos</SpanError>
+            <SpanError>el password tiene que ser mayor a 6 digitos y no puede tener espacios</SpanError>
           </ContentXS>
         )}
       </ContainerInput>
@@ -152,7 +129,7 @@ export default function SignForm() {
         type="submit"
         disabled={status === "loading"}
       >
-        {status === "loading" ? "Cargando..." : "Iniciar Session"};
+        {status === "loading" ? "Cargando..." : "Registrate"}
       </Button>
     </FormSign>
   );

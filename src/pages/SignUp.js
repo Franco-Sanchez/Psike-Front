@@ -15,11 +15,6 @@ export default function SignUp() {
   const history = useHistory();
   const error = useSelector((state) => state.signup.errors);
   const dispatch = useDispatch();
-  if(error){
-    setTimeout(()=>{
-      dispatch(cleanError())
-    },1000);
-  }
 
     if (token) {
       sessionStorage.setItem("token", token);
@@ -37,8 +32,7 @@ export default function SignUp() {
         </Link>
       </SignLink>
       <Heading3>Registrate</Heading3>
-      {error && 
-      <SingError/>}
+      <SingError/>
       <SignForm />
       <Link to="/login">
         <ContentXS>ya tienes una cuenta ? Ingresar</ContentXS>
@@ -50,8 +44,7 @@ export default function SignUp() {
 const ContainerSign = styled.div`
   display: flex;
   flex-direction: column;
-  //width: 100%;
-  height: 100vh;
+  height: auto;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -65,12 +58,10 @@ const ContainerSign = styled.div`
   @media (max-width: 375px) {
     & {
       width: 100%;
-      height: 100%;
-      padding-top:10px;
+      height: auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
     }
     & h3 {
       text-align: center;
