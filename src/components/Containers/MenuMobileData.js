@@ -25,4 +25,10 @@ export const SideBarData = [
     icon: <Icon type="dashborad" size={20} />,
     cName: "nav-text",
   },
+  {
+    title: "Inicia sesión",
+    path: "/login",
+    icon: "",
+    cName: "nav-text",
+  },
 ];
