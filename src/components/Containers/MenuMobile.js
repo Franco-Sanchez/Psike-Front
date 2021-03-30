@@ -62,6 +62,7 @@ const StyledMenuMobile = styled.div`
     top: 0;
     transition: 600ms;
     left: 50%;
+    z-index: 1;
     .nav-menu-items {
       width: 100%;
       list-style: none;
