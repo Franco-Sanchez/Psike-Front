@@ -7,7 +7,8 @@ const flex = css`
 `
 
 export const ContainerSchedule = styled.div`
-
+  display: flex;
+  flex-direction: column;
 `
 
 export const ContainerHours = styled.div`

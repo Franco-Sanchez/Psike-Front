@@ -17,9 +17,12 @@ import Button from "./Button";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchShowPsychologist } from "../../features/psychologist/showPsychologistSlice";
 import { fetchShowAppointments } from "../../features/psychologist/showAppointmentsSlice";
+import { useHistory } from "react-router";
 
 export default function CardSchedule({ id }) {
+  const history = useHistory();
   const [day, setDay] = useState(new Date());
+  const token = true;
   const schedules = useSelector((state) => state.showPsychologist.schedules);
   const appointments = useSelector((state) => state.showAppointments.items);
   const psychologistStatus = useSelector(
@@ -96,6 +99,11 @@ export default function CardSchedule({ id }) {
     return valuesToCompare[0] < valuesToCompare[1] || sameHour.length > 0;
   };
 
+  const bookAppointment = (time) => {
+    if(!token) history.push('/login');
+    console.log(time);
+  }
+
   return (
     <CardContainer type="schedule">
       <ContentL>Horarios</ContentL>
@@ -143,6 +151,7 @@ export default function CardSchedule({ id }) {
                       outline
                       disabled={isDisabled(time)}
                       css={buttonHour}
+                      onClick={()=> bookAppointment(time)}
                     >
                       {transformTime(
                         new Date(time.hour.start_hour).getUTCHours()
