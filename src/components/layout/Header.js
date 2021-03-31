@@ -3,11 +3,8 @@ import { colors } from "../../ui";
 import Button from "../UI/Button";
 import styled from "@emotion/styled";
 import { NavLink, useHistory } from "react-router-dom";
-<<<<<<< HEAD
 import { useSelector } from "react-redux";
-=======
 import MenuMobile from "../Containers/MenuMobile";
->>>>>>> 1b9e9d6ac0397d96ef8b2811571da8c2553236b4
 
 export default function Header() {
   const history = useHistory();
