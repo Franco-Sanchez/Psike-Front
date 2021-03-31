@@ -55,7 +55,7 @@ const StyledMenuMobile = styled.div`
   .nav-menu {
     background-color: ${colors.pink1};
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     position: fixed;
