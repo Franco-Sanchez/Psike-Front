@@ -19,7 +19,8 @@ import {
   RiHomeWifiLine,
   RiCursorLine,
   RiMentalHealthLine,
-  RiUserHeartLine
+  RiUserHeartLine,
+  RiVideoAddLine
 } from "react-icons/ri";
 
 import { IoIosAddCircle } from "react-icons/io";
@@ -45,7 +46,8 @@ const iconSet = {
   home: RiHomeWifiLine,
   cursor: RiCursorLine,
   mind: RiMentalHealthLine, 
-  userheart:RiUserHeartLine
+  userheart:RiUserHeartLine,
+  video:RiVideoAddLine
 };
 
 function Icon({ type, fill, size }) {
