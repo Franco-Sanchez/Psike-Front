@@ -26,11 +26,14 @@ export const fetchUpdateProfile = createAsyncThunk(
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${tokenLogin}`,
+        Accept: "application/json",
+        // 'Content-Type': 'application/json',
       },
+      // body: JSON.stringify(formData),
       body: formData,
     });
     const data = await response.json();
-
+    console.log("data de fetch update profile", data);
     if (!response.ok) {
       throw new Error(data.error);
     }
@@ -43,7 +46,7 @@ const profileSlice = createSlice({
   initialState: {
     error: null,
     status: "idle",
-    profile: {},
+    userdata: {},
   },
   reducers: {},
   extraReducers: {
@@ -52,7 +55,7 @@ const profileSlice = createSlice({
     },
     [fetchShowProfile.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.profile = action.payload.user;
+      state.userdata = action.payload.user;
     },
     [fetchShowProfile.rejected]: (state, action) => {
       state.status = "failed";
@@ -60,7 +63,8 @@ const profileSlice = createSlice({
     },
     [fetchUpdateProfile.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.profile = action.payload.user;
+      state.userdata = action.payload.user;
+      state.error = null;
     },
     [fetchUpdateProfile.rejected]: (state, action) => {
       state.status = "failed";

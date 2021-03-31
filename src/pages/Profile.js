@@ -21,12 +21,16 @@ export default function Profile() {
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
   const options = useMemo(() => countryList().getData(), []);
+  const status = useSelector((state) => state.profile.status);
   const tokenLogin = useSelector((state) => state.session.token);
   const tokenSignup = useSelector((state) => state.signup.token);
   const fileInputRef = useRef();
   const dispatch = useDispatch();
-  const infoUser = useSelector((state) => state.profile.profile);
-  const status = useSelector((state) => state.profile.status);
+  const infoUser = useSelector((state) => state.profile.userdata);
+  if (status === "idle") {
+    dispatch(fetchShowProfile(tokenLogin));
+  }
+
   const [form, setForm] = useState({
     name: infoUser.name,
     lastname: infoUser.lastname,
@@ -37,11 +41,6 @@ export default function Profile() {
     avatar: null,
   });
 
-  console.log(infoUser);
-  if (status === "idle") {
-    dispatch(fetchShowProfile(tokenLogin));
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -50,17 +49,6 @@ export default function Profile() {
     }
     dispatch(fetchUpdateProfile({ formData, tokenLogin }));
   };
-
-  const {
-    name,
-    lastname,
-    identity_document,
-    nationality,
-    birthdate,
-    email,
-  } = form;
-
-  console.log("form",form);
 
   useEffect(() => {
     if (image) {
@@ -73,6 +61,28 @@ export default function Profile() {
       setPreview(null);
     }
   }, [image]);
+
+  useEffect(() => {
+    setForm({
+      name: infoUser.name,
+      lastname: infoUser.lastname,
+      identity_document: infoUser.identity_document,
+      nationality: infoUser.nationality,
+      birthdate: infoUser.birthdate,
+      email: infoUser.email,
+      avatar: null,
+    });
+  }, [infoUser]);
+
+  const {
+    name,
+    lastname,
+    identity_document,
+    nationality,
+    birthdate,
+    email,
+  } = form;
+  console.log(form);
 
   if (!tokenLogin || !tokenSignup) return <Redirect to="/login" />;
 
@@ -123,7 +133,7 @@ export default function Profile() {
                 name="name"
                 value={name}
                 type="text"
-                placeholder="Grecia Azucena"
+                placeholder="coloca aqui tu nombre...."
                 onChange={(e) =>
                   setForm({ ...form, [e.target.name]: e.target.value })
                 }
@@ -136,7 +146,7 @@ export default function Profile() {
                 name="lastname"
                 value={lastname}
                 type="text"
-                placeholder="Delgado Muñoz"
+                placeholder="coloca aqui tus apellidos...."
                 onChange={(e) =>
                   setForm({ ...form, [e.target.name]: e.target.value })
                 }
@@ -149,7 +159,7 @@ export default function Profile() {
                 name="identity_document"
                 value={identity_document}
                 type="text"
-                placeholder="75915178"
+                placeholder="coloca aqui tu DNI...."
                 onChange={(e) =>
                   setForm({
                     ...form,
@@ -180,7 +190,7 @@ export default function Profile() {
                 name="email"
                 value={email}
                 type="text"
-                placeholder="ejemplo@mail.com"
+                placeholder="ejemplo@gmail.com"
                 onChange={(e) =>
                   setForm({
                     ...form,
