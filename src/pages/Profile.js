@@ -38,16 +38,16 @@ export default function Profile() {
     nationality: infoUser.nationality,
     birthdate: infoUser.birthdate,
     email: infoUser.email,
-    avatar: null,
+    // avatar: null,
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    for (let key in form) {
-      formData.append(key, form[key]);
-    }
-    dispatch(fetchUpdateProfile({ formData, tokenLogin }));
+    // const formData = new FormData();
+    // for (let key in form) {
+    //   formData.append(key, form[key]);
+    // }
+    dispatch(fetchUpdateProfile({ form, tokenLogin }));
   };
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export default function Profile() {
       nationality: infoUser.nationality,
       birthdate: infoUser.birthdate,
       email: infoUser.email,
-      avatar: null,
+      // avatar: null,
     });
   }, [infoUser]);
 
@@ -90,7 +90,7 @@ export default function Profile() {
     <StyledContiner>
       <div>
         <form id="edit-profile-form" onSubmit={handleSubmit}>
-          <div className="profile-photo">
+          {/* <div className="profile-photo">
             <Image
               url={
                 preview
@@ -125,7 +125,7 @@ export default function Profile() {
                 }
               }}
             ></input>
-          </div>
+          </div> */}
           <div className="profile-inputs">
             <FormField>
               <ContentXSB>Nombres:</ContentXSB>
@@ -262,7 +262,6 @@ const StyledContiner = styled.div`
   }
   .save-button {
     width: 387px;
-    margin-inline-start: auto;
     button {
       width: 100%;
     }

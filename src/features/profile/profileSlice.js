@@ -21,16 +21,16 @@ export const fetchShowProfile = createAsyncThunk(
 
 export const fetchUpdateProfile = createAsyncThunk(
   "profile/fetchUpdateProfile",
-  async ({ formData, tokenLogin }) => {
+  async ({ form, tokenLogin }) => {
     const response = await fetch(`${BASE_URI}/profile`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${tokenLogin}`,
-        Accept: "application/json",
-        // 'Content-Type': 'application/json',
+        // Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      // body: JSON.stringify(formData),
-      body: formData,
+      body: JSON.stringify(form),
+      // body: formData,
     });
     const data = await response.json();
     console.log("data de fetch update profile", data);
