@@ -40,14 +40,10 @@ export default function Button({
       color={color}
       type={type}
       disabled={disabled}
-<<<<<<< HEAD
       onClick = {onClick}
       disabled={disabled}
       css={css}
-=======
-      onClick={onClick}
       form={form}
->>>>>>> main
     >
       {children}
     </StyledButton>

@@ -54,8 +54,6 @@ export default function Header() {
         </>
          }
 
-
-
         {!(token || tokenSignup) &&
         <div className="actions">
           <Button
@@ -70,7 +68,7 @@ export default function Header() {
         </div>
         }
       </div>
-
+      </div>
     </StyledHeader>
   );
 }
