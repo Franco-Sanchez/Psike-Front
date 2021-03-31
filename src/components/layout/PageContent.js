@@ -13,12 +13,12 @@ export default function PageContent({ children }) {
 
 const StyledPageContent = styled.div`
   /* max-width: 1240px; */
-  margin: 0 auto;
+  /* margin: 0 auto; */
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-top: 1%;
-  width: fit-content;
+  margin-top: 20px;
+  width: 100%;
   padding: 0px 30px;
   @media (max-width: 950px) {
     & {
