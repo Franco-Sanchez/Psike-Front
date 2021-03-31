@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { colors } from "../../ui";
 import Icon from "../UI/Icon";
@@ -8,6 +9,11 @@ import { SideBarData } from "./MenuMobileData";
 export default function MenuMobile({}) {
   const [sidebar, setSidebar] = useState(true);
   const showSidebar = () => setSidebar(!sidebar);
+  // const tokenLogin = useSelector((state) => state.session.token);
+  // const tokenSignup = useSelector((state) => state.sign.token);
+  // console.log(tokenLogin);
+  // console.log(tokenSignup);
+
   return (
     <StyledMenuMobile>
       <div className="navbar">

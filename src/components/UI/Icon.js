@@ -24,6 +24,7 @@ import {
   RiCloseLine,
   RiHome2Line,
   RiDashboardLine,
+
 } from "react-icons/ri";
 
 import { IoIosAddCircle } from "react-icons/io";
@@ -54,6 +55,7 @@ const iconSet = {
   close: RiCloseLine,
   home: RiHome2Line,
   dashborad: RiDashboardLine,
+
 };
 
 function Icon({ onClick, type, fill, size }) {
