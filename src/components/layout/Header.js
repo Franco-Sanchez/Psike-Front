@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { colors } from "../../ui";
-import { Heading5 } from "../text/Heading";
 import Button from "../UI/Button";
 import styled from "@emotion/styled";
 import { NavLink, useHistory } from "react-router-dom";
+<<<<<<< HEAD
 import { useSelector } from "react-redux";
+=======
+import MenuMobile from "../Containers/MenuMobile";
+>>>>>>> 1b9e9d6ac0397d96ef8b2811571da8c2553236b4
 
 export default function Header() {
   const history = useHistory();
@@ -23,12 +26,16 @@ export default function Header() {
         </a>
       </div>
       <div className="menu-mobile">hamburguesa</div>
-      <div className="navigation">
 
-         
+      <div className="navigation">
         <NavLink to="/" activeClassName="selected">
           Inicio
         </NavLink>
+      <div className="menu-mobile" id="menu-mobile">
+        <MenuMobile/>
+      </div>
+      
+      <div className="navigation" >
         <NavLink to="/psychologists" activeClassName="selected">
           Psicologos
         </NavLink>
@@ -76,6 +83,7 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 80px;
+  height: auto;
   .logo {
     font-weight: 900;
     font-size: 1.8rem;

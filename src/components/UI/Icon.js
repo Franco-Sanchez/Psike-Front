@@ -21,7 +21,12 @@ import {
   RiMentalHealthLine,
   RiUserHeartLine,
   RiVideoAddLine,
-  RiHandHeartFill
+  RiHandHeartFill,
+  RiCameraFill,
+  RiMenuFoldLine,
+  RiCloseLine,
+  RiHome2Line,
+  RiDashboardLine,
 } from "react-icons/ri";
 
 import { IoIosAddCircle } from "react-icons/io";
@@ -46,20 +51,28 @@ const iconSet = {
   survey: RiSurveyLine,
   home: RiHomeWifiLine,
   cursor: RiCursorLine,
-  mind: RiMentalHealthLine, 
-  userheart:RiUserHeartLine,
   video:RiVideoAddLine,
-  reason:RiHandHeartFill
+  reason:RiHandHeartFill,
+  mind: RiMentalHealthLine,
+  userheart: RiUserHeartLine,
+  camera: RiCameraFill,
+  menu: RiMenuFoldLine,
+  close: RiCloseLine,
+  home: RiHome2Line,
+  dashborad: RiDashboardLine,
 };
 
-function Icon({ type, fill, size }) {
+function Icon({ type, fill, size, styles, onClick }) {
   const IconComponent = iconSet[type];
   return (
     <IconComponent
+      onClick={onClick}
       css={css`
         fill: ${fill};
         font-size: ${size}px;
+        ${styles};
       `}
+      onClick={onClick}
     />
   );
 }

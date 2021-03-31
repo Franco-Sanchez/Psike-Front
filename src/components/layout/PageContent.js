@@ -12,16 +12,18 @@ export default function PageContent({ children }) {
 }
 
 const StyledPageContent = styled.div`
-  max-width: 1240px;
-  margin: 0 auto;
+  /* max-width: 1240px; */
+  /* margin: 0 auto; */
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-top: 20px;
+  width: 100%;
+  padding: 0px 30px;
   @media (max-width: 950px) {
     & {
-      width: 100%;
+      /* width: 100%; */
       padding: 0 10px;
-
     }
   }
 `;
