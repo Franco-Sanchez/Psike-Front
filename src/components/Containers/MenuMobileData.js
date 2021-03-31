@@ -1,6 +1,6 @@
 import Icon from "../UI/Icon";
 
-const SideBarDataLogin = [
+const SideBarData = [
   {
     title: "Inicio",
     path: "/",
@@ -26,32 +26,32 @@ const SideBarDataLogin = [
     cName: "nav-text",
   },
   {
-    title: "logout",
-    path: "/",
-    icon: "",
-    cName: "nav-text",
-  },
-];
-
-const SideBarData = [
-  {
-    title: "Inicio",
-    path: "/",
-    icon: <Icon type="home" size={20} />,
-    cName: "nav-text",
-  },
-  {
-    title: "Psicologos",
-    path: "/psychologists",
-    icon: <Icon type="" size={20} />,
-    cName: "nav-text",
-  },
-  {
-    title: "Inicia sesión",
+    title: "login",
     path: "/login",
     icon: "",
     cName: "nav-text",
   },
 ];
 
-export { SideBarDataLogin, SideBarData}
+// const SideBarData = [
+//   {
+//     title: "Inicio",
+//     path: "/",
+//     icon: <Icon type="home" size={20} />,
+//     cName: "nav-text",
+//   },
+//   {
+//     title: "Psicologos",
+//     path: "/psychologists",
+//     icon: <Icon type="" size={20} />,
+//     cName: "nav-text",
+//   },
+//   {
+//     title: "Inicia sesión",
+//     path: "/login",
+//     icon: "",
+//     cName: "nav-text",
+//   },
+// ];
+
+export { SideBarData }

@@ -8,6 +8,7 @@ const types = {
   specialties: { width: "340px", height: "390px" },
   schedule: { width: "100%", height: "auto" },
   coment: { width: "400px", height: "300px" },
+  history: { width: "350px", height: "170px" },
 };
 
 const StyledDiv = styled.div`
@@ -16,8 +17,7 @@ const StyledDiv = styled.div`
   background-color: #ffffff;
   border-radius: 20px;
   padding: 14px;
-  
-  
+
   :hover {
     box-shadow: 8px 17px 14px rgba(0, 0, 0, 0.04);
     transition: 300ms;
