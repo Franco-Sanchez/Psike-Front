@@ -20,7 +20,8 @@ import {
   RiCursorLine,
   RiMentalHealthLine,
   RiUserHeartLine,
-  RiVideoAddLine
+  RiVideoAddLine,
+  RiHandHeartFill
 } from "react-icons/ri";
 
 import { IoIosAddCircle } from "react-icons/io";
@@ -47,7 +48,8 @@ const iconSet = {
   cursor: RiCursorLine,
   mind: RiMentalHealthLine, 
   userheart:RiUserHeartLine,
-  video:RiVideoAddLine
+  video:RiVideoAddLine,
+  reason:RiHandHeartFill
 };
 
 function Icon({ type, fill, size }) {

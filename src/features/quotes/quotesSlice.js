@@ -26,44 +26,13 @@ const quotesSlice = createSlice({
     items: [],
     status: "idle",
     error: null,
-    filter: [],
   },
   reducers: {
-    filterByCategory: (state, action) => {
-      let { category } = action.payload;
-      return {
-        ...state,
-        filter: state.items.filter(
-          (item) => item.category === action.payload.category
-        ),
-        currentFilterCategory: category,
-      };
-    },
-    filterByName: (state, action) => {
-      let { name } = action.payload;
-      let dataFilter = state.items.filter((item) =>
-        item.name.toLowerCase().includes(name)
-      );
-      return {
-        ...state,
-        filter:
-          name.length > 0
-            ? dataFilter
-            : state.items.filter(
-                (item) => item.category === state.currentFilterCategory
-              ),
-        search: name.length > 0 ? true : false,
-      };
-    },
-    backFilterProduct: (state, action) => {
-      return {
-        ...state,
-        filter: state.items.filter(
-          (item) => item.category === state.currentFilterCategory
-        ),
-        search: false,
-      };
-    },
+
+    cleanQuotes:(state)=>{
+      state.items = [];
+      state.status = "idle";
+    }
   },
   extraReducers: {
     [fetchQuotes.pending]: (state, action) => {
@@ -73,9 +42,6 @@ const quotesSlice = createSlice({
       state.status = "succeeded";
       state.items = action.payload.quotes;
       console.log(state.items);
-      /*state.filter = state.items.filter(
-        (item) => item.category === state.currentFilterCategory
-      );*/
     },
     [fetchQuotes.rejected]: (state, action) => {
       state.status = "failed";
@@ -86,3 +52,4 @@ const quotesSlice = createSlice({
 
 /*export const { filterByCategory, filterByName ,backFilterProduct} = productsSlice.actions;*/
 export default quotesSlice.reducer;
+export const {cleanQuotes} = quotesSlice.actions;

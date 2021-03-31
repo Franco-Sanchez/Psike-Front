@@ -5,11 +5,11 @@ import { Heading6 } from "../text/Heading"
 import Avatar from "./Avatar"
 import Icon from "./Icon"
 
-export default function CardDashBoard({name, date, hora, reazon}){
+export default function CardDashBoard({name, date, hora, reazon,minutes}){
     return(
 			<CardStyled>
 					<CardHeader>
-							<Avatar url="https://i.pinimg.com/originals/67/54/78/675478c7dcc17f90ffa729387685615a.jpg"/>
+							<Avatar/>
 							  <HeaderPsicology>
 							    <Heading6>{name}</Heading6>
 							      <ContentS>Psicologo clinico</ContentS>
@@ -17,40 +17,41 @@ export default function CardDashBoard({name, date, hora, reazon}){
 					</CardHeader>
 
 					<CardDate>
-						  <div>
+						    <Date>
 								<Heading6>Fecha</Heading6>
 								<ContentM>{date}</ContentM>
-							</div>
+							</Date>
 
-							<div>
+							<Hour>
 							  <Heading6>Hora</Heading6>
-								<ContentM>{hora}</ContentM>
-							</div>
+								<ContentM>{hora} : {minutes}</ContentM>
+							</Hour>
 
 							
 
 					</CardDate>
 
-					<div>
-					<Heading6>{reazon}</Heading6>
-					<Icon type = "video" fill={colors.orange} size="23"/>
-					</div>
+					<CardMotivo>
+					  <Heading6>Motivo de consulta:</Heading6>
+					   <MotivoDescription>
+					      <Icon type = "reason" fill={colors.orange} size="23"/>
+						  <Heading6>{reazon}</Heading6>
+						</MotivoDescription>
+					</CardMotivo>
 			</CardStyled>
     )
 }
 
 const CardStyled = styled.div`
-border:1px solid black;
 width: 400px;
 height: 337px;
 background-color:${colors.white2};
-border:1px solid black;
 border-radius:15px;
 padding: 35px 81px 0px 43px;
 display:flex;
 flex-direction:column;
 gap:40px;
-@media (max-width: 375px) {
+@media (max-width: 450px) {
     & {
       display: flex;
       flex-direction: column;
@@ -59,14 +60,12 @@ gap:40px;
   }
 `
 const CardHeader = styled.div`
-border:1px solid blue;
 display:flex;
 gap:22px;
 width:auto;
 height:auto;
 `
 const HeaderPsicology = styled.div`
-border:1px solid black;
 display:flex;
 align-self:center;
 flex-direction:column;
@@ -76,4 +75,24 @@ height:auto;
 const CardDate = styled.div`
 display:flex;
 justify-content:space-between;
+`
+const Date = styled.div`
+display:flex;
+flex-direction:column;
+gap:5px;
+`
+const Hour = styled.div`
+display:flex;
+flex-direction:column;
+gap:5px;
+`
+const CardMotivo = styled.div`
+display: flex;
+flex-direction:column;
+gap:10px;
+`
+const MotivoDescription = styled.div`
+display:flex;
+align-items:center;
+gap:10px;
 `

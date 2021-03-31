@@ -21,6 +21,7 @@ export default function LoginForm() {
     e.preventDefault();
     if (validLogin(email, password) === true) {
       dispatch(fetchLogin({ email, password }));
+      //sessionStorage.setItem("email",email);
     }
   };
 

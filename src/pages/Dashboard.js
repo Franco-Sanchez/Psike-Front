@@ -6,20 +6,25 @@ import { ContentL, ContentM, ContentS } from '../components/text/Content'
 import { Heading1, Heading3 } from '../components/text/Heading'
 import Avatar from '../components/UI/Avatar'
 import CardDashBoard from '../components/UI/CardDashBoard'
-import { fetchQuotes } from '../features/quotes/quotesSlice'
+import { cleanQuotes, fetchQuotes } from '../features/quotes/quotesSlice'
 import { killToken } from '../features/session/sessionSlice'
 import { killSign } from '../features/signup/signSlice'
+import { colors } from '../ui'
 
 export default function Dashboard(){
     const dispatch = useDispatch();
     const quotes = useSelector((state) => state.quotes.items);
     const userName = useSelector((state)=>state.signup.name);
     const userLastName = useSelector((state)=>state.signup.lastname);
+    const email = useSelector((state)=>state.session.email);
     const token = sessionStorage.getItem("token");
     const state = useSelector((state)=>state.quotes.status);
     function kill(){
-       return (dispatch(killToken()),dispatch(killSign()));
+       return (dispatch(killToken()),dispatch(killSign()),dispatch(cleanQuotes()));
     }
+
+    const transformTime = (time) =>
+    time.toString().length === 1 ? `0${time.toString()}` : time;
 
     if(state=="idle"){
        dispatch(fetchQuotes(token))
@@ -36,10 +41,10 @@ export default function Dashboard(){
             <DashboardHeader>
 
                 <DashLogout>
-                    <Avatar url = "https://sites.google.com/site/imagenesdecarrosgratis/_/rsrc/1421516636272/home/carros-deportivos-lamborghini-aventador-tron_aventador.jpg"/>
+                    <Avatar/>
                     <ContentLogout>
-                        <ContentL>{userName} {userLastName}</ContentL>
-                        <Link to = "/login" onClick={()=>dispatch(kill())}><ContentS>Logout</ContentS></Link>
+                        <ContentL>{ userName }</ContentL>
+                        <Link to = "/login" onClick={()=>dispatch(kill())}><ContentM>Logout</ContentM></Link>
                     </ContentLogout>
                 </DashLogout>
 
@@ -47,29 +52,23 @@ export default function Dashboard(){
 
             <DashboardUser>
                 <DashUserData>
-                  <Heading1>HOLA,</Heading1><Heading1>{userName}</Heading1>
+                  <Heading1>HOLA,</Heading1><Heading1><p>{userName}!</p></Heading1>
                 </DashUserData>
-                <ContentM>nos encanta tenerte de nuevo por aqui.</ContentM>
+                <ContentM><span>nos encanta tenerte de nuevo por aqui.</span></ContentM>
             </DashboardUser>
 
             <Heading3>Tus proximas citas son:</Heading3>
 
-            <div>
+            <BodyBoard>
                 {
                   quotes.filter((q)=> Date.parse(q.date) >= Date.now()
                   )
                   .map((quo)=>{
-                      return <CardDashBoard name = {quo.psychologist.name} date = {quo.date} hora = {(Date.parse((quo.schedule.hour.start_hour)))} reazon={quo.reason}/>
+                      return <CardDashBoard name = {quo.psychologist.name} date = {quo.date} hora = {transformTime(new Date(quo.schedule.hour.start_hour).getUTCHours())} 
+                      minutes = {transformTime(new Date(quo.schedule.hour.start_hour).getUTCMinutes())} reazon={quo.reason}/>
                   })
-                }
-                {/* {quotes.map((quo)=>{
-                    quo.psychologist.map((q)=>{
-                        <CardDashBoard name={q.name}/>
-                    })
-                     
-                })} */}
-               
-            </div>
+                } 
+            </BodyBoard>
 
         </DashboardStyled>
     )
@@ -78,7 +77,19 @@ export default function Dashboard(){
 const DashboardStyled = styled.div`
 width:100%;
 height:auto;
-border:1px solid black;
+display:flex;
+flex-direction:column;
+& h3{
+    color:${colors.black};
+}
+@media (max-width: 450px) {
+    & {
+      width: 100%;
+      display:flex;
+      flex-direction:column;
+      align-self:center;
+    }
+  }
 `
 const DashboardHeader = styled.div`
 width:100%;
@@ -86,26 +97,69 @@ height:auto;
 display:flex;
 justify-content:flex-end;
 align-items:flex-end;
-border:1px solid black;
+@media (max-width: 450px) {
+    & {
+      width: 100%;
+      display:flex;
+      justify-content:flex-start;
+      align-items:flex-start;
+    }
+  }
 `
 const DashLogout = styled.div`
 display:flex;
 width:auto;
 height:auto;
 gap:10px;
+& a{
+    text-decoration:none;
+    color:${colors.blue};
+}
 `
 const ContentLogout = styled.div`
 display:flex;
 flex-direction:column;
-border:1px solid black;
 padding: 5px 0px;
 `
 const DashboardUser = styled.div`
 display:flex;
 flex-direction:column;
-border:1px solid black;
+margin-bottom:30px;
+& span{
+   color:${colors.black};
+   font-weight:500;
+}
+
 `
 const DashUserData = styled.div`
 display:flex;
 gap:10px;
+& h1{
+    color:${colors.black};
+}
+& p{
+    color:${colors.orange};
+}
+@media (max-width: 450px) {
+    & {
+      width: 100%;
+      display:flex;
+      flex-direction:column;
+      text-align:center;
+    }
+  }
+`
+const BodyBoard = styled.div`
+display:grid;
+grid-template-columns:33% 33% 33%;
+row-gap:10px;
+column-gap:10px;
+margin-top:20px;
+@media (max-width: 450px) {
+    & {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+  }
 `

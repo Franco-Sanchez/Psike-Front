@@ -33,13 +33,12 @@ export default function Header() {
           Psicologos
         </NavLink>
 
-       
         {(token || tokenSignup) &&
         
         <>
         <NavLink to="/dashboard" activeClassName="selected">
         Dashboard
-        </NavLink>
+        </NavLink> 
 
         <NavLink to="/history" activeClassName="selected">
         Historial
