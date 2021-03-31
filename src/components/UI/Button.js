@@ -35,7 +35,7 @@ export default function Button({
   type,
   children,
   onClick,
-  disabled,
+  disabled = false,
   css
 }) {
   if (!sizes[size]) size = "medium";
@@ -46,6 +46,7 @@ export default function Button({
       bg={bg}
       color={color}
       type={type}
+      disabled={disabled}
       onClick = {onClick}
       disabled={disabled}
       css={css}
