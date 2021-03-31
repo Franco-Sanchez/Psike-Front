@@ -25,7 +25,7 @@ export const ContainerCalendar = styled.div`
     width: 266px;
     ${gridGap};
 
-    & > * {
+    & > *, .calendar-month_header_title {
       font-family: 'Roboto'
     }
 

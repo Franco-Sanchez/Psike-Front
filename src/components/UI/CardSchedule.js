@@ -22,8 +22,12 @@ export default function CardSchedule({ id }) {
   const [day, setDay] = useState(new Date());
   const schedules = useSelector((state) => state.showPsychologist.schedules);
   const appointments = useSelector((state) => state.showAppointments.items);
-  const psychologistStatus = useSelector((state) => state.showPsychologist.status);
-  const appointmentsStatus = useSelector((state) => state.showAppointments.status);
+  const psychologistStatus = useSelector(
+    (state) => state.showPsychologist.status
+  );
+  const appointmentsStatus = useSelector(
+    (state) => state.showAppointments.status
+  );
   const dispatch = useDispatch();
 
   if (psychologistStatus === "idle") {
@@ -37,29 +41,60 @@ export default function CardSchedule({ id }) {
   const options = { weekday: "long", month: "long", day: "numeric" };
   const dateTimeFormat = new Intl.DateTimeFormat("es-ES", options);
 
-  const taken = false;
-
   const filterSchedules = schedules.filter(
     (schedule) => schedule.day.day_number === day.getDay()
   );
+
   let orderedSchedules = [];
   for (let _element of filterSchedules) {
     orderedSchedules = [...orderedSchedules, filterSchedules.splice(0, 2)];
     orderedSchedules = [...orderedSchedules, filterSchedules.splice(0, 3)];
   }
 
+  const arrToCompareDates = (dateState, dateInput) => {
+    let firstDate = new Date(
+      Date.UTC(
+        dateState.getFullYear(),
+        dateState.getMonth(),
+        dateState.getDate()
+      )
+    ).getTime();
+    let secondDate = new Date(
+      Date.UTC(
+        dateInput.getFullYear(),
+        dateInput.getMonth(),
+        dateInput.getDate()
+      )
+    ).getTime();
+    return [firstDate, secondDate];
+  };
+
+  const filterAppointments = appointments.filter((appointment) => {
+    let splitDate = appointment.date.split(/\D/);
+    let convertDate = new Date(
+      splitDate[0],
+      splitDate[1] - 1,
+      splitDate[2]
+    );
+    let valuesToCompare = arrToCompareDates(day, convertDate);
+    if (valuesToCompare[0] === valuesToCompare[1]) return appointment;
+  });
+
   const goPastDay = () => setDay(new Date(day.setDate(day.getDate() - 1)));
 
   const goNextDay = () => setDay(new Date(day.setDate(day.getDate() + 1)));
 
-  const transformTime = (time) => time.toString().length === 1 ? `0${time.toString()}` : time
+  const transformTime = (time) =>
+    time.toString().length === 1 ? `0${time.toString()}` : time;
 
   const isDisabled = (time) => {
     let now = new Date();
-    let compareOne = new Date(Date.UTC(day.getFullYear(), day.getMonth(), day.getDate())).getTime();
-    let compareTwo = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())).getTime();
-    return compareOne < compareTwo
-  } 
+    let valuesToCompare = arrToCompareDates(day, now);
+    const sameHour = filterAppointments.filter(appointment => (
+      appointment.schedule.hour.start_hour === time.hour.start_hour
+    ))
+    return valuesToCompare[0] < valuesToCompare[1] || sameHour.length > 0;
+  };
 
   return (
     <CardContainer type="schedule">
@@ -109,10 +144,21 @@ export default function CardSchedule({ id }) {
                       disabled={isDisabled(time)}
                       css={buttonHour}
                     >
-                      {transformTime(new Date(time.hour.start_hour).getUTCHours())}
-                      :{transformTime(new Date(time.hour.start_hour).getUTCMinutes())} a{" "}
-                      {transformTime(new Date(time.hour.end_hour).getUTCHours())}:
-                      {transformTime(new Date(time.hour.end_hour).getUTCMinutes())}
+                      {transformTime(
+                        new Date(time.hour.start_hour).getUTCHours()
+                      )}
+                      :
+                      {transformTime(
+                        new Date(time.hour.start_hour).getUTCMinutes()
+                      )}{" "}
+                      a{" "}
+                      {transformTime(
+                        new Date(time.hour.end_hour).getUTCHours()
+                      )}
+                      :
+                      {transformTime(
+                        new Date(time.hour.end_hour).getUTCMinutes()
+                      )}
                     </Button>
                   ))}
                 </StyledRow>

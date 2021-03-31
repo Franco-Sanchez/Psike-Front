@@ -11,7 +11,7 @@ export const fetchShowAppointments = createAsyncThunk(
       throw new Error(data);
     }
 
-    return data;
+    return { data };
   }
 );
 
@@ -33,7 +33,7 @@ const showAppointmentsSlice = createSlice({
     },
     [fetchShowAppointments.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.single = action.payload.data;
+      state.items = action.payload.data;
       state.error = null;
     },
     [fetchShowAppointments.rejected]: (state, action) => {
