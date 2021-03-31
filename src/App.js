@@ -132,8 +132,8 @@ function App() {
             <Route path="/documentation" component={Documentation} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
+            <Route path="/psychologists/:id" component={ShowPsychologist} />
             <Route path="/psychologists" component={Psychologists} />
-            <Route path="/psychologist/:id" component={ShowPsychologist} />
             <Route
               path="/psychologist/:id/specialty#1"
               component={ShowPsychologist}
