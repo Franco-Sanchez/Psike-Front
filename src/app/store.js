@@ -4,6 +4,7 @@ import showAppointmentsReducer from '../features/psychologist/showAppointmentsSl
 import showPsychologistReducer from '../features/psychologist/showPsychologistSlice';
 import sessionReducer from '../features/session/sessionSlice';
 import signReducer from '../features/signup/signSlice';
+import profileReducer from "../features/profile/profileSlice";
 
 export default configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export default configureStore({
     showAppointments: showAppointmentsReducer,
     createAppointment: createAppointmentReducer,
     session:sessionReducer,
-    signup: signReducer
+    signup: signReducer,
+    profile: profileReducer
   }
 })

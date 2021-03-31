@@ -2,33 +2,25 @@ import styled from "@emotion/styled";
 import { colors } from "../../ui";
 const sizes = {
   tiny: {
-    // width: "100px",
-    // height: "30px",
     padding:"5px 10px",
     size: "12px",
   },
   small: {
-    // width: "144px",
-    // height: "48px",
     padding:"6px 15px",
     size: "16px",
   },
   medium: {
-    // width: "387px",
-    // height: "48px",
     size: "18px",
-    padding:"10px 20px",
+    padding: "10px 20px",
   },
   large: {
-    // width: "374px",
-    // height: "73px",
     size: "24px",
-    padding:"12px 25px",
+    padding: "12px 25px",
   },
 };
 
 export default function Button({
-  color = colors.white,
+  color = colors.white2,
   bg = colors.orange,
   size = "medium",
   outline,
@@ -36,7 +28,8 @@ export default function Button({
   children,
   onClick,
   disabled = false,
-  css
+  css,
+  form,
 }) {
   if (!sizes[size]) size = "medium";
   return (
@@ -47,9 +40,14 @@ export default function Button({
       color={color}
       type={type}
       disabled={disabled}
+<<<<<<< HEAD
       onClick = {onClick}
       disabled={disabled}
       css={css}
+=======
+      onClick={onClick}
+      form={form}
+>>>>>>> main
     >
       {children}
     </StyledButton>
@@ -58,7 +56,7 @@ export default function Button({
 
 const StyledButton = styled.button`
   outline: none;
-  padding:${(props) => sizes[props.size].padding};
+  padding: ${(props) => sizes[props.size].padding};
   display: flex;
   justify-content: center;
   align-items: center;
