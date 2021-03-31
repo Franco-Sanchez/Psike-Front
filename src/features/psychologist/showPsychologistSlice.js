@@ -19,6 +19,8 @@ const showPsychologistSlice = createSlice({
   name: "showPsychologist",
   initialState: {
     single: {},
+    schedules: [],
+    orderedSchedules: [],
     status: "idle",
     error: null,
   },
@@ -34,6 +36,7 @@ const showPsychologistSlice = createSlice({
     [fetchShowPsychologist.fulfilled]: (state, action) => {
       state.status = "succeeded";
       state.single = action.payload.data;
+      state.schedules = action.payload.data.schedules;
       state.error = null;
     },
     [fetchShowPsychologist.rejected]: (state, action) => {

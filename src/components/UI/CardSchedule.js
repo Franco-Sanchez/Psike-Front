@@ -7,7 +7,7 @@ import {
   ContainerSchedule,
   ContainerHours,
   StyledOrderedSchedule,
-  StyledRow
+  StyledRow,
 } from "../showPsychologist/scheduleStyles";
 import { Content, ContentL } from "../text/Content";
 import styled from "@emotion/styled";
@@ -15,43 +15,45 @@ import { css } from "@emotion/react";
 import { colors } from "../../ui";
 import Button from "./Button";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchShowPsychologist } from '../../features/psychologist/showPsychologistSlice';
-import { fetchShowAppointments } from '../../features/psychologist/showAppointmentsSlice';
+import { fetchShowPsychologist } from "../../features/psychologist/showPsychologistSlice";
+import { fetchShowAppointments } from "../../features/psychologist/showAppointmentsSlice";
 
 export default function CardSchedule({ id }) {
   const [day, setDay] = useState(new Date());
-  const psychologist = useSelector(state => state.showPsychologist.single);
-  const appointments = useSelector(state => state.showAppointments.items);
-  const psychologistStatus = useSelector(state => state.showPsychologist.status);
-  const appointmentsStatus = useSelector(state => state.showAppointments.status);
+  const schedules = useSelector((state) => state.showPsychologist.schedules);
+  const psychologistStatus = useSelector((state) => state.showPsychologist.status);
+  const appointmentsStatus = useSelector((state) => state.showAppointments.status);
   const dispatch = useDispatch();
 
-  if(psychologistStatus === 'idle' && appointmentsStatus === 'idle') {
-    dispatch(fetchShowPsychologist({ id: 1 }))
-    // dispatch(fetchShowAppointments({ id: 1 }))
+  if (psychologistStatus === "idle") {
+    dispatch(fetchShowPsychologist({ id: 1 }));
   }
 
-  console.log(psychologist);
+  if (appointmentsStatus === "idle") {
+    dispatch(fetchShowAppointments({ id: 1 }));
+  }
 
   const options = { weekday: "long", month: "long", day: "numeric" };
   const dateTimeFormat = new Intl.DateTimeFormat("es-ES", options);
-  
+
   const taken = false;
 
-  const schedule  = [1,2,3,4,5,6,7]
-  let orderedSchedule = []
-  for (let _item of schedule) {
-    orderedSchedule = [...orderedSchedule, schedule.splice(0,2)]
-    orderedSchedule = [...orderedSchedule, schedule.splice(0,3)]
+  console.log(schedules)
+
+  const filterSchedules = schedules.filter(
+    (schedule) => schedule.day.day_number === day.getDay()
+  );
+  let orderedSchedules = [];
+  for (let _element of filterSchedules) {
+    orderedSchedules = [...orderedSchedules, filterSchedules.splice(0, 2)];
+    orderedSchedules = [...orderedSchedules, filterSchedules.splice(0, 3)];
   }
 
-  const goPastDay = () => {
-    // if(day.getDay() !== new Date().getDay()) {
-      setDay(new Date(day.setDate((day.getDate() - 1))))
-    // }
-  };
+  const goPastDay = () => setDay(new Date(day.setDate(day.getDate() - 1)));
 
-  const goNextDay = () => setDay(new Date(day.setDate((day.getDate() + 1))))
+  const goNextDay = () => setDay(new Date(day.setDate(day.getDate() + 1)));
+
+  const transformHour = (time) => time.toString().length === 1 ? `0${time.toString()}` : time
 
   return (
     <CardContainer type="schedule">
@@ -66,34 +68,57 @@ export default function CardSchedule({ id }) {
           />
         </ContainerCalendar>
         <ContainerSchedule>
-          <ContentL css={css`${dateFormat}`}>
+          <ContentL
+            css={css`
+              ${dateFormat}
+            `}
+          >
             {dateTimeFormat.format(day)}
           </ContentL>
-          <Content css={css`${description}`}
+          <Content
+            css={css`
+              ${description}
+            `}
           >
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s.
           </Content>
           <ContainerHours>
-            <Icon onClick={goPastDay} styles={arrow} type="arrowLeft" size={50} fill={colors.orange} />
+            <Icon
+              onClick={goPastDay}
+              styles={arrow}
+              type="arrowLeft"
+              size={50}
+              fill={colors.orange}
+            />
             <StyledOrderedSchedule>
-              {orderedSchedule.map(schedule => (
+              {orderedSchedules.length === 0 && <p>No hay horarios</p>}
+              {orderedSchedules.map((schedule) => (
                 <StyledRow>
-                  {schedule.map(_item => (
-                    <Button 
+                  {schedule.map((item) => (
+                    <Button
                       size="small"
                       outline
                       disabled={taken}
                       css={buttonHour}
                     >
-                      13:00 a 13:45
+                      {transformHour(new Date(item.hour.start_hour).getUTCHours())}
+                      :{transformHour(new Date(item.hour.start_hour).getUTCMinutes())} a{" "}
+                      {transformHour(new Date(item.hour.end_hour).getUTCHours())}:
+                      {transformHour(new Date(item.hour.end_hour).getUTCMinutes())}
                     </Button>
                   ))}
                 </StyledRow>
               ))}
             </StyledOrderedSchedule>
-            <Icon onClick={goNextDay} styles={arrow} type="arrow" size={50} fill={colors.orange} />
+            <Icon
+              onClick={goNextDay}
+              styles={arrow}
+              type="arrow"
+              size={50}
+              fill={colors.orange}
+            />
           </ContainerHours>
         </ContainerSchedule>
       </StyledCard>
@@ -118,12 +143,11 @@ const description = css`
 `;
 
 const buttonHour = css`
-  font-family: 'Inter';
+  font-family: "Inter";
   padding: 16px 27px;
   line-height: 19px;
   font-weight: 600;
-  // min-width: 50px;
-`
+`;
 const arrow = css`
   cursor: pointer;
-`
+`;
