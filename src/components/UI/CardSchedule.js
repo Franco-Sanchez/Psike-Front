@@ -22,7 +22,8 @@ import { useHistory } from "react-router";
 export default function CardSchedule({ id }) {
   const history = useHistory();
   const [day, setDay] = useState(new Date());
-  const token = true;
+  const tokenLogin = useSelector(state => state.session.token);
+  const tokenSignup = useSelector(state => state.signup.token); 
   const schedules = useSelector((state) => state.showPsychologist.schedules);
   const appointments = useSelector((state) => state.showAppointments.items);
   const psychologistStatus = useSelector(
@@ -90,18 +91,19 @@ export default function CardSchedule({ id }) {
   const transformTime = (time) =>
     time.toString().length === 1 ? `0${time.toString()}` : time;
 
-  const isDisabled = (time) => {
+  const isDisabled = (schedule) => {
     let now = new Date();
     let valuesToCompare = arrToCompareDates(day, now);
     const sameHour = filterAppointments.filter(appointment => (
-      appointment.schedule.hour.start_hour === time.hour.start_hour
+      appointment.schedule.hour.start_hour === schedule.hour.start_hour
     ))
     return valuesToCompare[0] < valuesToCompare[1] || sameHour.length > 0;
   };
 
-  const bookAppointment = (time) => {
-    if(!token) history.push('/login');
-    console.log(time);
+  const bookAppointment = (schedule) => {
+    if(!tokenLogin || !tokenSignup) history.push('/login');
+    // obtener el formato de la fecha para la cita "dateTimeFormat.format(day)"
+    console.log(schedule);
   }
 
   return (
@@ -143,30 +145,30 @@ export default function CardSchedule({ id }) {
             />
             <StyledOrderedSchedule>
               {orderedSchedules.length === 0 && <p>No hay horarios</p>}
-              {orderedSchedules.map((schedule) => (
+              {orderedSchedules.map((schedules) => (
                 <StyledRow>
-                  {schedule.map((time) => (
+                  {schedules.map((schedule) => (
                     <Button
                       size="small"
                       outline
-                      disabled={isDisabled(time)}
+                      disabled={isDisabled(schedule)}
                       css={buttonHour}
-                      onClick={()=> bookAppointment(time)}
+                      onClick={()=> bookAppointment(schedule)}
                     >
                       {transformTime(
-                        new Date(time.hour.start_hour).getUTCHours()
+                        new Date(schedule.hour.start_hour).getUTCHours()
                       )}
                       :
                       {transformTime(
-                        new Date(time.hour.start_hour).getUTCMinutes()
+                        new Date(schedule.hour.start_hour).getUTCMinutes()
                       )}{" "}
                       a{" "}
                       {transformTime(
-                        new Date(time.hour.end_hour).getUTCHours()
+                        new Date(schedule.hour.end_hour).getUTCHours()
                       )}
                       :
                       {transformTime(
-                        new Date(time.hour.end_hour).getUTCMinutes()
+                        new Date(schedule.hour.end_hour).getUTCMinutes()
                       )}
                     </Button>
                   ))}

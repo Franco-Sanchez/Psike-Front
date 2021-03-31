@@ -6,7 +6,6 @@ export const fetchShowAppointments = createAsyncThunk(
   async ({ id }) => {
     const response = await fetch(`${BASE_URI}/psychologists/${id}/appointments`);
     const data = await response.json();
-    console.log(data);
     if (!response.ok) {
       throw new Error(data);
     }
