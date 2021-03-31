@@ -6,7 +6,6 @@ export const fetchShowPsychologist = createAsyncThunk(
   async ({ id }) => {
     const response = await fetch(`${BASE_URI}/psychologists/${id}`);
     const data = await response.json();
-    console.log(data);
     if(!response.ok) {
       throw new Error(data)
     }
@@ -20,7 +19,6 @@ const showPsychologistSlice = createSlice({
   initialState: {
     single: {},
     schedules: [],
-    orderedSchedules: [],
     status: "idle",
     error: null,
   },

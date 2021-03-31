@@ -21,6 +21,7 @@ import { fetchShowAppointments } from "../../features/psychologist/showAppointme
 export default function CardSchedule({ id }) {
   const [day, setDay] = useState(new Date());
   const schedules = useSelector((state) => state.showPsychologist.schedules);
+  const appointments = useSelector((state) => state.showAppointments.items);
   const psychologistStatus = useSelector((state) => state.showPsychologist.status);
   const appointmentsStatus = useSelector((state) => state.showAppointments.status);
   const dispatch = useDispatch();
@@ -38,8 +39,6 @@ export default function CardSchedule({ id }) {
 
   const taken = false;
 
-  console.log(schedules)
-
   const filterSchedules = schedules.filter(
     (schedule) => schedule.day.day_number === day.getDay()
   );
@@ -53,7 +52,14 @@ export default function CardSchedule({ id }) {
 
   const goNextDay = () => setDay(new Date(day.setDate(day.getDate() + 1)));
 
-  const transformHour = (time) => time.toString().length === 1 ? `0${time.toString()}` : time
+  const transformTime = (time) => time.toString().length === 1 ? `0${time.toString()}` : time
+
+  const isDisabled = (time) => {
+    let now = new Date();
+    let compareOne = new Date(Date.UTC(day.getFullYear(), day.getMonth(), day.getDate())).getTime();
+    let compareTwo = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())).getTime();
+    return compareOne < compareTwo
+  } 
 
   return (
     <CardContainer type="schedule">
@@ -96,17 +102,17 @@ export default function CardSchedule({ id }) {
               {orderedSchedules.length === 0 && <p>No hay horarios</p>}
               {orderedSchedules.map((schedule) => (
                 <StyledRow>
-                  {schedule.map((item) => (
+                  {schedule.map((time) => (
                     <Button
                       size="small"
                       outline
-                      disabled={taken}
+                      disabled={isDisabled(time)}
                       css={buttonHour}
                     >
-                      {transformHour(new Date(item.hour.start_hour).getUTCHours())}
-                      :{transformHour(new Date(item.hour.start_hour).getUTCMinutes())} a{" "}
-                      {transformHour(new Date(item.hour.end_hour).getUTCHours())}:
-                      {transformHour(new Date(item.hour.end_hour).getUTCMinutes())}
+                      {transformTime(new Date(time.hour.start_hour).getUTCHours())}
+                      :{transformTime(new Date(time.hour.start_hour).getUTCMinutes())} a{" "}
+                      {transformTime(new Date(time.hour.end_hour).getUTCHours())}:
+                      {transformTime(new Date(time.hour.end_hour).getUTCMinutes())}
                     </Button>
                   ))}
                 </StyledRow>
