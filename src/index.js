@@ -19,7 +19,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Global styles={globalStyles}/>
     <Provider store={store}>
-    <App />
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
