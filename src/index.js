@@ -17,7 +17,7 @@ const globalStyles = css`
 
 ReactDOM.render(
   <React.StrictMode>
-    <Global styles={globalStyles} />
+    <Global styles={globalStyles}/>
     <Provider store={store}>
       <App />
     </Provider>

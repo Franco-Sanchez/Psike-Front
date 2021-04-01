@@ -15,7 +15,7 @@ const StyledImage = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   width: ${(props) =>
-    props.size === "large" ? sizes[props.size].width : "100%"};
+    props.size === "large" || "square" ? sizes[props.size].width : "100%"};
   height: ${(props) => sizes[props.size].height};
   border-radius: 20px;
   display: flex;
@@ -29,12 +29,14 @@ const StyledImage = styled.div`
     & {
       width: 100%;
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
+      align-items: flex-end;
     }
   }
 `;
 
 const sizes = {
+  square: { width: "203px", height: "203px" },
   small: { width: "275px", height: "143px" },
   medium: { width: "461px", height: "306px" },
   large: { width: "450px", height: "600px", borderRadius: "0px 50px" },

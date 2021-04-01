@@ -1,15 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
-import OptionContainer from "../components/Containers/SelectContainer";
-import Icon from "../components/UI/Icon";
-import MultiSelect from "../components/UI/MultiSelect";
-import SelectItem from "../components/UI/Select";
 import { colors } from "../ui";
 import CardPsychology from "../components/UI/CardPsychology";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchPsychologists,
-  filterPsychologists,
   setFilters,
 } from "../features/psychologists/PsychologistsSlice";
 import FilterByCategories from "../components/core/Psychologits/FilterCategories";
@@ -20,14 +15,9 @@ import Button from "../components/UI/Button";
 export default function Psychologists() {
   const dispatch = useDispatch();
   const psychologists = useSelector((state) => state.psychologists.items);
-  const filterCategories = useSelector(
-    (state) => state.psychologists.filterCategories
-  );
+  const filterCategories = useSelector((state) => state.psychologists.filterCategories);
   const filterItems = useSelector((state) => state.psychologists.filterItems);
-  const filterRanking = useSelector(
-    (state) => state.psychologists.filterRanking
-  );
-  const filterPrice = useSelector((state) => state.psychologists.filterPrice);
+  const filterRanking = useSelector((state) => state.psychologists.filterRanking);
   const status = useSelector((state) => state.psychologists.status);
 
   if (status === "idle") {
@@ -35,8 +25,7 @@ export default function Psychologists() {
   }
 
   let submitPsychologists = () => {
-    let filterCatSubmit =
-      filterCategories.length > 0 ? filterByCategory() : psychologists;
+    let filterCatSubmit = filterCategories.length > 0 ? filterByCategory() : psychologists;
     let filterByRanking = orderArray(filterCatSubmit, filterRanking);
     dispatch(setFilters({ name: "filterItems", value: filterByRanking }));
   };
@@ -69,10 +58,8 @@ export default function Psychologists() {
     <>
       <StyledFilterSection>
         <FilterByCategories />
-        {/* Filter Ranking and Price */}
         <FilterSelects>
           <FilterRanking />
-          <FilterPrice />
         </FilterSelects>
         <Button bg={colors.orange} size="small" onClick={submitPsychologists}>
           Filtrar

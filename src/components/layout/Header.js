@@ -3,6 +3,7 @@ import { colors } from "../../ui";
 import Button from "../UI/Button";
 import styled from "@emotion/styled";
 import { NavLink, useHistory } from "react-router-dom";
+import MenuMobile from "../Containers/MenuMobile";
 
 export default function Header() {
   const history = useHistory();
@@ -17,8 +18,10 @@ export default function Header() {
           P<span>SIKE</span>
         </a>
       </div>
-      <div className="menu-mobile">hamburguesa</div>
-      <div className="navigation">
+      <div className="menu-mobile" id="menu-mobile">
+        <MenuMobile/>
+      </div>
+      <div className="navigation" >
         <NavLink to="/dashboard" activeClassName="selected">
           Dashboard
         </NavLink>
@@ -48,6 +51,7 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 80px;
+  height: auto;
   .logo {
     font-weight: 900;
     font-size: 1.8rem;

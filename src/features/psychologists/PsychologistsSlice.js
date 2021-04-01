@@ -4,7 +4,7 @@ import { BASE_URI } from "../../app/config";
 export const fetchPsychologists = createAsyncThunk(
   "psychologists/fetchPsychologists",
   async () => {
-    const response = await fetch(`${BASE_URI}/psychologists`, {
+    const response = await fetch(`${BASE_URI}psychologists`, {
       method: "GET",
     });
 

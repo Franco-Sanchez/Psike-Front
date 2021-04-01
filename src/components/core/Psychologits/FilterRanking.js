@@ -4,7 +4,8 @@ import { setFilters } from '../../../features/psychologists/PsychologistsSlice'
 import { colors } from '../../../ui'
 import OptionContainer from '../../Containers/SelectContainer'
 import Icon from '../../UI/Icon'
-import SelectItem from '../../UI/Select'
+import { SelectItem } from '../../UI/Select'
+
 
 export default function FilterRanking() {
     const dispatch = useDispatch();
