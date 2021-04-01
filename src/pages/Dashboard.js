@@ -102,7 +102,6 @@ const DashboardStyled = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
   & h3 {
     color: ${colors.black};
   }
