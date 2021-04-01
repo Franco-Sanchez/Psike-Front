@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
 import React from "react";
 import OptionContainer from "../components/Containers/SelectContainer";
-import Button from "../components/UI/Button";
 import Icon from "../components/UI/Icon";
 import MultiSelect from "../components/UI/MultiSelect";
-import SelectItem from "../components/UI/Select";
+import { SelectItem } from "../components/UI/Select";
 import { colors } from "../ui";
 import CardPsychology from "../components/UI/CardPsychology";
 
@@ -73,11 +72,10 @@ const FilterSelects = styled.div`
 
 const StyledPsychologists = styled.div`
   width: 100%;
-  margin:20px 0;
+  margin: 20px 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 10px;
   justify-content: center;
   align-items: center;
-
 `;

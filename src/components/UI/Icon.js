@@ -20,6 +20,7 @@ import {
   RiCursorLine,
   RiMentalHealthLine,
   RiUserHeartLine,
+  RiCameraFill,
   RiMenuFoldLine,
   RiCloseLine,
   RiHome2Line,
@@ -52,6 +53,7 @@ const iconSet = {
   cursor: RiCursorLine,
   mind: RiMentalHealthLine,
   userheart: RiUserHeartLine,
+  camera: RiCameraFill,
   menu: RiMenuFoldLine,
   close: RiCloseLine,
   home: RiHome2Line,
@@ -60,7 +62,7 @@ const iconSet = {
   status: RiBookmarkFill
 };
 
-function Icon({ onClick, type, fill, size }) {
+function Icon({ type, fill, size, styles, onClick }) {
   const IconComponent = iconSet[type];
   return (
     <IconComponent
@@ -68,7 +70,9 @@ function Icon({ onClick, type, fill, size }) {
       css={css`
         fill: ${fill};
         font-size: ${size}px;
+        ${styles};
       `}
+      onClick={onClick}
     />
   );
 }

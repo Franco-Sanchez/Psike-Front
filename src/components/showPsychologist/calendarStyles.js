@@ -1,31 +1,32 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { theme } from '../../theme';
 import { colors} from '../../ui';
 
-const flex = `
+const flex = css`
   display: flex;
   align-items: center;
 `
 
-const gridGap = `
+const gridGap = css`
   display: grid;
   gap: 10px;
 `
 
-const gridColumns = `
+const gridColumns = css`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 `
 
-export const StyledCard = styled.div`
-  width: 100%;
+export const ContainerCalendar = styled.div`
+  padding: 15px;
 
   & .calendar {
-    width: 280px;
+    width: 266px;
     ${gridGap};
 
-    & > * {
-      font-family: 'Inter'
+    & > *, .calendar-month_header_title {
+      font-family: 'Roboto'
     }
 
     & button {
@@ -33,7 +34,7 @@ export const StyledCard = styled.div`
       background-color: transparent;
       outline: none;
       cursor: pointer;
-      font-family: 'Inter'
+      font-family: 'Roboto'
     }
 
     & .calendar-month_header {
@@ -94,11 +95,11 @@ export const StyledCard = styled.div`
       }
 
       & .is-selected {
-        transition: all 500ms;
+        transition: all 300ms;
         color: ${colors.white};
         background-color: ${colors.blue_ligth};
         border-color: transparent;
       }
     }
   }
-`;
+`; 

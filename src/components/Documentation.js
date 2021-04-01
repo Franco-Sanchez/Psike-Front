@@ -131,7 +131,7 @@ export default function Documentation() {
       <CardSchedule />
       <CardComent /> */}
       <CardSchedule />
-      <CardSpecialties />
+      {/* <CardSpecialties /> */}
       {/* <CardShow></CardShow> */}
       {/* <Button size="small" color={colors.orange} type="submit">Login</Button> */}
     </div>

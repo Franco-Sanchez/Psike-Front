@@ -1,9 +1,17 @@
 import styled from "@emotion/styled";
 import { colors } from "../../ui";
 
-export default function InputField({ type, placeholder, onChange }) {
+export default function InputField({
+  name,
+  value,
+  type,
+  placeholder,
+  onChange,
+}) {
   return (
     <StyledInput
+      name={name}
+      value={value}
       type={type}
       placeholder={placeholder}
       onChange={onChange}
@@ -22,6 +30,8 @@ const StyledInput = styled.input`
   padding: 13px 35px;
   border-radius: 10px;
   border: none;
+  width: auto;
+  background: white;
 
   &::placeholder {
     color: ${colors.gray_ligth2};
