@@ -13,6 +13,7 @@ const colors = {
   gray: "#7284A3",
   gray_ligth: "#CCCCCC",
   gray_ligth2: "#A39BA8",
+  gray_ligth3: '#F7F7F7',
   white: "#F8EDEB",
   white2:"#ffffff"
 };
