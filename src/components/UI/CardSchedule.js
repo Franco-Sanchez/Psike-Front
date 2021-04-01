@@ -104,6 +104,7 @@ export default function CardSchedule({ id }) {
     if(!tokenLogin || !tokenSignup) history.push('/login');
     // obtener el formato de la fecha para la cita "dateTimeFormat.format(day)"
     console.log(schedule);
+    console.log(day)
   }
 
   return (
