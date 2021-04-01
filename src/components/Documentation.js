@@ -1,8 +1,10 @@
 import React from 'react'
+import PaymentModal from './UI/PaymentModal'
 
 export default function Documentation() {
   return (
     <div>
+      <PaymentModal/>
       {/* <MultiSelect /> */}
       {/* TITULOS */}
       {/* <Heading1>Heading1</Heading1>
@@ -93,6 +95,7 @@ export default function Documentation() {
       {/* <CardSchedule /> */}
       {/* <CardSpecialties /> */}
       {/* <CardShow></CardShow> */}
+      {/* <CardComment/> */}
       {/* <Button size="small" color={colors.orange} type="submit">Login</Button> */}
     </div>
   )
