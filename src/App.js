@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Documentation from "./components/Documentation";
 import PageContent from "./components/layout/PageContent";
+import CardComent from "./components/UI/CardComent";
 import Dashboard from "./pages/Dashboard";
 import HistoryPage from "./pages/History";
 import Home from "./pages/Home";
