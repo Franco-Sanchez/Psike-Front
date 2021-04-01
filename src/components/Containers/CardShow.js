@@ -31,9 +31,6 @@ export default function CardShow() {
         <ShowSection>
           <SectionHeader>
             <Heading3>Theresa Mullins</Heading3>
-            <Button size="small" type="submit" color={colors.orange}>
-              Pedir cita
-            </Button>
           </SectionHeader>
 
           <SectionBody>

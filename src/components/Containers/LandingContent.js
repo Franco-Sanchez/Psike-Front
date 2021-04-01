@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { colors } from "../../ui";
 import { ContentMB, ContentS } from "../text/Content";
-import { Heading1, Heading2 } from "../text/Heading";
+import { Heading1 } from "../text/Heading";
 import Button from "../UI/Button";
 import Icon from "../UI/Icon";
 import Image from "../UI/Image";

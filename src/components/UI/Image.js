@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
-export default function Image({ url, size, children, classname }) {
+export default function Image({ url, size, children, className, onClick}) {
   return (
-    <StyledImage className={classname} url={url} size={size}>
+    <StyledImage onClick={onClick} className={className} url={url} size={size}>
       {children}
     </StyledImage>
   );
@@ -18,13 +18,12 @@ const StyledImage = styled.div`
     props.size === "large" || "square" ? sizes[props.size].width : "100%"};
   height: ${(props) => sizes[props.size].height};
   border-radius: 20px;
-  /* display: flex;
+  display: flex;
   justify-content: flex-end;
-  align-items: flex-end; */
+  align-items: flex-end;
   padding: 10px;
   border-radius: ${(props) =>
     props.size === "large" ? sizes[props.size].borderRadius : ""};
-
   @media (max-width: 768px) {
     & {
       width: 100%;
@@ -37,7 +36,7 @@ const StyledImage = styled.div`
 
 const sizes = {
   square: { width: "203px", height: "203px" },
-  small: { width: "275px", height: "143px" },
+  small: { width: "100%", height: "143px" },
   medium: { width: "461px", height: "306px" },
   large: { width: "450px", height: "600px", borderRadius: "0px 50px" },
 };
