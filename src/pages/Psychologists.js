@@ -69,6 +69,7 @@ export default function Psychologists() {
         {filterItems.map((item) => (
           <CardPsychology
             key={item.id}
+            id={item.id}
             name={item.name + " " + item.lastname}
             bio={item.biography}
             price={item.price}
@@ -85,7 +86,7 @@ export default function Psychologists() {
 const StyledFilterSection = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
-  gap: 10px;
+  gap: 15px;
   justify-content: center;
   @media (max-width: 788px) {
     & {
@@ -104,7 +105,7 @@ const StyledPsychologists = styled.div`
   margin: 20px 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  grid-gap: 10px;
+  grid-gap:20px;
   justify-content: center;
   align-items: center;
 `;

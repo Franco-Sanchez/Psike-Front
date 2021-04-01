@@ -7,8 +7,10 @@ import Imagen from "./Image";
 import TabPrice from "./TabPrice";
 import { TagItem } from "./Tag";
 import CardContainer from "../Containers/CardContainer";
+import { useHistory } from "react-router";
 
 export default function CardPsychology({
+  id,
   name,
   bio,
   price,
@@ -16,6 +18,11 @@ export default function CardPsychology({
   ranking,
   specialties,
 }) {
+  const history = useHistory();
+
+  const navigateShowPsy = () => {
+    history.push(`/psychologist/${id}`);
+  };
   return (
     <>
       <CardContainer type={"schedule"}>
@@ -24,10 +31,14 @@ export default function CardPsychology({
             <Imagen
               url="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg"
               size="small"
+              className={"image-psy"}
+              onClick={navigateShowPsy}
             >
               <TabPrice price={price} size="small" />
             </Imagen>
-            <Heading6>Lic. {name}</Heading6>
+            <Heading6 onClick={navigateShowPsy} className="namePsy">
+              Lic. {name}
+            </Heading6>
             <ContentXXSB>Psicologa Clínica</ContentXXSB>
             <div className="tagsContainer">
               {specialties.map((spe) => (
@@ -62,12 +73,21 @@ const StyledCardPsychology = styled.div`
     height: 330px;
     display: flex;
     flex-direction: column;
-    gap:10px;
+    gap: 10px;
+
+    .namePsy {
+      cursor: pointer;
+      margin-top:10px;
+    }
+
+    & .image-psy {
+      cursor: pointer;
+    }
     & .tagsContainer {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
   }
   /* 
   & .bioContainer {
