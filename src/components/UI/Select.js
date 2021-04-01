@@ -1,8 +1,20 @@
 import styled from "@emotion/styled";
 import { colors } from "../../ui";
 
-export default function SelectItem({ name, children }) {
-  return <StyledSelect name={name}>{children}</StyledSelect>;
+function SelectItem({ name, children, onChange }) {
+  return (
+    <StyledSelect name={name} onChange={onChange}>
+      {children}
+    </StyledSelect>
+  );
+}
+
+function SelectCountry({ name, children, onChange }) {
+  return (
+    <StyledSelectCountry name={name} onChange={onChange}>
+      {children}
+    </StyledSelectCountry>
+  );
 }
 
 const StyledSelect = styled.select`
@@ -21,7 +33,23 @@ const StyledSelect = styled.select`
   font-weight: 600;
   line-height: 19px;
   outline: none;
-  /* :focus{
-    color: red; 
-  } */
 `;
+const StyledSelectCountry = styled.select`
+  appearance: none;
+  background: ${colors.white2};
+  border: none;
+  height: 48px;
+  padding: 13px 0px 13px 35px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: ${colors.black};
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 21px;
+  outline: none;
+  width: 100%;
+`;
+
+export { SelectItem, SelectCountry };

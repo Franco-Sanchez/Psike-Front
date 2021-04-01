@@ -1,45 +1,5 @@
-import React from "react";
-import {
-  Content,
-  ContentXL,
-  ContentS,
-  ContentSB,
-  ContentSBB,
-  ContentL,
-  ContentM,
-  ContentMB,
-  ContentXS,
-  ContentXSB,
-  ContentXXS,
-  ContentXXSB,
-} from "./text/Content";
-import {
-  Heading1,
-  Heading2,
-  Heading3,
-  Heading4,
-  Heading5,
-  Heading6,
-} from "./text/Heading";
-
-import TabPrice from "./UI/TabPrice";
-import FormField from "./Containers/FormField";
-import { TagItem, TagItemFill } from "./UI/Tag";
-import InputField from "./UI/Input";
-import Avatar from "./UI/Avatar";
-import Image from "./UI/Image";
-import Icon from "./UI/Icon";
-import OptionContainer from "./Containers/SelectContainer";
-import SelectItem from "./UI/Select";
-import { colors } from "../ui";
-import MultiSelect from "./UI/MultiSelect";
-import CardShow from "./Containers/CardShow";
-import CardPsychology from "./UI/CardPsychology";
-import CardSpecialties from "./UI/CardSpecialties";
-import CardSchedule from "./UI/CardSchedule";
-import CardComent from "./UI/CardComent";
-import Button from "./UI/Button";
-import PaymentModal from "./UI/PaymentModal";
+import React from 'react'
+import PaymentModal from './UI/PaymentModal'
 
 export default function Documentation() {
   return (
@@ -70,6 +30,8 @@ export default function Documentation() {
       <hr /> */}
       {/* Form Field- Input with icon */}
       {/* <FormField>
+        -- CONVERT A TAG LABEL WITH THE SAME STYLES --
+        const StyledLabel = ContentXSB.withComponent('label')
         <ContentXSB>Email</ContentXSB>
         <Icon type="email" />
         <InputField type="text" placeholder="coloca aqui tu nombre" />
@@ -130,9 +92,10 @@ export default function Documentation() {
       {/* <CardSpecialties />
       <CardSchedule />
       <CardComent /> */}
+      {/* <CardSchedule /> */}
       {/* <CardSpecialties /> */}
       {/* <CardShow></CardShow> */}
       {/* <Button size="small" color={colors.orange} type="submit">Login</Button> */}
     </div>
-  );
+  )
 }

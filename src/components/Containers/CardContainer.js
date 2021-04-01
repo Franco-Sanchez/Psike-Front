@@ -6,15 +6,14 @@ export default function CardContainer({ type, children }) {
 
 const types = {
   specialties: { width: "340px", height: "390px" },
-  schedule: { width: "100%", height: "auto" },
+  schedule: { width: "100%", height: "400px" },
   coment: { width: "400px", height: "300px" },
 };
 
 const StyledDiv = styled.div`
   height: ${(props) => (props.type ? types[props.type].height : "373px")};
   width: ${(props) => (props.type ? types[props.type].width : "303px")};
-  background: #ffffff;
-  border-radius: 20px;
+  background-color: #ffffff;
   border-radius: 20px;
   padding: 14px;
   
