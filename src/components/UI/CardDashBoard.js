@@ -43,7 +43,7 @@ export default function CardDashBoard({name, date, hora, reazon,minutes}){
 }
 
 const CardStyled = styled.div`
-width: 400px;
+width: 95%;
 height: 337px;
 background-color:${colors.white2};
 border-radius:15px;
