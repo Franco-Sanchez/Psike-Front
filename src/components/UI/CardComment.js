@@ -4,21 +4,20 @@ import { colors } from "../../ui";
 import CardContainer from "../Containers/CardContainer";
 import { Content, ContentS, ContentSBB } from "../text/Content";
 
-export default function CardComent({ comment }) {
+export default function CardComment({ comment }) {
   const imgDefault = 'https://bit.ly/31GAc24'
   
   return (
-    <CardContainer type="coment" css={css`padding: 0;`}>
+    <CardContainer type="comment" css={css`padding: 0;`}>
       <StyledCard>
         <Content css={css`color: ${colors.gray}; margin: 86px 50px 0 50px;`}>
-          usó una galería de textos y los mezcló de tal manera que logró hacer
-          un libro de textos especimen.
+          {comment.description}
         </Content>
         <ContainerPatient>
-          <StyledPicture picture={imgDefault}></StyledPicture>
+          <StyledPicture picture={comment.patient.avatar || imgDefault}></StyledPicture>
           <div>
             <ContentSBB css={css`color: ${colors.black};`}>
-              Franco Sanchez
+              {comment.patient.name} {comment.patient.lastname}
             </ContentSBB>
             <ContentS css={css`color: ${colors.pink1};`}>Patient</ContentS>
           </div>

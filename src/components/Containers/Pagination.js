@@ -1,31 +1,27 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { useState } from "react";
 import { colors } from "../../ui";
 
-export default function Pagination({ pages, onClick }) {
+export default function Pagination({ limit, total, page, onSelectPage }) {
+  const pages = Math.ceil(total / limit);
   const listItems = [];
-  const [page, setPage] = useState(1);
 
-  for (let i = 0; i < pages; i++) {
+  for (let i = 1; i <= pages; i++) {
     listItems.push(
       <LiStyle
         key={i}
         selector={i}
-        onClick={() => {
-          setPage(i);
-        }}
+        onClick={() => onSelectPage(i)}
         data={page}
       ></LiStyle>
     );
   }
 
-  return <UlStyle onClick={onClick}>{listItems}</UlStyle>;
+  return <UlStyle>{listItems}</UlStyle>;
 }
 
 const selected = css`
-  border-radius: 50%;
   background-color: ${colors.orange};
 `;
 const UlStyle = styled.ul`

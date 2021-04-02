@@ -1,5 +1,5 @@
-// export const BASE_URI = "https://psike.herokuapp.com/";
-export const BASE_URI = "http://localhost:3000/";
+export const BASE_URI = "https://psike.herokuapp.com/";
+// export const BASE_URI = "http://localhost:3000/";
 export const CLIENT_ID =
   "55420826679-ta7gh9fm2j3596fhk8setcqpkcka6d8g.apps.googleusercontent.com";
 // export const CLIENT_ID ="55420826679-ta7gh9fm2j3596fhk8setcqpkcka6d8g.apps.googleusercontent.com";
