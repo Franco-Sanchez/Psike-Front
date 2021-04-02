@@ -6,6 +6,7 @@ import CardContainer from "../components/Containers/CardContainer";
 import { Heading3 } from "../components/text/Heading";
 import CardHistory from "../components/UI/CardHistory";
 import { fetchAppointments } from "../features/appointment/appointmentSlice";
+import { colors } from "../ui";
 
 export default function HistoryPage() {
   const tokenLogin = useSelector((state) => state.session.token);
@@ -21,7 +22,7 @@ export default function HistoryPage() {
   if (!tokenLogin || !tokenSignup) return <Redirect to="/login" />;
 
   return (
-    <>
+    <StyledHistory>
       <Heading3>Tu historial de citas es: </Heading3>
       <StyledContinerCard>
         {appointments.map((appt) => (
@@ -35,7 +36,7 @@ export default function HistoryPage() {
           />
         ))}
       </StyledContinerCard>
-    </>
+    </StyledHistory>
   );
 }
 
@@ -44,4 +45,10 @@ const StyledContinerCard = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 16px;
+`;
+const StyledHistory = styled.div`
+  h3 {
+    color: ${colors.black};
+    margin-bottom: 55px;
+  }
 `;

@@ -15,6 +15,27 @@ export default function CardHistory({
   status,
   date,
 }) {
+const d = new Date(`${date}`)
+const year = d.getFullYear() 
+const month = d.getMonth()
+const day = d.getDay()
+const months = [
+  'Enero',
+  'Febrero',
+  'Marzo',
+  'Abril',
+  'Mayo',
+  'Junio',
+  'Julio',
+  'Augusto',
+  'Septiembre',
+  'Octubre',
+  'Noviembre',
+  'Deciembre'
+]
+
+const monthName = months[month]
+const formattedDate = `${day} de ${monthName} del ${year}`
   return (
     <CardContainer key={key} type="history">
       <StyledCard>
@@ -23,12 +44,12 @@ export default function CardHistory({
             <Image size="circular" url={`${avatar}`} />
           </div>
           <div className="phycologyInfo">
-            <div>
+            
               <Heading6>{name + " " + lastname}</Heading6>
-            </div>
+            
             <div className="calendar">
               <Icon type="calendar" size={20} fill={colors.blue} />
-              <ContentXS>{date}</ContentXS>
+              <ContentXS>{formattedDate}</ContentXS>
             </div>
             <div className="status">
               <Icon
@@ -66,12 +87,15 @@ const StyledCard = styled.div`
     display: flex;
     flex-direction: column;
     gap: 4px;
+    color: ${colors.blue};
+    text-align: justify;
   }
   .calendar,
   .status {
     display: flex;
     align-items: center;
     gap: 8px;
+    color: ${colors.gray}
   }
   .moreinfo {
     p {
