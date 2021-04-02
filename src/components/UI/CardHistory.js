@@ -7,28 +7,42 @@ import { Heading6 } from "../text/Heading";
 import Icon from "./Icon";
 import Image from "./Image";
 
-export default function CardHistory() {
+export default function CardHistory({
+  key,
+  avatar,
+  name,
+  lastname,
+  status,
+  date,
+}) {
   return (
-    <CardContainer type="history">
+    <CardContainer key={key} type="history">
       <StyledCard>
         <div className="container">
           <div className="photo">
-            <Image
-              size="circular"
-              url="https://timesofindia.indiatimes.com/photo/67586673.cms"
-            />
+            <Image size="circular" url={`${avatar}`} />
           </div>
           <div className="phycologyInfo">
             <div>
-              <Heading6>Bertha Aspillaga</Heading6>
+              <Heading6>{name + " " + lastname}</Heading6>
             </div>
             <div className="calendar">
               <Icon type="calendar" size={20} fill={colors.blue} />
-              <ContentXS>7 Marzo 2021</ContentXS>
+              <ContentXS>{date}</ContentXS>
             </div>
             <div className="status">
-              <Icon type="status" size={20} fill={colors.statusGreen} />
-              <ContentXS>completado</ContentXS>
+              <Icon
+                type="status"
+                size={20}
+                fill={
+                  status === "completed"
+                    ? colors.statusGreen
+                    : status === "taken"
+                    ? colors.statusPurple
+                    : colors.statusRed
+                }
+              />
+              <ContentXS>{status}</ContentXS>
             </div>
           </div>
         </div>

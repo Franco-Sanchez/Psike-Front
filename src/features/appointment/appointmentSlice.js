@@ -15,7 +15,7 @@ export const fetchAppointments = createAsyncThunk(
     if (!response.ok) {
       throw new Error(data.error);
     }
-    return { appointments: data };
+    return data;
   }
 );
 
@@ -24,7 +24,7 @@ const appointmentSlice = createSlice({
   initialState: {
     error: null,
     status: "idle",
-    appointments: {},
+    appointments: [],
   },
   reducers: {},
   extraReducers: {
