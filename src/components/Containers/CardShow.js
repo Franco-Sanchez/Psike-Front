@@ -13,11 +13,11 @@ export default function CardShow({ psychologist }) {
   const icons = ["fb", "google", "linkedin", "slack", "twitter"];
 
   return (
-    <CardContainer type="schedule">
+    <CardContainer type="schedule" css={css`height: auto; padding: 18px;`}>
       <StyledCard>
         <ContainerImg>
           <Image
-            classname="img-small"
+            className="img-small"
             size="medium"
             url={psychologist.avatar || imgDefault}
           >
@@ -31,25 +31,25 @@ export default function CardShow({ psychologist }) {
         </ContainerImg>
 
         <ShowSection>
-          <SectionHeader>
-            <Heading3>{psychologist.name} {psychologist.lastname}</Heading3>
-          </SectionHeader>
+          <StyledContent>
+            <Heading3 style={css`color: ${colors.black};`}>
+              {psychologist.name} {psychologist.lastname}
+            </Heading3>
 
-          <SectionBody>
-            <Heading4>Psicologia Clinica</Heading4>
+            <Heading4 style={css`color: ${colors.gray_ligth};`}>
+              Psicología Clínica
+            </Heading4>
 
             <BodyIcons>
               {icons.map((icon) => (
                 <Icon type={icon} size={24} fill={colors.black} />
               ))}
             </BodyIcons>
-          </SectionBody>
 
-          <SectionFooter>
-            <Content css={css`width: 100%;`}>
+            <Content css={css`width: 100%; color:${colors.black};`}>
               {psychologist.biography}
             </Content>
-
+          </StyledContent>
             <FooterIcons>
               <Icon size={28} type="chat" fill={`${colors.pink1}`} />
               <ContentM>({psychologist.comments_total})</ContentM>
@@ -57,7 +57,6 @@ export default function CardShow({ psychologist }) {
               <Icon size={28} type="start" fill={`${colors.orange}`} />
               <ContentM>({psychologist.ranking_total})</ContentM>
             </FooterIcons>
-          </SectionFooter>
         </ShowSection>
       </StyledCard>
     </CardContainer>
@@ -65,11 +64,9 @@ export default function CardShow({ psychologist }) {
 }
 
 const StyledCard = styled.div`
-  margin-top: 0px;
   width: 100%;
   height: auto;
   display: flex;
-  padding: 18px;
   gap: 27px;
   @media (max-width: 768px) {
     & {
@@ -81,63 +78,44 @@ const StyledCard = styled.div`
   }
 `;
 const ContainerImg = styled.div`
-  position: relative;
+  & .img-small {
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
   @media (max-width: 768px) {
-    & {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    & .img-small {
+      justify-content: center; 
+      align-items: flex-end;
     }
   }
 `;
 const ShowSection = styled.div`
   width: 100%;
   height: auto;
-
-  @media (max-width: 768px) {
-    & {
-      width: 100%;
-      height: auto;
-
-    }
-  }
-`;
-const SectionHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width:100%;
-  @media (max-width: 768px) {
-    & {
-      display: flex;
-      justify-content: space-between;
-    }
-  }
-`;
-
-const SectionBody = styled.div`
-  margin-top: 8px;
-  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  color: ${colors.gray_ligth};
+  justify-content: space-between;
+  gap: 10px;
 `;
+
+const StyledContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+  gap: 15px;
+`
+
 const BodyIcons = styled.div`
   display: flex;
   gap: 15px;
 `;
-const SectionFooter = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-  text-align: justify;
-  margin-bottom: 0px;
-`;
+
 const FooterIcons = styled.div`
+  align-self: flex-end;
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 16px;
 `;
