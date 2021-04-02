@@ -3,12 +3,11 @@ import CardComment from "../UI/CardComment";
 import Pagination from "./Pagination";
 import styled from '@emotion/styled';
 
-export default function ContainerComments() {
-  const mainComments = new Array(11).fill(1);
+export default function ContainerComments({ comments }) {
   const [currentPage, setCurrentPage] = useState(1);
+  const mainComments = comments.filter(comment => comment.category === 'main_comment');
   const limit = 3;
-  console.log(currentPage)
-  
+
   return (
     <>
       <StyledContainer>

@@ -2,14 +2,16 @@ import styled from "@emotion/styled";
 import { colors } from "../../ui";
 import { Content, ContentM } from "../text/Content";
 import { Heading3, Heading4 } from "../text/Heading";
-import Button from "../UI/Button";
 import Icon from "../UI/Icon";
 import Image from "../UI/Image";
 import TabPrice from "../UI/TabPrice";
 import CardContainer from "./CardContainer";
+import { css } from '@emotion/react';
 
-export default function CardShow() {
+export default function CardShow({ psychologist }) {
+  const imgDefault = 'https://bit.ly/31GAc24'
   const icons = ["fb", "google", "linkedin", "slack", "twitter"];
+
   return (
     <CardContainer type="schedule">
       <StyledCard>
@@ -17,10 +19,10 @@ export default function CardShow() {
           <Image
             classname="img-small"
             size="medium"
-            url="https://img.freepik.com/foto-gratis/hombre-negocios-usando-tableta-digital-mientras-colega-segundo-plano_107420-17056.jpg?size=626&ext=jpg&ga=GA1.2.1587176078.1613088000"
+            url={psychologist.avatar || imgDefault}
           >
             <TabPrice
-              price={20.0}
+              price={psychologist.price}
               size="normal"
               bg="rgba(202, 214, 236, 0.8)"
               color={`${colors.black}`}
@@ -30,7 +32,7 @@ export default function CardShow() {
 
         <ShowSection>
           <SectionHeader>
-            <Heading3>Theresa Mullins</Heading3>
+            <Heading3>{psychologist.name} {psychologist.lastname}</Heading3>
           </SectionHeader>
 
           <SectionBody>
@@ -44,21 +46,16 @@ export default function CardShow() {
           </SectionBody>
 
           <SectionFooter>
-            <Content>
-              Lorem Ipsum es simplemente el texto de relleno de las imprentas y
-              archivos de texto. Lorem Ipsum ha sido el texto de relleno
-              estándar de las industrias desde el año 1500, cuando un impresor
-              (N. del T. persona que se dedica a la imprenta) desconocido usó
-              una galería de textos y los mezcló de tal manera que logró hacer
-              un libro de textos especimen.
+            <Content css={css`width: 100%;`}>
+              {psychologist.biography}
             </Content>
 
             <FooterIcons>
               <Icon size={28} type="chat" fill={`${colors.pink1}`} />
-              <ContentM>(10)</ContentM>
+              <ContentM>({psychologist.comments_total})</ContentM>
 
               <Icon size={28} type="start" fill={`${colors.orange}`} />
-              <ContentM>(4.0)</ContentM>
+              <ContentM>({psychologist.ranking_total})</ContentM>
             </FooterIcons>
           </SectionFooter>
         </ShowSection>
