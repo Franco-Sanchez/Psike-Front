@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { colors } from "../../ui";
+import Paypal from "../payment/Paypal";
 import { Content, ContentS, ContentSB } from "../text/Content";
 import { Heading3, Heading4, Heading5, Heading6 } from "../text/Heading";
 import Modal from "./Modal";
@@ -39,7 +40,9 @@ export default function PaymentModal() {
         </SectionPayment>
         <SectionPayment>
           <Heading5>Pago : </Heading5>
-          <div className="details"></div>
+          <div className="details">
+            <Paypal/>
+          </div>
         </SectionPayment>
       </Modal>
     </>

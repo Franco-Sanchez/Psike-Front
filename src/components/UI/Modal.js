@@ -13,7 +13,7 @@ const Overlay = styled(motion.div)`
 
 const ModalContainer = styled(motion.div)`
   width: 60%;
-  height: 70%;
+  height: auto;
   background-color: white;
   position: absolute;
   top: 50%;
