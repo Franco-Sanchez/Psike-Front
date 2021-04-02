@@ -8,6 +8,7 @@ const types = {
   specialties: { width: "340px", height: "390px" },
   schedule: { width: "100%", height: "400px" },
   comment: { width: "400px", height: "300px" },
+  history: { width: "350px", height: "170px" },
 };
 
 const StyledDiv = styled.div`
