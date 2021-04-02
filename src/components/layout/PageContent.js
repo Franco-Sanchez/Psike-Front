@@ -12,7 +12,6 @@ export default function PageContent({ children }) {
 }
 
 const StyledPageContent = styled.div`
-
   display: flex;
   flex-direction: column;
   gap: 20px;

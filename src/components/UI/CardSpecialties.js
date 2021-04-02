@@ -5,7 +5,7 @@ import Pagination from "../Containers/Pagination";
 import { ContentL, ContentXSB } from "../text/Content";
 import { TagItemFill } from "./Tag";
 
-export default function CardSpecialties({ _specialties }) {
+export default function CardSpecialties({ _specialties, styles }) {
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 3;
   const specialties = [
@@ -59,7 +59,7 @@ export default function CardSpecialties({ _specialties }) {
   ];
 
   return (
-    <CardContainer type="specialties">
+    <CardContainer type="specialties" css={styles}>
       <StyledCard>
         <div>
           <ContentL>Especialidades</ContentL>

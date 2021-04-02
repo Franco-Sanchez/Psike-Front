@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import CardShow from '../components/Containers/CardShow';
 import CardSchedule from '../components/UI/CardSchedule';
 import CardSpecialties from '../components/UI/CardSpecialties';
@@ -8,6 +8,7 @@ import { fetchShowAppointments } from '../features/psychologist/showAppointments
 import styled from '@emotion/styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import { css } from '@emotion/react';
 
 export default function ShowPsychologist() {
     const psychologistStatus = useSelector(state => state.showPsychologist.status);
@@ -27,19 +28,38 @@ export default function ShowPsychologist() {
     }
 
     return (
-        <div>
-            <CardShow psychologist={psychologist} />
-            <MiddleContainer>
-                <CardSpecialties specialties={psychologist.specialties || []} />
-                <CardSchedule schedules={schedules} appointments={appointments} />
-            </MiddleContainer>
-            <ContainerComments comments={psychologist.comments || []} />
-        </div>
+        <StyledShow>
+            <CardShow psychologist={psychologist} styles={show}/>
+            <CardSpecialties specialties={psychologist.specialties || []} styles={specialties} />
+            <CardSchedule schedules={schedules} appointments={appointments} styles={schedule} />
+            <ContainerComments comments={psychologist.comments || []} styles={comments} />
+        </StyledShow>
     )
 }
 
-const MiddleContainer = styled.div`
-    display: flex;
+const StyledShow = styled.div`
+    width: 100%;
+    display: grid;
     gap: 30px;
-    margin: 30px 0;
+    padding-bottom: 20px;
+    grid-template-areas: 
+    "show        show     show"
+    "specialties schedule schedule"
+    "comments    comments comments";
+`
+const show = css`
+    height: auto; 
+    padding: 18px;
+    grid-area: show;
+`
+
+const specialties = css`
+    grid-area: specialties;
+`
+
+const schedule = css`
+    grid-area: schedule;
+`
+const comments = css`
+    grid-area: comments;
 `
