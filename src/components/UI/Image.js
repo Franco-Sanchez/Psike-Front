@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
-export default function Image({ url, size, children, classname }) {
+export default function Image({ url, size, children, className, onClick}) {
   return (
-    <StyledImage className={classname} url={url} size={size}>
+    <StyledImage onClick={onClick} className={className} url={url} size={size}>
       {children}
     </StyledImage>
   );
@@ -38,7 +38,7 @@ const StyledImage = styled.div`
 
 const sizes = {
   square: { width: "203px", height: "203px" },
-  small: { width: "275px", height: "143px" },
+  small: { width: "100%", height: "143px" },
   medium: { width: "461px", height: "306px" },
   large: { width: "450px", height: "600px", borderRadius: "0px 50px" },
   circular: { width: "56px", height: "56px", borderRadius: "50px" },
