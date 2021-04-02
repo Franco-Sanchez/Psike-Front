@@ -11,8 +11,8 @@ export default function ContainerComments({ comments }) {
   return (
     <>
       <StyledContainer>
-        {mainComments.slice((currentPage - 1) * limit, currentPage * limit).map(_comment => (
-          <CardComment />
+        {mainComments.slice((currentPage - 1) * limit, currentPage * limit).map(comment => (
+          <CardComment comment={comment} />
         ))}
       </StyledContainer>
       <Pagination 
