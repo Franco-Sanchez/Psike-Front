@@ -14,7 +14,8 @@ const colors = {
   gray_ligth: "#CCCCCC",
   gray_ligth2: "#A39BA8",
   white: "#F8EDEB",
-  white2:"#ffffff"
+  white2:"#ffffff",
+  green_ligth: "#B2FEBE"
 };
 
 export { colors };

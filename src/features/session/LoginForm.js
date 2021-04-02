@@ -80,7 +80,7 @@ export default function LoginForm() {
         type="submit"
         disabled={status === "loading" ? true : false}
       >
-        {status === "loading" ? "Ingresando..." : "Iniciar Session"}
+        {status == "loading" ? "loading..." : "Iniciar Sesion"}
       </Button>
     </FormLogin>
   );

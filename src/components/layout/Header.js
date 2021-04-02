@@ -38,7 +38,6 @@ export default function Header() {
         </NavLink>
 
         {(token || tokenSignup) &&
-        
         <>
         <NavLink to="/dashboard" activeClassName="selected">
         Dashboard

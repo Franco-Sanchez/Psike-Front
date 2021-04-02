@@ -6,6 +6,9 @@ import Avatar from "./Avatar"
 import Icon from "./Icon"
 
 export default function CardDashBoard({name, date, hora, reazon,minutes}){
+
+	const options = { weekday: "long", month: "long", day: "numeric" };
+	const dateTimeFormat = new Intl.DateTimeFormat("es-ES", options);
     return(
 			<CardStyled>
 					<CardHeader>
@@ -19,7 +22,7 @@ export default function CardDashBoard({name, date, hora, reazon,minutes}){
 					<CardDate>
 						    <Date>
 								<Heading6>Fecha</Heading6>
-								<ContentM>{date}</ContentM>
+								<ContentM>{dateTimeFormat.format((date))}</ContentM>
 							</Date>
 
 							<Hour>

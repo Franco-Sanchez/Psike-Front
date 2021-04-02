@@ -7,12 +7,14 @@ import {
 } from "react-router-dom";
 import Documentation from "./components/Documentation";
 import PageContent from "./components/layout/PageContent";
+import showAppointmentsSlice from "./features/psychologist/showAppointmentsSlice";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
 import Psychologists from "./pages/Psychologists";
+import ShowAppointment from "./pages/ShowAppointment";
 import ShowPsychologist from "./pages/ShowPsychologist";
 import SignUp from "./pages/SignUp";
 import { colors } from "./ui";
@@ -136,6 +138,7 @@ function App() {
             <Route path="/signup" component={SignUp} />
             <Route path="/psychologists" component={Psychologists} />
             <Route path="/psychologist/:id" component={ShowPsychologist} />
+            <Route path="/appoitments/:id" component={ShowAppointment}/>
             <Route
               path="/psychologist/:id/specialty#1"
               component={ShowPsychologist}

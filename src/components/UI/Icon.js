@@ -27,6 +27,9 @@ import {
   RiCloseLine,
   RiHome2Line,
   RiDashboardLine,
+  RiCalendarCheckLine,
+  RiCheckboxBlankCircleFill,
+  RiPriceTag3Line
 } from "react-icons/ri";
 
 import { IoIosAddCircle } from "react-icons/io";
@@ -60,6 +63,9 @@ const iconSet = {
   close: RiCloseLine,
   home: RiHome2Line,
   dashborad: RiDashboardLine,
+  calend: RiCalendarCheckLine,
+  circle:RiCheckboxBlankCircleFill,
+  ticket:RiPriceTag3Line
 };
 
 function Icon({ type, fill, size, styles, onClick }) {

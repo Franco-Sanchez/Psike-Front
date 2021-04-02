@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { ContentL, ContentM, ContentS } from "../components/text/Content";
 import { Heading1, Heading3 } from "../components/text/Heading";
 import Avatar from "../components/UI/Avatar";
@@ -28,6 +28,12 @@ export default function Dashboard() {
     }
   }, [token]);
 
+   useEffect(()=>{
+     console.log(quotes.map((quo)=>{
+       return quo.psychologist.avatar
+     }))
+   })
+
   function kill() {
     return dispatch(killToken()), dispatch(killSign()), dispatch(cleanQuotes());
   }
@@ -44,22 +50,45 @@ export default function Dashboard() {
     console.log(userName);
     console.log(userLastName);
   });
+
+  if (!token) return <Redirect to="/login" />;
+
+  function filterDashboard(){
+   return quotes.filter((quo)=>{
+      let now = new Date(
+        Date.UTC(
+          new Date().getFullYear(),
+          new Date().getMonth(),
+          new Date().getDate()
+        )
+      ).getTime();
+
+      let splitDate = quo.date.split(/\D/);
+      let convertDate = new Date(
+        splitDate[0],
+        splitDate[1] - 1,
+        splitDate[2]
+      );
+      let thirDate = new Date(
+        Date.UTC(
+          convertDate.getFullYear(),
+          convertDate.getMonth(),
+          convertDate.getDate()
+        )
+      ).getTime();
+      if(thirDate == now && new Date(quo.schedule.hour.start_hour).getUTCHours() >= new Date().getHours()){
+          return quo
+      }else if(thirDate > now){
+        return quo
+      }
+    })
+  }
+
+  console.log(filterDashboard());
+
   return (
     <DashboardStyled>
-      <DashboardHeader>
-        <DashLogout>
-          <Avatar />
-          <ContentLogout>
-            <ContentL>
-              {user.name} {user.lastname}
-            </ContentL>
-            <Link to="/login" onClick={() => dispatch(kill())}>
-              <ContentM>Logout</ContentM>
-            </Link>
-          </ContentLogout>
-        </DashLogout>
-      </DashboardHeader>
-
+      <AvatarHeader name={user.name} lastname ={user.lastname} onClick={()=>dispatch(kill())}/>
       <DashboardUser>
         <DashUserData>
           <Heading1>HOLA,</Heading1>
@@ -75,13 +104,11 @@ export default function Dashboard() {
       <Heading3>Tus proximas citas son:</Heading3>
 
       <BodyBoard>
-        {quotes
-          .filter((q) => new Date(q.date) >= 1 - new Date())
-          .map((quo) => {
+        {filterDashboard().map((quo) => {
             return (
               <CardDashBoard
                 name={quo.psychologist.name}
-                date={quo.date}
+                date={new Date(quo.date.concat("T00:00:00"))}
                 hora={transformTime(
                   new Date(quo.schedule.hour.start_hour).getUTCHours()
                 )}
@@ -95,6 +122,24 @@ export default function Dashboard() {
       </BodyBoard>
     </DashboardStyled>
   );
+}
+
+function AvatarHeader({name,lastname,onClick,url}){
+  return(
+    <DashboardHeader>
+        <DashLogout>
+          <Avatar/>
+          <ContentLogout>
+            <ContentL>
+              {name} {lastname}
+            </ContentL>
+            <Link to="/login" onClick={onClick}>
+              <ContentM>Logout</ContentM>
+            </Link>
+          </ContentLogout>
+        </DashLogout>
+      </DashboardHeader>
+  )
 }
 
 const DashboardStyled = styled.div`
@@ -177,7 +222,6 @@ const BodyBoard = styled.div`
   row-gap: 10px;
   column-gap: 10px;
   margin-top: 20px;
-  border: 1px solid black;
   @media (max-width: 450px) {
     & {
       display: flex;
@@ -186,3 +230,4 @@ const BodyBoard = styled.div`
     }
   }
 `;
+export {AvatarHeader};
