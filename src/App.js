@@ -7,7 +7,9 @@ import {
 } from "react-router-dom";
 import Documentation from "./components/Documentation";
 import PageContent from "./components/layout/PageContent";
+import CardComent from "./components/UI/CardComent";
 import Dashboard from "./pages/Dashboard";
+import HistoryPage from "./pages/History";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
@@ -140,6 +142,7 @@ function App() {
             />
             <Route path="/profile" component={Profile} />
             <Route path="/dashboard" component={Dashboard} />
+            <Route path="/history" component={HistoryPage} />
             <Route path="/404" component={NotFound} />
             <Redirect from="*" to="/404" />
           </Switch>
