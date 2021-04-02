@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CardShow from '../components/Containers/CardShow';
 import CardSchedule from '../components/UI/CardSchedule';
 import CardSpecialties from '../components/UI/CardSpecialties';
-import CardComment from '../components/UI/CardComment';
+import ContainerComments from '../components/Containers/ContainerComments';
 import styled from '@emotion/styled';
 
 export default function ShowPsychologist() {
@@ -13,9 +13,7 @@ export default function ShowPsychologist() {
                 <CardSpecialties />
                 <CardSchedule />
             </MiddleContainer>
-            <ContainerComments>
-                <CardComment />
-            </ContainerComments>
+            <ContainerComments />
         </div>
     )
 }
@@ -25,7 +23,3 @@ const MiddleContainer = styled.div`
     gap: 30px;
     margin: 30px 0;
 `
-
-const ContainerComments = styled.div`
-    
-` 

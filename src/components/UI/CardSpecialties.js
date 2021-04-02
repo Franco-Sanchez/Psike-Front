@@ -63,7 +63,6 @@ export default function CardSpecialties() {
   }
   const limit = 7;
   const pages = Math.ceil(numSubespecialties() / limit);
-  console.log(pages);
   let [currentPage, setPage] = useState(1);
   if (currentPage > pages) {
     currentPage = 1;
