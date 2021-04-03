@@ -57,7 +57,7 @@ const iconSet = {
   menu: RiMenuFoldLine,
   close: RiCloseLine,
   home: RiHome2Line,
-  dashborad: RiDashboardLine,
+  dashboard: RiDashboardLine,
   calendar: RiCalendarLine,
   status: RiBookmarkFill
 };
