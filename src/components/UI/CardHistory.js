@@ -15,27 +15,29 @@ export default function CardHistory({
   status,
   date,
 }) {
-const d = new Date(`${date}`)
-const year = d.getFullYear() 
-const month = d.getMonth()
-const day = d.getDay()
-const months = [
-  'Enero',
-  'Febrero',
-  'Marzo',
-  'Abril',
-  'Mayo',
-  'Junio',
-  'Julio',
-  'Augusto',
-  'Septiembre',
-  'Octubre',
-  'Noviembre',
-  'Deciembre'
-]
+  const d = new Date(`${date}`);
+  const year = d.getFullYear();
+  const month = d.getMonth();
+  const day = d.getUTCDate();
+  const months = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Augusto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Deciembre",
+  ];
+  console.log("date api", date);
+  console.log("day", day);
 
-const monthName = months[month]
-const formattedDate = `${day} de ${monthName} del ${year}`
+  const monthName = months[month];
+  const formattedDate = `${day} de ${monthName} del ${year}`;
   return (
     <CardContainer key={key} type="history">
       <StyledCard>
@@ -44,9 +46,8 @@ const formattedDate = `${day} de ${monthName} del ${year}`
             <Image size="circular" url={`${avatar}`} />
           </div>
           <div className="phycologyInfo">
-            
-              <Heading6>{name + " " + lastname}</Heading6>
-            
+            <Heading6>{name + " " + lastname}</Heading6>
+
             <div className="calendar">
               <Icon type="calendar" size={20} fill={colors.blue} />
               <ContentXS>{formattedDate}</ContentXS>
@@ -95,7 +96,7 @@ const StyledCard = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
-    color: ${colors.gray}
+    color: ${colors.gray};
   }
   .moreinfo {
     p {
