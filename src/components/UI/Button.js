@@ -2,11 +2,11 @@ import styled from "@emotion/styled";
 import { colors } from "../../ui";
 const sizes = {
   tiny: {
-    padding:"5px 10px",
+    padding: "5px 10px",
     size: "12px",
   },
   small: {
-    padding:"6px 15px",
+    padding: "6px 15px",
     size: "16px",
   },
   medium: {
@@ -41,9 +41,16 @@ export default function Button({
       color={color}
       type={type}
       disabled={disabled}
+<<<<<<< HEAD
       onClick = {onClick}
       disabled={disabled}
       css={css}
+=======
+      css={css}
+      onClick={onClick}
+      disabled={disabled}
+      css={css}
+>>>>>>> 71841206b77dfdf91de74c3f67c72b859c2972e3
       form={form}
     >
       {children}
@@ -68,14 +75,15 @@ const StyledButton = styled.button`
   line-height: 28px;
   background-color: ${(props) => props.bg};
   cursor: pointer;
-  ${props => props.css}
-  ${(props) => props.outline 
-    ? (`
+  ${(props) => props.css}
+  ${(props) =>
+    props.outline
+      ? `
      border:3px solid ${colors.blue_ligth};
      background:${colors.white2};
      color:${colors.blue_ligth}
-    `)
-    : "border:1px solid transparent"};
+    `
+      : "border:1px solid transparent"};
   &:hover {
     opacity: 0.8;
   }

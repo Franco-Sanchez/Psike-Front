@@ -14,34 +14,15 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { colors } from "../../ui";
 import Button from "./Button";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchShowPsychologist } from "../../features/psychologist/showPsychologistSlice";
-import { fetchShowAppointments } from "../../features/psychologist/showAppointmentsSlice";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
-export default function CardSchedule({ id }) {
+export default function CardSchedule({ schedules, appointments }) {
   const history = useHistory();
   const [day, setDay] = useState(new Date());
   const tokenLogin = useSelector(state => state.session.token);
   const tokenSignup = useSelector(state => state.signup.token); 
-  const schedules = useSelector((state) => state.showPsychologist.schedules);
-  const appointments = useSelector((state) => state.showAppointments.items);
-  const psychologistStatus = useSelector(
-    (state) => state.showPsychologist.status
-  );
-  const appointmentsStatus = useSelector(
-    (state) => state.showAppointments.status
-  );
-  const dispatch = useDispatch();
-
-  if (psychologistStatus === "idle") {
-    dispatch(fetchShowPsychologist({ id: 1 }));
-  }
-
-  if (appointmentsStatus === "idle") {
-    dispatch(fetchShowAppointments({ id: 1 }));
-  }
-
+  
   const options = { weekday: "long", month: "long", day: "numeric" };
   const dateTimeFormat = new Intl.DateTimeFormat("es-ES", options);
 
