@@ -8,6 +8,8 @@ import TabPrice from "./TabPrice";
 import { TagItem } from "./Tag";
 import CardContainer from "../Containers/CardContainer";
 import { useHistory } from "react-router";
+import { useDispatch } from "react-redux";
+import { updateStatus } from '../../features/psychologist/showPsychologistSlice';
 
 export default function CardPsychology({
   id,
@@ -19,9 +21,11 @@ export default function CardPsychology({
   specialties,
 }) {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const navigateShowPsy = () => {
-    history.push(`/psychologist/${id}`);
+    dispatch(updateStatus());
+    history.push(`/psychologists/${id}`);
   };
   return (
     <>

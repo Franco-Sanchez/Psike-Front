@@ -40,6 +40,7 @@ export default function Button({
       color={color}
       type={type}
       disabled={disabled}
+      css={css}
       onClick={onClick}
       disabled={disabled}
       css={css}

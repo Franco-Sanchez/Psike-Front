@@ -5,7 +5,9 @@ import Pagination from "../Containers/Pagination";
 import { ContentL, ContentXSB } from "../text/Content";
 import { TagItemFill } from "./Tag";
 
-export default function CardSpecialties() {
+export default function CardSpecialties({ _specialties }) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const limit = 3;
   const specialties = [
     {
       id: 1,
@@ -56,39 +58,30 @@ export default function CardSpecialties() {
     },
   ];
 
-  function numSubespecialties() {
-    let counter = 0;
-    specialties.forEach((item) => (counter += item.subespecialties.length));
-    return counter;
-  }
-  const limit = 7;
-  const pages = Math.ceil(numSubespecialties() / limit);
-  console.log(pages);
-  let [currentPage, setPage] = useState(1);
-  if (currentPage > pages) {
-    currentPage = 1;
-  }
-
   return (
     <CardContainer type="specialties">
       <StyledCard>
-        <ContentL>Especialidades</ContentL>
+        <div>
+          <ContentL>Especialidades</ContentL>
 
-        {specialties
-          .slice((currentPage - 1) * (limit - 4), currentPage * (limit - 4))
-          .map((key) => (
-            <>
-              <ContentXSB>{key.name}</ContentXSB>
-              <div className="especialtiesComents">
-                {key.subespecialties.map((item) => (
-                  <TagItemFill>{item}</TagItemFill>
-                ))}
-              </div>
-            </>
-          ))}
-        <div className="pagination">
-          <Pagination pages={pages} onClick={() => setPage(currentPage + 1)} />
-        </div>
+          {specialties
+            .slice((currentPage - 1) * limit, currentPage * limit)
+            .map((specialty) => (
+              <>
+                <ContentXSB>{specialty.name}</ContentXSB>
+                <div className="especialtiesComents">
+                  {specialty.subespecialties.slice(0,2).map((subspecialty) => (
+                    <TagItemFill>{subspecialty}</TagItemFill>
+                  ))}
+                </div>
+              </>
+            ))}
+          </div>
+        <Pagination
+          total={specialties.length}
+          page={currentPage}
+          limit={limit}
+          onSelectPage={(pageNum) => setCurrentPage(pageNum)} />
       </StyledCard>
     </CardContainer>
   );
@@ -99,13 +92,7 @@ const StyledCard = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  position: relative;
-  .pagination {
-    position: absolute;
-    bottom: 0px;
-    align-self: center;
-  }
+  justify-content: space-between;
   & .especialtiesComents {
     display: flex;
     flex-wrap: wrap;

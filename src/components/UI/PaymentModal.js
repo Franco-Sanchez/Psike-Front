@@ -1,47 +1,84 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { colors } from "../../ui";
 import Paypal from "../payment/Paypal";
 import { Content, ContentS, ContentSB } from "../text/Content";
 import { Heading3, Heading4, Heading5, Heading6 } from "../text/Heading";
 import Modal from "./Modal";
 
-export default function PaymentModal() {
-  const [isOpen, toggle] = useState(false);
+export default function PaymentModal({ isOpen, toggle, schedule, day }) {
+  const [reason, setReason] = useState("");
+  const psychologist = useSelector((state) => state.showPsychologist.single);
 
   function handleOpenModal(open) {
     toggle(open);
   }
+
+  useEffect(() => {
+    
+    
+  }, [reason])
+
+  const options = { weekday: "long", month: "long", day: "numeric" };
+  const dateTimeFormat = new Intl.DateTimeFormat("es-ES", options);
+
+  const transformTime = (time) => {
+    let convertTime = new Date(time);
+    let hours = toStringTime(convertTime.getUTCHours());
+    let minutes = toStringTime(convertTime.getUTCMinutes());
+    return `${hours}:${minutes}`;
+  };
+
+  const toStringTime = (time) => {
+    return time.toString().length === 1 ? `0${time.toString()}` : time;
+  };
+
   return (
     <>
-      <button onClick={() => handleOpenModal(true)}>Abre po favo</button>
       <Modal isOpen={isOpen} handleClose={() => handleOpenModal(false)}>
         <Heading4>Reserva de cita :</Heading4>
         <SectionPayment>
           <Heading5>Motivo de Consulta :</Heading5>
           <textarea
+            onChange={(e) => setReason(e.target.value)}
             rows="5"
+            value={reason}
             className="motivo"
             placeholder="El motivo de mi consulta es ..."
+            minLength="50"
           />
         </SectionPayment>
         <SectionPayment>
           <Heading5>Detalle de Consulta : </Heading5>
           <div className="details">
             <ContentSB>
-              Tendras una cita con <span className="name">Sofia Munoz</span>
+              Tendras una cita con{" "}
+              <span className="name">
+                {psychologist.name + " " + psychologist.lastname}
+              </span>
             </ContentSB>
             <div className="schedule">
-              <p>Hora : 10:00 - 10:45</p>
-              <p>Fecha : 25 Marzo 2021</p>
+              <p>
+                Hora : {transformTime(schedule.hour.start_hour)} a{" "}
+                {transformTime(schedule.hour.end_hour)}
+              </p>
+              <p>Fecha : {dateTimeFormat.format(day)}</p>
             </div>
           </div>
         </SectionPayment>
         <SectionPayment>
           <Heading5>Pago : </Heading5>
           <div className="details">
-            <Paypal/>
+            {reason.length > 20 && (
+              <Paypal
+                idSchedule={schedule.id}
+                day={day}
+                psychologist={psychologist}
+                reason={reason}
+              />
+            )}
           </div>
         </SectionPayment>
       </Modal>
@@ -72,11 +109,11 @@ const SectionPayment = styled.div`
   }
 
   .schedule {
-    margin:10px 0;
+    margin: 10px 0;
   }
 
-  .name{
-    color:#5E81F4;
-    font-weight:bold;
+  .name {
+    color: #5e81f4;
+    font-weight: bold;
   }
 `;

@@ -3,13 +3,14 @@ import { BASE_URI } from "../../app/config";
 
 export const fetchCreateAppointment = createAsyncThunk(
   "createAppointment/fetchCreateAppointment",
-  async ({ token }) => {
-    const response = await fetch(`${BASE_URI}/appointments`, {
+  async ({ appointment,token }) => {
+    const response = await fetch(`${BASE_URI}appointments`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
-      }
+      },
+      body: JSON.stringify(appointment)
     });
 
     const data = await response.json();
@@ -28,6 +29,7 @@ const createAppointmentSlice = createSlice({
     item: {},
     status: "idle",
     error: null,
+    reason:""
   },
   reducers: {},
   extraReducers: {

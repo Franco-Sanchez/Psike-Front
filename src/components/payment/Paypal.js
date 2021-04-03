@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCreateAppointment } from "../../features/appointment/createAppointmentSlice";
 
-export default function Paypal() {
+export default function Paypal({ idSchedule, day, psychologist, reason }) {
+  const dispatch = useDispatch();
   const [paidFor, setPaidFor] = useState(false);
   const [error, setError] = useState(null);
   const paypalRef = useRef();
-
+  const token = useSelector((state) => state.session.token);
   useEffect(() => {
     window.paypal
       .Buttons({
@@ -12,21 +15,50 @@ export default function Paypal() {
           return actions.order.create({
             purchase_units: [
               {
-                description: "aerr",
+                description: reason,
                 amount: {
                   currency_code: "USD",
-                  value: 1.7,
+                  value: psychologist.price,
                 },
               },
             ],
           });
         },
         onApprove: async (data, actions) => {
+          var dateObj = new Date(day);
+          var monthC = dateObj.getUTCMonth() + 1; //months from 1-12
+          var dayC = dateObj.getUTCDate();
+          var yearC = dateObj.getUTCFullYear();
+          let newdate =
+            yearC +
+            "-" +
+            monthC.toString().padStart(2, 0) +
+            "-" +
+            dayC.toString().padStart(2, 0);
           console.log(data);
+          console.log(newdate);
+          console.log({
+            reason: reason,
+            day: newdate,
+            paypal_token: data.orderID,
+            schedule_id: idSchedule,
+            psychologist_id: psychologist.id,
+          });
+          dispatch(
+            fetchCreateAppointment({
+              appointment: {
+                reason: reason,
+                day: newdate,
+                paypal_token: data.orderID,
+                schedule_id: idSchedule,
+                psychologist_id: psychologist.id,
+              },
+              token: token,
+            })
+          );
         },
         onError: (err) => {
           setError(err);
-          console.error(err);
         },
       })
       .render(paypalRef.current);

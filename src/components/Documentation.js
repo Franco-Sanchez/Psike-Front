@@ -1,6 +1,6 @@
 import React from 'react'
 import PaymentModal from './UI/PaymentModal'
-import CardComent from './UI/CardComent'
+
 import CardSchedule from './UI/CardSchedule'
 
 export default function Documentation() {
@@ -97,7 +97,7 @@ export default function Documentation() {
       <CardSchedule />
       {/* <CardSpecialties /> */}
       {/* <CardShow></CardShow> */}
-      <CardComent/>
+      {/* <CardComment/> */}
       {/* <Button size="small" color={colors.orange} type="submit">Login</Button> */}
     </div>
   )

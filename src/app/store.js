@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import PsychologistsReducer from "../features/psychologists/PsychologistsSlice";
-import createAppointmentReducer from "../features/psychologist/createAppointmentSlice";
+import createAppointmentReducer from "../features/appointment/createAppointmentSlice";
 import showAppointmentsReducer from "../features/psychologist/showAppointmentsSlice";
 import showPsychologistReducer from "../features/psychologist/showPsychologistSlice";
 import sessionReducer from "../features/session/sessionSlice";
