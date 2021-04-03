@@ -9,7 +9,7 @@ const flex = css`
 export const ContainerSchedule = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
 `
 
 export const ContainerHours = styled.div`
