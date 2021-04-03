@@ -41,16 +41,8 @@ export default function Button({
       color={color}
       type={type}
       disabled={disabled}
-<<<<<<< HEAD
       onClick = {onClick}
-      disabled={disabled}
       css={css}
-=======
-      css={css}
-      onClick={onClick}
-      disabled={disabled}
-      css={css}
->>>>>>> 71841206b77dfdf91de74c3f67c72b859c2972e3
       form={form}
     >
       {children}
