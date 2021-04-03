@@ -28,11 +28,13 @@ export default function Dashboard() {
     }
   }, [token]);
 
-   useEffect(()=>{
-     console.log(quotes.map((quo)=>{
-       return quo.psychologist.avatar
-     }))
-   })
+  useEffect(() => {
+    console.log(
+      quotes.map((quo) => {
+        return quo.psychologist.avatar;
+      })
+    );
+  });
 
   function kill() {
     return dispatch(killToken()), dispatch(killSign()), dispatch(cleanQuotes());
@@ -53,8 +55,8 @@ export default function Dashboard() {
 
   if (!token) return <Redirect to="/login" />;
 
-  function filterDashboard(){
-   return quotes.filter((quo)=>{
+  function filterDashboard() {
+    return quotes.filter((quo) => {
       let now = new Date(
         Date.UTC(
           new Date().getFullYear(),
@@ -64,11 +66,7 @@ export default function Dashboard() {
       ).getTime();
 
       let splitDate = quo.date.split(/\D/);
-      let convertDate = new Date(
-        splitDate[0],
-        splitDate[1] - 1,
-        splitDate[2]
-      );
+      let convertDate = new Date(splitDate[0], splitDate[1] - 1, splitDate[2]);
       let thirDate = new Date(
         Date.UTC(
           convertDate.getFullYear(),
@@ -76,19 +74,27 @@ export default function Dashboard() {
           convertDate.getDate()
         )
       ).getTime();
-      if(thirDate == now && new Date(quo.schedule.hour.start_hour).getUTCHours() >= new Date().getHours()){
-          return quo
-      }else if(thirDate > now){
-        return quo
+      if (
+        thirDate == now &&
+        new Date(quo.schedule.hour.start_hour).getUTCHours() >=
+          new Date().getHours()
+      ) {
+        return quo;
+      } else if (thirDate > now) {
+        return quo;
       }
-    })
+    });
   }
 
   console.log(filterDashboard());
 
   return (
     <DashboardStyled>
-      <AvatarHeader name={user.name} lastname ={user.lastname} onClick={()=>dispatch(kill())}/>
+      <AvatarHeader
+        name={user.name}
+        lastname={user.lastname}
+        onClick={() => dispatch(kill())}
+      />
       <DashboardUser>
         <DashUserData>
           <Heading1>HOLA,</Heading1>
@@ -105,41 +111,41 @@ export default function Dashboard() {
 
       <BodyBoard>
         {filterDashboard().map((quo) => {
-            return (
-              <CardDashBoard
-                name={quo.psychologist.name}
-                date={new Date(quo.date.concat("T00:00:00"))}
-                hora={transformTime(
-                  new Date(quo.schedule.hour.start_hour).getUTCHours()
-                )}
-                minutes={transformTime(
-                  new Date(quo.schedule.hour.start_hour).getUTCMinutes()
-                )}
-                reazon={quo.reason}
-              />
-            );
-          })}
+          return (
+            <CardDashBoard
+              name={quo.psychologist.name}
+              date={new Date(quo.date.concat("T00:00:00"))}
+              hora={transformTime(
+                new Date(quo.schedule.hour.start_hour).getUTCHours()
+              )}
+              minutes={transformTime(
+                new Date(quo.schedule.hour.start_hour).getUTCMinutes()
+              )}
+              reazon={quo.reason}
+            />
+          );
+        })}
       </BodyBoard>
     </DashboardStyled>
   );
 }
 
-function AvatarHeader({name,lastname,onClick,url}){
-  return(
+function AvatarHeader({ name, lastname, onClick, url }) {
+  return (
     <DashboardHeader>
-        <DashLogout>
-          <Avatar/>
-          <ContentLogout>
-            <ContentL>
-              {name} {lastname}
-            </ContentL>
-            <Link to="/login" onClick={onClick}>
-              <ContentM>Logout</ContentM>
-            </Link>
-          </ContentLogout>
-        </DashLogout>
-      </DashboardHeader>
-  )
+      <DashLogout>
+        <Avatar />
+        <ContentLogout>
+          <ContentL>
+            {name} {lastname}
+          </ContentL>
+          <Link to="/login" onClick={onClick}>
+            <ContentM>Logout</ContentM>
+          </Link>
+        </ContentLogout>
+      </DashLogout>
+    </DashboardHeader>
+  );
 }
 
 const DashboardStyled = styled.div`
@@ -229,4 +235,4 @@ const BodyBoard = styled.div`
     }
   }
 `;
-export {AvatarHeader};
+export { AvatarHeader };
