@@ -4,10 +4,8 @@ import CardContainer from "../Containers/CardContainer";
 import Pagination from "../Containers/Pagination";
 import { ContentL, ContentXSB } from "../text/Content";
 import { TagItemFill } from "./Tag";
-import { css } from '@emotion/react';
-import { colors } from "../../ui";
 
-export default function CardSpecialties({ _specialties, styles }) {
+export default function CardSpecialties({ _specialties }) {
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 3;
   const specialties = [
@@ -61,16 +59,16 @@ export default function CardSpecialties({ _specialties, styles }) {
   ];
 
   return (
-    <CardContainer type="specialties" css={styles}>
+    <CardContainer type="specialties">
       <StyledCard>
-        <StyledSpecialties>
-          <ContentL css={css`color: ${colors.black};`}>Especialidades</ContentL>
+        <div>
+          <ContentL>Especialidades</ContentL>
 
           {specialties
             .slice((currentPage - 1) * limit, currentPage * limit)
             .map((specialty) => (
               <>
-                <ContentXSB css={css`color: ${colors.black};`}>{specialty.name}</ContentXSB>
+                <ContentXSB>{specialty.name}</ContentXSB>
                 <div className="especialtiesComents">
                   {specialty.subespecialties.slice(0,2).map((subspecialty) => (
                     <TagItemFill>{subspecialty}</TagItemFill>
@@ -78,14 +76,12 @@ export default function CardSpecialties({ _specialties, styles }) {
                 </div>
               </>
             ))}
-          </StyledSpecialties>
+          </div>
         <Pagination
           total={specialties.length}
           page={currentPage}
           limit={limit}
-          onSelectPage={(pageNum) => setCurrentPage(pageNum)} 
-          css={css`align-self: center;`}
-        />
+          onSelectPage={(pageNum) => setCurrentPage(pageNum)} />
       </StyledCard>
     </CardContainer>
   );
@@ -97,17 +93,9 @@ const StyledCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 10px;
-
   & .especialtiesComents {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 4px;
   }
 `;
-
-const StyledSpecialties = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`

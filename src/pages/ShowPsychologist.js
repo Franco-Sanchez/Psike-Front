@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CardShow from '../components/Containers/CardShow';
 import CardSchedule from '../components/UI/CardSchedule';
 import CardSpecialties from '../components/UI/CardSpecialties';
@@ -8,7 +8,6 @@ import { fetchShowAppointments } from '../features/psychologist/showAppointments
 import styled from '@emotion/styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { css } from '@emotion/react';
 
 export default function ShowPsychologist() {
     const psychologistStatus = useSelector(state => state.showPsychologist.status);
@@ -28,42 +27,19 @@ export default function ShowPsychologist() {
     }
 
     return (
-        <StyledShow>
-            <CardShow psychologist={psychologist} styles={show}/>
-            <CardSpecialties specialties={psychologist.specialties || []} styles={specialties} />
-            <CardSchedule schedules={schedules} appointments={appointments} styles={schedule} />
-            <ContainerComments comments={psychologist.comments || []} styles={comments} />
-        </StyledShow>
+        <div>
+            <CardShow psychologist={psychologist} />
+            <MiddleContainer>
+                <CardSpecialties specialties={psychologist.specialties || []} />
+                <CardSchedule schedules={schedules} appointments={appointments} />
+            </MiddleContainer>
+            <ContainerComments comments={psychologist.comments || []} />
+        </div>
     )
 }
 
-const StyledShow = styled.div`
-    width: 100%;
-    display: grid;
+const MiddleContainer = styled.div`
+    display: flex;
     gap: 30px;
-    padding-bottom: 20px;
-    grid-template-areas: 
-    "show        show     show"
-    "specialties schedule schedule"
-    "comments    comments comments";
-`
-const show = css`
-    height: auto; 
-    padding: 18px;
-    grid-area: show;
-`
-
-const specialties = css`
-    height: auto;
-    padding: 18px;
-    grid-area: specialties;
-`
-
-const schedule = css`
-    height: auto;
-    padding: 18px;
-    grid-area: schedule;
-`
-const comments = css`
-    grid-area: comments;
+    margin: 30px 0;
 `

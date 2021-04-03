@@ -10,7 +10,7 @@ const flex = css`
 
 const gridGap = css`
   display: grid;
-  gap: 15px;
+  gap: 10px;
 `
 
 const gridColumns = css`
@@ -19,7 +19,7 @@ const gridColumns = css`
 `
 
 export const ContainerCalendar = styled.div`
-  padding: 0 15px;
+  padding: 15px;
 
   & .calendar {
     width: 266px;

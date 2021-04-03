@@ -30,7 +30,6 @@ export default function Button({
   disabled = false,
   css,
   form,
-  className
 }) {
   if (!sizes[size]) size = "medium";
   return (
@@ -46,7 +45,6 @@ export default function Button({
       disabled={disabled}
       css={css}
       form={form}
-      className={className}
     >
       {children}
     </StyledButton>
@@ -83,7 +81,7 @@ const StyledButton = styled.button`
     opacity: 0.8;
   }
 
-  &.schedule-disabled {
+  &:disabled {
     border-color: rgba(94, 129, 244, 0.5);
     color: rgba(94, 129, 244, 0.5);
   }
