@@ -86,7 +86,11 @@ export default function Dashboard() {
     });
   }
 
-  console.log(filterDashboard());
+  function orderBoard() {
+    return filterDashboard().sort((a, b) => {
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
+    });
+  }
 
   return (
     <DashboardStyled>
@@ -110,7 +114,7 @@ export default function Dashboard() {
       <Heading3>Tus proximas citas son:</Heading3>
 
       <BodyBoard>
-        {filterDashboard().map((quo) => {
+        {orderBoard().map((quo) => {
           return (
             <CardDashBoard
               name={quo.psychologist.name}
