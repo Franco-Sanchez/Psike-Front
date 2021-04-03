@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
 import { BASE_URI } from "../../app/config";
 
 export const fetchCreateAppointment = createAsyncThunk(
@@ -40,6 +41,7 @@ const createAppointmentSlice = createSlice({
       state.status = "succeeded";
       state.item = action.payload.data;
       state.error = null;
+
     },
     [fetchCreateAppointment.rejected]: (state, action) => {
       state.status = "failed";

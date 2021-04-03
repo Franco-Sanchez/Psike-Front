@@ -8,6 +8,9 @@ export default function Paypal({ idSchedule, day, psychologist, reason }) {
   const [error, setError] = useState(null);
   const paypalRef = useRef();
   const token = useSelector((state) => state.session.token);
+
+  
+
   useEffect(() => {
     window.paypal
       .Buttons({

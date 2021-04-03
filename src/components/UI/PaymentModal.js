@@ -7,19 +7,23 @@ import Paypal from "../payment/Paypal";
 import { Content, ContentS, ContentSB } from "../text/Content";
 import { Heading3, Heading4, Heading5, Heading6 } from "../text/Heading";
 import Modal from "./Modal";
-
+import { useHistory } from "react-router";
 export default function PaymentModal({ isOpen, toggle, schedule, day }) {
+  const history = useHistory();
   const [reason, setReason] = useState("");
   const psychologist = useSelector((state) => state.showPsychologist.single);
-
+  const statusCreateAppointment = useSelector(
+    (state) => state.createAppointment.status
+  );
   function handleOpenModal(open) {
     toggle(open);
   }
 
-  useEffect(() => {
-    
-    
-  }, [reason])
+
+  if(statusCreateAppointment === "succeeded"){
+    history.push("/dashboard")
+  }
+  useEffect(() => {}, [reason]);
 
   const options = { weekday: "long", month: "long", day: "numeric" };
   const dateTimeFormat = new Intl.DateTimeFormat("es-ES", options);
@@ -35,9 +39,33 @@ export default function PaymentModal({ isOpen, toggle, schedule, day }) {
     return time.toString().length === 1 ? `0${time.toString()}` : time;
   };
 
+  const LoadingPayment = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 12px;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+      margin-bottom: 20px;
+    }
+  `;
   return (
     <>
       <Modal isOpen={isOpen} handleClose={() => handleOpenModal(false)}>
+        {statusCreateAppointment == "loading" && (
+          <LoadingPayment>
+            <img src="/images/doctor-woman.svg" width="80" />
+            <Heading4>Reservando la cita</Heading4>
+            <p>Espere un momento mientras se registra su cita</p>
+          </LoadingPayment>
+        )}
         <Heading4>Reserva de cita :</Heading4>
         <SectionPayment>
           <Heading5>Motivo de Consulta :</Heading5>
@@ -70,14 +98,17 @@ export default function PaymentModal({ isOpen, toggle, schedule, day }) {
         </SectionPayment>
         <SectionPayment>
           <Heading5>Pago : </Heading5>
-          <div className="details">
+          <div className="details payment">
             {reason.length > 20 && (
-              <Paypal
-                idSchedule={schedule.id}
-                day={day}
-                psychologist={psychologist}
-                reason={reason}
-              />
+              <>
+                <small>*Seleccione el metodo de pago</small>
+                <Paypal
+                  idSchedule={schedule.id}
+                  day={day}
+                  psychologist={psychologist}
+                  reason={reason}
+                />
+              </>
             )}
           </div>
         </SectionPayment>
@@ -98,6 +129,13 @@ const SectionPayment = styled.div`
     padding: 10px;
   }
 
+  .payment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
   .motivo {
     width: 100%;
     outline: none;
