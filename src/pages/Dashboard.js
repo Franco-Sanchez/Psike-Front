@@ -219,8 +219,7 @@ const DashUserData = styled.div`
 const BodyBoard = styled.div`
   display: grid;
   grid-template-columns: 33% 33% 33%;
-  row-gap: 10px;
-  column-gap: 10px;
+  row-gap: 20px;
   margin-top: 20px;
   @media (max-width: 450px) {
     & {
