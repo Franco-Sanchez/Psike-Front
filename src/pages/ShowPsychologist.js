@@ -54,10 +54,14 @@ const show = css`
 `
 
 const specialties = css`
+    height: auto;
+    padding: 18px;
     grid-area: specialties;
 `
 
 const schedule = css`
+    height: auto;
+    padding: 18px;
     grid-area: schedule;
 `
 const comments = css`

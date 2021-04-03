@@ -82,14 +82,14 @@ export default function CardSchedule({ schedules, appointments, styles }) {
   };
 
   const bookAppointment = (schedule) => {
-    if(!tokenLogin || !tokenSignup) history.push('/login');
+    if(!tokenLogin && !tokenSignup) history.push('/login');
     // obtener el formato de la fecha para la cita "dateTimeFormat.format(day)"
     console.log(schedule);
   }
 
   return (
     <CardContainer type="schedule" css={styles}>
-      <ContentL>Horarios</ContentL>
+      <ContentL css={css`color: ${colors.black}; margin-bottom: 25px;`}>Horarios</ContentL>
       <StyledCard>
         <ContainerCalendar>
           <SimpleReactComponent
@@ -173,7 +173,7 @@ export default function CardSchedule({ schedules, appointments, styles }) {
 const StyledCard = styled.div`
   width: 100%;
   display: flex;
-  gap: 100px;
+  gap: 50px;
 `;
 
 const dateFormat = css`
