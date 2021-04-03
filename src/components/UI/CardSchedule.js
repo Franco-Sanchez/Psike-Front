@@ -132,6 +132,7 @@ export default function CardSchedule({ schedules, appointments, styles }) {
                     <Button
                       size="small"
                       outline
+                      className={isDisabled(schedule) ? 'schedule-disabled' : ''}
                       disabled={isDisabled(schedule)}
                       css={buttonHour}
                       onClick={()=> bookAppointment(schedule)}
