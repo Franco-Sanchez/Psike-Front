@@ -1,19 +1,15 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { colors } from "../../ui";
 import Icon from "../UI/Icon";
-import { SideBarData } from "./MenuMobileData";
+import {  SideBarDataLogin, SideBarDataWhitoutLogin } from "./MenuMobileData";
 
 export default function MenuMobile({}) {
   const [sidebar, setSidebar] = useState(true);
   const showSidebar = () => setSidebar(!sidebar);
-  // const tokenLogin = useSelector((state) => state.session.token);
-  // const tokenSignup = useSelector((state) => state.sign.token);
-  // console.log(tokenLogin);
-  // console.log(tokenSignup);
-
+  const token = sessionStorage.getItem("token");
+  console.log(token);
   return (
     <StyledMenuMobile>
       <div className="navbar">
@@ -38,7 +34,7 @@ export default function MenuMobile({}) {
               />
             </Link>
           </li>
-          {SideBarData.map((item, index) => {
+          { token == null ? SideBarDataWhitoutLogin.map((item, index) => {
             return (
               <li key={index} className="nav-menu-item" className={item.cName}>
                 <Link to={item.path}>
@@ -47,7 +43,18 @@ export default function MenuMobile({}) {
                 </Link>
               </li>
             );
-          })}
+          }):
+          SideBarDataLogin.map((item, index) => {
+            return (
+              <li key={index} className="nav-menu-item" className={item.cName}>
+                <Link to={item.path}>
+                  {item.icon}
+                  <span>{item.title}</span>
+                </Link>
+              </li>
+            );
+          })
+          }
         </ul>
       </nav>
     </StyledMenuMobile>
