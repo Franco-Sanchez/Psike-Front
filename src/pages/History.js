@@ -30,6 +30,7 @@ export default function HistoryPage() {
 
   if (!tokenLogin && !tokenSignup) return <Redirect to="/login" />;
 
+  console.log(filterAppointments);
   return (
     <StyledHistory>
       <Heading3>Tu historial de citas es: </Heading3>
