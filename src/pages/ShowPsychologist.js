@@ -34,7 +34,7 @@ export default function ShowPsychologist() {
                 <CardSpecialties specialties={psychologist.specialties || []} styles={specialties} />
                 <CardSchedule schedules={schedules} appointments={appointments} styles={schedule} />
             </MiddleContainer>
-            <ContainerComments comments={psychologist.comments || []} styles={comments} />
+            <ContainerComments comments={psychologist.comments || []} />
         </StyledShow>
     )
 }
@@ -70,6 +70,4 @@ const specialties = css`
 const schedule = css`
     height: auto;
     padding: 18px;
-`
-const comments = css`
 `

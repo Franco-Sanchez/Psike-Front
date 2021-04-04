@@ -17,7 +17,7 @@ import Button from "./Button";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
-export default function CardSchedule({ schedules, appointments }) {
+export default function CardSchedule({ schedules, appointments, styles }) {
   const history = useHistory();
   const [day, setDay] = useState(new Date());
   const tokenLogin = useSelector(state => state.session.token);
@@ -88,8 +88,8 @@ export default function CardSchedule({ schedules, appointments }) {
   }
 
   return (
-    <CardContainer type="schedule">
-      <ContentL>Horarios</ContentL>
+    <CardContainer type="schedule" css={styles}>
+      <ContentL css={css`color: ${colors.black}; margin-bottom: 30px;`}>Horarios</ContentL>
       <StyledCard>
         <ContainerCalendar>
           <SimpleReactComponent
