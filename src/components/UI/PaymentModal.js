@@ -20,9 +20,7 @@ export default function PaymentModal({ isOpen, toggle, schedule, day }) {
   }
 
 
-  if(statusCreateAppointment === "succeeded"){
-    history.push("/dashboard")
-  }
+
   useEffect(() => {}, [reason]);
 
   const options = { weekday: "long", month: "long", day: "numeric" };
