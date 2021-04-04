@@ -8,8 +8,8 @@ import MenuMobile from "../Containers/MenuMobile";
 
 export default function Header() {
   const history = useHistory();
-  const token = useSelector((state)=>state.session.token);
-  const tokenSignup = useSelector((state)=>state.signup.token);
+  const token = useSelector((state) => state.session.token);
+  const tokenSignup = useSelector((state) => state.signup.token);
 
   return (
     <StyledHeader className="header">
@@ -22,51 +22,53 @@ export default function Header() {
           P<span>SIKE</span>
         </a>
       </div>
-      <div className="menu-mobile">hamburguesa</div>
+      <div className="menu-mobile">
+        <MenuMobile />
+      </div>
 
       <div className="navigation">
         <NavLink to="/" activeClassName="selected">
           Inicio
         </NavLink>
-      <div className="menu-mobile" id="menu-mobile">
-        <MenuMobile/>
-      </div>
-      
-      <div className="navigation" >
-        <NavLink to="/psychologists" activeClassName="selected">
-          Psicologos
-        </NavLink>
-
-        {(token || tokenSignup) &&
-        <>
-        <NavLink to="/dashboard" activeClassName="selected">
-        Dashboard
-        </NavLink> 
-
-        <NavLink to="/appoitments" activeClassName="selected">
-        Historial
-        </NavLink>
-
-        <NavLink to="/profile" activeClassName="selected">
-        Perfil
-        </NavLink>
-        </>
-         }
-
-        {!(token || tokenSignup) &&
-        <div className="actions">
-          <Button
-            size="small"
-            bg={colors.pink1}
-            onClick={() => {
-              history.push(`login`);
-            }}
-          >
-            Iniciar Sesion
-          </Button>
+        <div className="menu-mobile" id="menu-mobile">
+          <MenuMobile />
         </div>
-        }
-      </div>
+
+        <div className="navigation">
+          <NavLink to="/psychologists" activeClassName="selected">
+            Psicologos
+          </NavLink>
+
+          {(token || tokenSignup) && (
+            <>
+              <NavLink to="/dashboard" activeClassName="selected">
+                Dashboard
+              </NavLink>
+
+              <NavLink to="/appoitments" activeClassName="selected">
+                Historial
+              </NavLink>
+
+              <NavLink to="/profile" activeClassName="selected">
+                Perfil
+              </NavLink>
+            </>
+          )}
+
+          {!(token || tokenSignup) && (
+            <div className="actions">
+              <Button
+                size="small"
+                bg={colors.pink1}
+                onClick={() => {
+                  history.push(`login`);
+                }}
+              >
+                Iniciar Sesion
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
     </StyledHeader>
   );
