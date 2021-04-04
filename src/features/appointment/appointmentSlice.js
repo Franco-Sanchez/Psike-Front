@@ -25,8 +25,19 @@ const appointmentSlice = createSlice({
     error: null,
     status: "idle",
     appointments: [],
+    filterAppointments: [],
   },
-  reducers: {},
+  reducers: {
+    filterByDate: (state, action) => {
+      const { date } = action.payload;
+      state.filterAppointments = state.appointments.filter(
+        (obj) => obj.date === date
+      );
+    },
+    resetFilter: (state, action) => {
+      state.filterAppointments = state.appointments;
+    },
+  },
   extraReducers: {
     [fetchAppointments.pending]: (state, action) => {
       state.status = "loading";
@@ -34,6 +45,7 @@ const appointmentSlice = createSlice({
     [fetchAppointments.fulfilled]: (state, action) => {
       state.status = "succeeded";
       state.appointments = action.payload;
+      state.filterAppointments = state.appointments;
     },
     [fetchAppointments.rejected]: (state, action) => {
       state.status = "rejected";
@@ -41,5 +53,5 @@ const appointmentSlice = createSlice({
     },
   },
 });
-
+export const { filterByDate, resetFilter } = appointmentSlice.actions;
 export default appointmentSlice.reducer;
