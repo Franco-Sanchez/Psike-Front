@@ -127,7 +127,7 @@ function App() {
       {/* <button onClick={handleClick}>Separar cita</button> */}
 
       <Router>
-        <PageContent >
+        <PageContent>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/documentation" component={Documentation} />

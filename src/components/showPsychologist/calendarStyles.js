@@ -10,7 +10,7 @@ const flex = css`
 
 const gridGap = css`
   display: grid;
-  gap: 15px;
+  gap: 10px;
 `
 
 const gridColumns = css`

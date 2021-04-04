@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CardShow from '../components/Containers/CardShow';
 import CardSchedule from '../components/UI/CardSchedule';
 import CardSpecialties from '../components/UI/CardSpecialties';
@@ -50,7 +50,7 @@ const MiddleContainer = styled.div`
     @media screen and (max-width: 1000px) {
         flex-direction: column;
     }
-`
+`;
 
 const show = css`
     height: auto; 
