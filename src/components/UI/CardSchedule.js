@@ -125,7 +125,7 @@ export default function CardSchedule({ schedules, appointments, styles }) {
               fill={colors.orange}
             />
             <StyledOrderedSchedule>
-              {orderedSchedules.length === 0 && <p>No hay horarios</p>}
+              {orderedSchedules.length === 0 && <NotSchedule>No hay horarios</NotSchedule>}
               {orderedSchedules.map((schedules) => (
                 <StyledRow>
                   {schedules.map((schedule) => (
@@ -175,7 +175,15 @@ const StyledCard = styled.div`
   width: 100%;
   display: flex;
   gap: 50px;
+
+  @media screen and (max-width: 650px) {
+    flex-direction: column;
+  }
 `;
+
+const NotSchedule = styled.p`
+  text-align: center;
+`
 
 const dateFormat = css`
   text-align: center;

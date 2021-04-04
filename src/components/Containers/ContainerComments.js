@@ -44,5 +44,10 @@ const StyledComments = styled.div`
 const StyledContainer = styled.div`
   display: flex;
   justify-content: center;
-  gap: 4%;
+  gap: 4%; 
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    gap: 30px;
+  }
 `;

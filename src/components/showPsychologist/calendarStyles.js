@@ -19,14 +19,14 @@ const gridColumns = css`
 `
 
 export const ContainerCalendar = styled.div`
+  width: 100%;
   padding: 0 15px;
 
   & .calendar {
-    width: 266px;
     ${gridGap};
 
     & > *, .calendar-month_header_title {
-      font-family: 'Roboto'
+      font-family: 'Roboto';
     }
 
     & button {

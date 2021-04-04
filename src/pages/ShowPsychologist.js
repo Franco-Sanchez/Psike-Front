@@ -30,40 +30,46 @@ export default function ShowPsychologist() {
     return (
         <StyledShow>
             <CardShow psychologist={psychologist} styles={show}/>
-            <CardSpecialties specialties={psychologist.specialties || []} styles={specialties} />
-            <CardSchedule schedules={schedules} appointments={appointments} styles={schedule} />
+            <MiddleContainer>
+                <CardSpecialties specialties={psychologist.specialties || []} styles={specialties} />
+                <CardSchedule schedules={schedules} appointments={appointments} styles={schedule} />
+            </MiddleContainer>
             <ContainerComments comments={psychologist.comments || []} styles={comments} />
         </StyledShow>
     )
 }
 
 const StyledShow = styled.div`
-    width: 100%;
-    display: grid;
-    gap: 30px;
     padding-bottom: 20px;
-    grid-template-areas: 
-    "show        show     show"
-    "specialties schedule schedule"
-    "comments    comments comments";
 `
+const MiddleContainer = styled.div`
+    display: flex;
+    margin: 30px 0;
+    gap: 30px;
+
+    @media screen and (max-width: 1000px) {
+        flex-direction: column;
+    }
+`
+
 const show = css`
     height: auto; 
     padding: 18px;
-    grid-area: show;
 `
 
 const specialties = css`
-    height: auto;
+    height: 430px;
     padding: 18px;
-    grid-area: specialties;
+
+    @media screen and (max-width: 1000px) {
+        width: 100%;
+        height: 380px;
+    }
 `
 
 const schedule = css`
     height: auto;
     padding: 18px;
-    grid-area: schedule;
 `
 const comments = css`
-    grid-area: comments;
 `

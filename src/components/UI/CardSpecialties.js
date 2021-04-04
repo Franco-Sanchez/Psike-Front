@@ -97,7 +97,11 @@ const StyledCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 10px;
+  gap: 15px;
+
+  /* @media screen and (max-width: 1000px) {
+        min-height: 348px;
+  } */
 
   & .especialtiesComents {
     display: flex;
@@ -109,5 +113,5 @@ const StyledCard = styled.div`
 const StyledSpecialties = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 `
