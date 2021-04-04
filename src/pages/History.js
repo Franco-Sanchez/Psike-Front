@@ -42,11 +42,10 @@ export default function HistoryPage() {
   }
 
   function handleShowAppointment(id) {
-    console.log("heyyyyy");
     history.push(`/appoitments/${id}`);
   }
 
-  console.log("fuera")
+  console.log("fuera");
   return (
     <StyledHistory>
       <Heading3>Tu historial de citas es: </Heading3>

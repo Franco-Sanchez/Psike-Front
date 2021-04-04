@@ -1,7 +1,11 @@
 import styled from "@emotion/styled";
 
-export default function CardContainer({ type, children, css }) {
-  return <StyledDiv css={css} type={type}>{children}</StyledDiv>;
+export default function CardContainer({ type, children, css, onClick }) {
+  return (
+    <StyledDiv css={css} type={type} onClick={onClick}>
+      {children}
+    </StyledDiv>
+  );
 }
 
 const types = {
@@ -17,8 +21,8 @@ const StyledDiv = styled.div`
   background-color: #ffffff;
   border-radius: 20px;
   padding: 14px;
-  ${props => props.css}
-  
+  ${(props) => props.css}
+
   :hover {
     box-shadow: 8px 17px 14px rgba(0, 0, 0, 0.04);
     transition: 300ms;
