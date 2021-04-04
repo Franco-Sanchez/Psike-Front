@@ -14,6 +14,7 @@ export default function CardHistory({
   lastname,
   status,
   date,
+  onClick,
 }) {
   const [year, month, day] = date.split("-");
   const d = new Date(year, month, day);
@@ -32,10 +33,10 @@ export default function CardHistory({
     "Deciembre",
   ];
 
-  const monthName = months[Number(month)-1];
+  const monthName = months[Number(month) - 1];
   const formattedDate = `${day} de ${monthName} del ${year}`;
   return (
-    <CardContainer key={key} type="history">
+    <CardContainer key={key} type="history" onClick={onClick}>
       <StyledCard>
         <div className="container">
           <div className="photo">

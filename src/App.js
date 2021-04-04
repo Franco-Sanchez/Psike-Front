@@ -147,7 +147,7 @@ function App() {
             />
             <Route path="/profile" component={Profile} />
             <Route path="/dashboard" component={Dashboard} />
-            <Route path="/history" component={HistoryPage} />
+            <Route path="/appoitments" component={HistoryPage} />
             <Route path="/404" component={NotFound} />
             <Redirect from="*" to="/404" />
           </Switch>

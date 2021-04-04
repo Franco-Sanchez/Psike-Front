@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import FilterDate from "../components/core/Appointments/FilterDate";
 import { Heading3 } from "../components/text/Heading";
 import Button from "../components/UI/Button";
@@ -9,6 +9,7 @@ import CardHistory from "../components/UI/CardHistory";
 import { fetchAppointments } from "../features/appointment/appointmentSlice";
 import { colors } from "../ui";
 import { resetFilter } from "../features/appointment/appointmentSlice";
+import { Link } from "react-router-dom";
 
 export default function HistoryPage() {
   const tokenLogin = useSelector((state) => state.session.token);
@@ -18,6 +19,7 @@ export default function HistoryPage() {
   const filterAppointments = useSelector(
     (state) => state.appointment.filterAppointments
   );
+  const history = useHistory();
 
   if (status === "idle") {
     dispatch(fetchAppointments(tokenLogin));
@@ -39,6 +41,12 @@ export default function HistoryPage() {
       });
   }
 
+  function handleShowAppointment(id) {
+    console.log("heyyyyy");
+    history.push(`/appoitments/${id}`);
+  }
+
+  console.log("fuera")
   return (
     <StyledHistory>
       <Heading3>Tu historial de citas es: </Heading3>
@@ -55,6 +63,7 @@ export default function HistoryPage() {
             lastname={appt.psychologist.lastname}
             status={appt.status}
             date={appt.date}
+            onClick={() => handleShowAppointment(appt.id)}
           />
         ))}
       </StyledContinerCard>
