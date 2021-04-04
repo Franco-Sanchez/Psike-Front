@@ -17,7 +17,7 @@ import Button from "./Button";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
-export default function CardSchedule({ schedules, appointments, styles }) {
+export default function CardSchedule({ schedules, appointments }) {
   const history = useHistory();
   const [day, setDay] = useState(new Date());
   const tokenLogin = useSelector(state => state.session.token);
@@ -82,14 +82,14 @@ export default function CardSchedule({ schedules, appointments, styles }) {
   };
 
   const bookAppointment = (schedule) => {
-    if(!tokenLogin && !tokenSignup) history.push('/login');
+    if(!tokenLogin || !tokenSignup) history.push('/login');
     // obtener el formato de la fecha para la cita "dateTimeFormat.format(day)"
     console.log(schedule);
   }
 
   return (
-    <CardContainer type="schedule" css={styles}>
-      <ContentL css={css`color: ${colors.black}; margin-bottom: 25px;`}>Horarios</ContentL>
+    <CardContainer type="schedule">
+      <ContentL>Horarios</ContentL>
       <StyledCard>
         <ContainerCalendar>
           <SimpleReactComponent
@@ -132,7 +132,6 @@ export default function CardSchedule({ schedules, appointments, styles }) {
                     <Button
                       size="small"
                       outline
-                      className={isDisabled(schedule) ? 'schedule-disabled' : ''}
                       disabled={isDisabled(schedule)}
                       css={buttonHour}
                       onClick={()=> bookAppointment(schedule)}
@@ -174,7 +173,7 @@ export default function CardSchedule({ schedules, appointments, styles }) {
 const StyledCard = styled.div`
   width: 100%;
   display: flex;
-  gap: 50px;
+  gap: 100px;
 `;
 
 const dateFormat = css`

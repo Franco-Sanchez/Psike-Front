@@ -8,12 +8,12 @@ import TabPrice from "../UI/TabPrice";
 import CardContainer from "./CardContainer";
 import { css } from '@emotion/react';
 
-export default function CardShow({ psychologist, styles }) {
+export default function CardShow({ psychologist }) {
   const imgDefault = 'https://bit.ly/31GAc24'
   const icons = ["fb", "google", "linkedin", "slack", "twitter"];
 
   return (
-    <CardContainer type="schedule" css={styles}>
+    <CardContainer type="schedule" css={css`height: auto; padding: 18px;`}>
       <StyledCard>
         <ContainerImg>
           <Image
