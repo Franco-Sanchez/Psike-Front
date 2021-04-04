@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { filterByDate } from "../../../features/appointment/appointmentSlice";
 import OptionContainer from "../../Containers/SelectContainer";

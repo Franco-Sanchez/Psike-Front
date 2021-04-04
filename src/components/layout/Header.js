@@ -43,7 +43,7 @@ export default function Header() {
         Dashboard
         </NavLink> 
 
-        <NavLink to="/history" activeClassName="selected">
+        <NavLink to="/appoitments" activeClassName="selected">
         Historial
         </NavLink>
 

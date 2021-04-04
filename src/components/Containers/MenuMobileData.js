@@ -9,7 +9,7 @@ const SideBarDataLogin = [
   },
   {
     title: "Historial",
-    path: "/history",
+    path: "/appoitments",
     icon: <Icon type="survey" size={20} />,
     cName: "nav-text",
   },
