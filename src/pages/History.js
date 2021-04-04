@@ -9,7 +9,7 @@ import CardHistory from "../components/UI/CardHistory";
 import { fetchAppointments } from "../features/appointment/appointmentSlice";
 import { colors } from "../ui";
 import { resetFilter } from "../features/appointment/appointmentSlice";
-import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function HistoryPage() {
   const tokenLogin = useSelector((state) => state.session.token);
@@ -44,29 +44,36 @@ export default function HistoryPage() {
   function handleShowAppointment(id) {
     history.push(`/appoitments/${id}`);
   }
-
-  console.log("fuera");
   return (
-    <StyledHistory>
-      <Heading3>Tu historial de citas es: </Heading3>
-      <div className="filterSection">
-        <FilterDate />
-        <Button onClick={() => dispatch(resetFilter())}>Limpiar</Button>
-      </div>
-      <StyledContinerCard>
-        {orderBoard().map((appt) => (
-          <CardHistory
-            key={appt.id}
-            avatar={appt.psychologist.avatar}
-            name={appt.psychologist.name}
-            lastname={appt.psychologist.lastname}
-            status={appt.status}
-            date={appt.date}
-            onClick={() => handleShowAppointment(appt.id)}
-          />
-        ))}
-      </StyledContinerCard>
-    </StyledHistory>
+    <>
+      <Helmet>
+        <title>Historial de tus citas</title>
+        <meta
+          name="Busca & Encuentra el psicologo para ti"
+          content="Busca & Encuentra el psicologo para ti"
+        />
+      </Helmet>
+      <StyledHistory>
+        <Heading3>Tu historial de citas es: </Heading3>
+        <div className="filterSection">
+          <FilterDate />
+          <Button onClick={() => dispatch(resetFilter())}>Limpiar</Button>
+        </div>
+        <StyledContinerCard>
+          {orderBoard().map((appt) => (
+            <CardHistory
+              key={appt.id}
+              avatar={appt.psychologist.avatar}
+              name={appt.psychologist.name}
+              lastname={appt.psychologist.lastname}
+              status={appt.status}
+              date={appt.date}
+              onClick={() => handleShowAppointment(appt.id)}
+            />
+          ))}
+        </StyledContinerCard>
+      </StyledHistory>
+    </>
   );
 }
 

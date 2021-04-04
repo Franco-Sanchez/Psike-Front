@@ -17,7 +17,7 @@ const StyledTab = styled.div`
   font-family: Raleway;
   font-style: normal;
   font-weight: 800;
-  font-size: 24px;
+  font-size: 1.2rem;
   line-height: 28px;
   cursor:pointer;
   &:hover{

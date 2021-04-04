@@ -71,4 +71,5 @@ const LoginLink = styled.div`
   width: 387px;
   height: auto;
   justify-content: space-between;
+  margin:0 0 30px 0;
 `;

@@ -2,7 +2,13 @@ import styled from "@emotion/styled";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect, useHistory } from "react-router-dom";
-import { ContentL, ContentM, ContentS } from "../components/text/Content";
+import {
+  ContentL,
+  ContentM,
+  ContentS,
+  ContentSB,
+  ContentXSB,
+} from "../components/text/Content";
 import { Heading1, Heading3 } from "../components/text/Heading";
 import Avatar from "../components/UI/Avatar";
 import CardDashBoard from "../components/UI/CardDashBoard";
@@ -11,6 +17,7 @@ import { cleanQuotes, fetchQuotes } from "../features/quotes/quotesSlice";
 import { killToken } from "../features/session/sessionSlice";
 import { killSign } from "../features/signup/signSlice";
 import { colors } from "../ui";
+import {Helmet} from "react-helmet";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -22,7 +29,7 @@ export default function Dashboard() {
   const state = useSelector((state) => state.quotes.status);
   const user = useSelector((state) => state.profile.userdata);
   const history = useHistory();
-  
+
   useEffect(() => {
     if (token) {
       dispatch(fetchShowProfile(token));
@@ -36,10 +43,6 @@ export default function Dashboard() {
       })
     );
   });
-
-  function kill() {
-    return dispatch(killToken()), dispatch(killSign()), dispatch(cleanQuotes());
-  }
 
   const transformTime = (time) =>
     time.toString().length === 1 ? `0${time.toString()}` : time;
@@ -94,45 +97,46 @@ export default function Dashboard() {
   }
 
   return (
-    <DashboardStyled>
-      <AvatarHeader
-        name={user.name}
-        lastname={user.lastname}
-        onClick={() => dispatch(kill())}
-      />
-      <DashboardUser>
-        <DashUserData>
-          <Heading1>HOLA,</Heading1>
-          <Heading1>
-            <p>{user.name}!</p>
-          </Heading1>
-        </DashUserData>
-        <ContentM>
-          <span>nos encanta tenerte de nuevo por aqui.</span>
-        </ContentM>
-      </DashboardUser>
+    <>
+      <Helmet>
+        <title>Dashboard</title>
+        <meta name="description" content="Nested component" />
+      </Helmet>
+      <DashboardStyled>
+        <DashboardUser>
+          <DashUserData>
+            <Heading1>HOLA,</Heading1>
+            <Heading1>
+              <p>{user.name}!</p>
+            </Heading1>
+          </DashUserData>
+          <ContentM>
+            <span>nos encanta tenerte de nuevo por aqui.</span>
+          </ContentM>
+        </DashboardUser>
 
-      <Heading3>Tus proximas citas son:</Heading3>
+        <Heading3>Tus proximas citas son:</Heading3>
 
-      <BodyBoard>
-        {orderBoard().map((quo) => {
-          return (
-            <CardDashBoard
-              name={quo.psychologist.name}
-              date={new Date(quo.date.concat("T00:00:00"))}
-              hora={transformTime(
-                new Date(quo.schedule.hour.start_hour).getUTCHours()
-              )}
-              minutes={transformTime(
-                new Date(quo.schedule.hour.start_hour).getUTCMinutes()
-              )}
-              reazon={quo.reason}
-              onClick={()=>history.push(`/appoitments/${quo.id}`)}
-            />
-          );
-        })}
-      </BodyBoard>
-    </DashboardStyled>
+        <BodyBoard>
+          {orderBoard().map((quo) => {
+            return (
+              <CardDashBoard
+                name={quo.psychologist.name}
+                date={new Date(quo.date.concat("T00:00:00"))}
+                hora={transformTime(
+                  new Date(quo.schedule.hour.start_hour).getUTCHours()
+                )}
+                minutes={transformTime(
+                  new Date(quo.schedule.hour.start_hour).getUTCMinutes()
+                )}
+                reazon={quo.reason}
+                onClick={() => history.push(`/appoitments/${quo.id}`)}
+              />
+            );
+          })}
+        </BodyBoard>
+      </DashboardStyled>
+    </>
   );
 }
 
@@ -142,11 +146,11 @@ function AvatarHeader({ name, lastname, onClick }) {
       <DashLogout>
         <Avatar />
         <ContentLogout>
-          <ContentL>
+          <ContentSB>
             {name} {lastname}
-          </ContentL>
+          </ContentSB>
           <Link to="/login" onClick={onClick}>
-            <ContentM>Logout</ContentM>
+            <ContentXSB>Logout</ContentXSB>
           </Link>
         </ContentLogout>
       </DashLogout>

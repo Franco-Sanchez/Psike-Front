@@ -49,11 +49,6 @@ export default function ShowAppointment() {
 
   return (
     <StyledAppoitment>
-      <AvatarHeader
-        name={user.name}
-        lastname={user.lastname}
-        onClick={() => Kill()}
-      />
       {FindAppointment().map((q) => (
         <Heading3>
           Datos sobre tu cita con <span>{q.psychologist.name}</span>:
@@ -68,7 +63,17 @@ export default function ShowAppointment() {
           </ContentIcons>
 
           <ContentIcons>
-            <Icon type={"circle"} fill={q.status == "taken" ? "yellow" : q.status == "completed" ? colors.green_ligth : "red" } size={31} />
+            <Icon
+              type={"circle"}
+              fill={
+                q.status == "taken"
+                  ? "yellow"
+                  : q.status == "completed"
+                  ? colors.green_ligth
+                  : "red"
+              }
+              size={31}
+            />
             <ContentM>{q.status}</ContentM>
           </ContentIcons>
 

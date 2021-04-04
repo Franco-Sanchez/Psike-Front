@@ -16,6 +16,7 @@ import {
   fetchShowProfile,
   fetchUpdateProfile,
 } from "../features/profile/profileSlice";
+import { Helmet } from "react-helmet";
 
 export default function Profile() {
   const [image, setImage] = useState();
@@ -86,149 +87,122 @@ export default function Profile() {
   if (!tokenLogin && !tokenSignup) return <Redirect to="/login" />;
 
   return (
-    <StyledContiner>
-      <div>
-        <form id="edit-profile-form" onSubmit={handleSubmit}>
-          {/* <div className="profile-photo">
-            <Image
-              url={
-                preview
-                  ? `${preview}`
-                  : `https://pngimage.net/wp-content/uploads/2018/06/icono-usuario-png-5.png`
-              }
-              size="square"
-            />
-            <button
-              className="button-image"
-              onClick={(event) => {
-                event.preventDefault();
-                fileInputRef.current.click();
-              }}
-            >
-              <Icon type="camera" size={50} fill={colors.black} />
-            </button>
-            <input
-              id="profile-avatar"
-              name="avatar"
-              type="file"
-              style={{ display: "none" }}
-              ref={fileInputRef}
-              accept="iamge/*"
-              onChange={(e) => {
-                setForm({ ...form, [e.target.name]: e.target.files[0] });
-                const file = e.target.files[0];
-                if (file && file.type.substr(0, 5) == "image") {
-                  setImage(file);
-                } else {
-                  setImage(null);
-                }
-              }}
-            ></input>
-          </div> */}
-          <div className="profile-inputs">
-            <FormField>
-              <ContentXSB>Nombres:</ContentXSB>
-              <InputField
-                name="name"
-                value={name}
-                type="text"
-                placeholder="coloca aqui tu nombre...."
-                onChange={(e) =>
-                  setForm({ ...form, [e.target.name]: e.target.value })
-                }
-              ></InputField>
-            </FormField>
+    <>
+      <Helmet>
+        <title>Mi Perfil</title>
+        <meta
+          name="Busca & Encuentra el psicologo para ti"
+          content="Busca & Encuentra el psicologo para ti"
+        />
+      </Helmet>
+      <StyledContiner>
+        <div>
+          <form id="edit-profile-form" onSubmit={handleSubmit}>
+            <div className="profile-inputs">
+              <FormField>
+                <ContentXSB>Nombres:</ContentXSB>
+                <InputField
+                  name="name"
+                  value={name}
+                  type="text"
+                  placeholder="coloca aqui tu nombre...."
+                  onChange={(e) =>
+                    setForm({ ...form, [e.target.name]: e.target.value })
+                  }
+                ></InputField>
+              </FormField>
 
-            <FormField>
-              <ContentXSB>Apellidos:</ContentXSB>
-              <InputField
-                name="lastname"
-                value={lastname}
-                type="text"
-                placeholder="coloca aqui tus apellidos...."
-                onChange={(e) =>
-                  setForm({ ...form, [e.target.name]: e.target.value })
-                }
-              ></InputField>
-            </FormField>
+              <FormField>
+                <ContentXSB>Apellidos:</ContentXSB>
+                <InputField
+                  name="lastname"
+                  value={lastname}
+                  type="text"
+                  placeholder="coloca aqui tus apellidos...."
+                  onChange={(e) =>
+                    setForm({ ...form, [e.target.name]: e.target.value })
+                  }
+                ></InputField>
+              </FormField>
 
-            <FormField>
-              <ContentXSB>Documento de Identidad:</ContentXSB>
-              <InputField
-                name="identity_document"
-                value={identity_document}
-                type="text"
-                placeholder="coloca aqui tu DNI...."
-                onChange={(e) =>
-                  setForm({
-                    ...form,
-                    [e.target.name]: e.target.value,
-                  })
-                }
-              ></InputField>
-            </FormField>
-
-            <FormField>
-              <ContentXSB>Fecha de Nacimiento:</ContentXSB>
-              <InputField
-                name="birthdate"
-                value={birthdate}
-                type="date"
-                onChange={(e) =>
-                  setForm({
-                    ...form,
-                    [e.target.name]: e.target.value,
-                  })
-                }
-              ></InputField>
-            </FormField>
-
-            <FormField>
-              <ContentXSB>Correo:</ContentXSB>
-              <InputField
-                name="email"
-                value={email}
-                type="text"
-                placeholder="ejemplo@gmail.com"
-                onChange={(e) =>
-                  setForm({
-                    ...form,
-                    [e.target.name]: e.target.value,
-                  })
-                }
-              ></InputField>
-            </FormField>
-
-            <FormField>
-              <ContentXSB>Nacionalidad:</ContentXSB>
-
-              <OptionContainer type="profile">
-                <Icon type="arrowDrop" size="25" fill={`${colors.orange}`} />
-                <SelectCountry
-                  name="nationality"
-                  value={nationality}
+              <FormField>
+                <ContentXSB>Documento de Identidad:</ContentXSB>
+                <InputField
+                  name="identity_document"
+                  value={identity_document}
+                  type="text"
+                  placeholder="coloca aqui tu DNI...."
                   onChange={(e) =>
                     setForm({
                       ...form,
                       [e.target.name]: e.target.value,
                     })
                   }
-                >
-                  {options.map((option) => (
-                    <option>{option.label}</option>
-                  ))}
-                </SelectCountry>
-              </OptionContainer>
-            </FormField>
-          </div>
-        </form>
-      </div>
-      <div className="save-button">
-        <Button form="edit-profile-form" type="submit" bg={colors.blue_ligth}>
-          Guardar
-        </Button>
-      </div>
-    </StyledContiner>
+                ></InputField>
+              </FormField>
+
+              <FormField>
+                <ContentXSB>Fecha de Nacimiento:</ContentXSB>
+                <InputField
+                  name="birthdate"
+                  value={birthdate}
+                  type="date"
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                ></InputField>
+              </FormField>
+
+              <FormField>
+                <ContentXSB>Correo:</ContentXSB>
+                <InputField
+                  name="email"
+                  value={email}
+                  type="text"
+                  placeholder="ejemplo@gmail.com"
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                ></InputField>
+              </FormField>
+
+              <FormField>
+                <ContentXSB>Nacionalidad:</ContentXSB>
+
+                <OptionContainer type="profile">
+                  <Icon type="arrowDrop" size="25" fill={`${colors.orange}`} />
+                  <SelectCountry
+                    name="nationality"
+                    value={nationality}
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                  >
+                    {options.map((option) => (
+                      <option>{option.label}</option>
+                    ))}
+                  </SelectCountry>
+                </OptionContainer>
+              </FormField>
+            </div>
+          </form>
+        </div>
+        <div className="save-button">
+          <Button form="edit-profile-form" type="submit" bg={colors.blue_ligth}>
+            Guardar
+          </Button>
+        </div>
+      </StyledContiner>
+    </>
   );
 }
 
