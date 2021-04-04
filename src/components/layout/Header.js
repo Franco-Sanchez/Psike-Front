@@ -3,13 +3,30 @@ import { colors } from "../../ui";
 import Button from "../UI/Button";
 import styled from "@emotion/styled";
 import { NavLink, useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MenuMobile from "../Containers/MenuMobile";
+import { AvatarHeader } from "../../pages/Dashboard";
+import { fetchShowProfile } from "../../features/profile/profileSlice";
+import { killToken } from "../../features/session/sessionSlice";
+import { killSign } from "../../features/signup/signSlice";
+import { cleanQuotes } from "../../features/quotes/quotesSlice";
 
 export default function Header() {
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const token = useSelector((state) => state.session.token);
   const tokenSignup = useSelector((state) => state.signup.token);
+  const user = useSelector((state) => state.profile.userdata);
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchShowProfile(token));
+    }
+  }, []);
+
+  function kill() {
+    return dispatch(killToken()), dispatch(killSign()), dispatch(cleanQuotes());
+  }
 
   return (
     <StyledHeader className="header">
@@ -27,9 +44,7 @@ export default function Header() {
       </div>
 
       <div className="navigation">
-        <NavLink to="/" activeClassName="selected">
-          Inicio
-        </NavLink>
+ 
         <div className="menu-mobile" id="menu-mobile">
           <MenuMobile />
         </div>
@@ -49,9 +64,11 @@ export default function Header() {
                 Historial
               </NavLink>
 
-              <NavLink to="/profile" activeClassName="selected">
-                Perfil
-              </NavLink>
+              <AvatarHeader
+                name={user.name}
+                lastname={user.lastname}
+                onClick={() => dispatch(kill())}
+              />
             </>
           )}
 
@@ -61,7 +78,7 @@ export default function Header() {
                 size="small"
                 bg={colors.pink1}
                 onClick={() => {
-                  history.push(`login`);
+                  history.push("/login");
                 }}
               >
                 Iniciar Sesion

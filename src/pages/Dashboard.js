@@ -2,57 +2,35 @@ import styled from "@emotion/styled";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect, useHistory } from "react-router-dom";
-import { ContentL, ContentM, ContentS } from "../components/text/Content";
+import { ContentM, ContentSB, ContentXSB } from "../components/text/Content";
 import { Heading1, Heading3 } from "../components/text/Heading";
 import Avatar from "../components/UI/Avatar";
 import CardDashBoard from "../components/UI/CardDashBoard";
 import { fetchShowProfile } from "../features/profile/profileSlice";
-import { cleanQuotes, fetchQuotes } from "../features/quotes/quotesSlice";
-import { killToken } from "../features/session/sessionSlice";
-import { killSign } from "../features/signup/signSlice";
+import { fetchQuotes } from "../features/quotes/quotesSlice";
+
 import { colors } from "../ui";
+import { Helmet } from "react-helmet";
+import LoaderDashboard from "../components/core/Dashboard/LoaderDashboard";
+import NotFoundItems from "../components/UI/NotFoundItems";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
   const quotes = useSelector((state) => state.quotes.items);
-  const userName = useSelector((state) => state.signup.name);
-  const userLastName = useSelector((state) => state.signup.lastname);
-  const email = useSelector((state) => state.session.email);
   const token = sessionStorage.getItem("token");
-  const state = useSelector((state) => state.quotes.status);
+  const status = useSelector((state) => state.quotes.status);
   const user = useSelector((state) => state.profile.userdata);
   const history = useHistory();
-  
+
   useEffect(() => {
     if (token) {
       dispatch(fetchShowProfile(token));
+      dispatch(fetchQuotes(token));
     }
   }, [token]);
 
-  useEffect(() => {
-    console.log(
-      quotes.map((quo) => {
-        return quo.psychologist.avatar;
-      })
-    );
-  });
-
-  function kill() {
-    return dispatch(killToken()), dispatch(killSign()), dispatch(cleanQuotes());
-  }
-
   const transformTime = (time) =>
     time.toString().length === 1 ? `0${time.toString()}` : time;
-
-  if (state == "idle") {
-    dispatch(fetchQuotes(token));
-  }
-
-  useEffect(() => {
-    console.log(quotes);
-    console.log(userName);
-    console.log(userLastName);
-  });
 
   if (!token) return <Redirect to="/login" />;
 
@@ -94,45 +72,56 @@ export default function Dashboard() {
   }
 
   return (
-    <DashboardStyled>
-      <AvatarHeader
-        name={user.name}
-        lastname={user.lastname}
-        onClick={() => dispatch(kill())}
-      />
-      <DashboardUser>
-        <DashUserData>
-          <Heading1>HOLA,</Heading1>
-          <Heading1>
-            <p>{user.name}!</p>
-          </Heading1>
-        </DashUserData>
-        <ContentM>
-          <span>nos encanta tenerte de nuevo por aqui.</span>
-        </ContentM>
-      </DashboardUser>
+    <>
+      <Helmet>
+        <title>Dashboard</title>
+        <meta name="description" content="Nested component" />
+      </Helmet>
+      <DashboardStyled>
+        <DashboardUser>
+          <DashUserData>
+            <Heading1>HOLA,</Heading1>
+            <Heading1>
+              <p>{user.name}!</p>
+            </Heading1>
+          </DashUserData>
+          <ContentM>
+            <span>nos encanta tenerte de nuevo por aqui.</span>
+          </ContentM>
+        </DashboardUser>
 
-      <Heading3>Tus proximas citas son:</Heading3>
+        <Heading3>Tus proximas citas son:</Heading3>
+        <br />
+        {status === "loading" && <LoaderDashboard />}
 
-      <BodyBoard>
-        {orderBoard().map((quo) => {
-          return (
-            <CardDashBoard
-              name={quo.psychologist.name}
-              date={new Date(quo.date.concat("T00:00:00"))}
-              hora={transformTime(
-                new Date(quo.schedule.hour.start_hour).getUTCHours()
-              )}
-              minutes={transformTime(
-                new Date(quo.schedule.hour.start_hour).getUTCMinutes()
-              )}
-              reazon={quo.reason}
-              onClick={()=>history.push(`/appoitments/${quo.id}`)}
-            />
-          );
-        })}
-      </BodyBoard>
-    </DashboardStyled>
+        {status === "succeeded" && (
+          <>
+            {orderBoard().length === 0 ? (
+              <NotFoundItems message="No existen citas relacionadas" />
+            ) : (
+              <BodyBoard>
+                {orderBoard().map((quo) => {
+                  return (
+                    <CardDashBoard
+                      name={quo.psychologist.name}
+                      date={new Date(quo.date.concat("T00:00:00"))}
+                      hora={transformTime(
+                        new Date(quo.schedule.hour.start_hour).getUTCHours()
+                      )}
+                      minutes={transformTime(
+                        new Date(quo.schedule.hour.start_hour).getUTCMinutes()
+                      )}
+                      reazon={quo.reason}
+                      onClick={() => history.push(`/appoitments/${quo.id}`)}
+                    />
+                  );
+                })}
+              </BodyBoard>
+            )}
+          </>
+        )}
+      </DashboardStyled>
+    </>
   );
 }
 
@@ -142,11 +131,11 @@ function AvatarHeader({ name, lastname, onClick }) {
       <DashLogout>
         <Avatar />
         <ContentLogout>
-          <ContentL>
+          <ContentSB>
             {name} {lastname}
-          </ContentL>
+          </ContentSB>
           <Link to="/login" onClick={onClick}>
-            <ContentM>Logout</ContentM>
+            <ContentXSB>Logout</ContentXSB>
           </Link>
         </ContentLogout>
       </DashLogout>

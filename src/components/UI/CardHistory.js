@@ -36,7 +36,7 @@ export default function CardHistory({
   const monthName = months[Number(month) - 1];
   const formattedDate = `${day} de ${monthName} del ${year}`;
   return (
-    <CardContainer key={key} type="history" onClick={onClick}>
+    <CardContainer key={key} type="history">
       <StyledCard>
         <div className="container">
           <div className="photo">
@@ -65,7 +65,7 @@ export default function CardHistory({
             </div>
           </div>
         </div>
-        <div className="moreinfo">
+        <div className="moreinfo"  onClick={onClick}>
           <ContentXSB>ver mas información sobre la cita</ContentXSB>
         </div>
       </StyledCard>
@@ -96,11 +96,18 @@ const StyledCard = styled.div`
     color: ${colors.gray};
   }
   .moreinfo {
+    cursor: pointer;
     p {
       padding: 20px;
       border-radius: 20px;
       background-color: ${colors.sky_blue};
       color: ${colors.gray};
+      text-transform:uppercase;
+      font-size:0.75rem;
+    }
+
+    &:hover{
+      opacity:0.8;
     }
   }
 `;

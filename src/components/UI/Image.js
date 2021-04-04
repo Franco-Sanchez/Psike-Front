@@ -20,10 +20,7 @@ const StyledImage = styled.div`
       : "100%"};
   height: ${(props) => sizes[props.size].height};
   padding: 10px;
-  border-radius: ${(props) =>
-    props.size === "large" || "circular"
-      ? sizes[props.size].borderRadius
-      : "20px"};
+  border-radius: 20px;
 
   @media (max-width: 768px) {
     & {

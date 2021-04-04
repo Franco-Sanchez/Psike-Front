@@ -7,8 +7,8 @@ export default function Avatar({url="https://i0.wp.com/flejedecosas.com/wp-conte
 }
 
 const StyledAvatar = styled.div`
-  width:60px;
-  height:60px;
+  width:45px;
+  height:45px;
   border-radius:50%;
   border:none;
   background-image:url(${(props)=>props.url});

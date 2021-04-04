@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
 import { colors } from "../../ui";
 import { ContentMB, ContentS } from "../text/Content";
 import { Heading1 } from "../text/Heading";

@@ -13,8 +13,6 @@ import { colors } from "../ui";
 export default function Login() {
   const history = useHistory();
   const token = useSelector((state) => state.session.token);
-  const error = useSelector((state)=>state.session.error)
-  const dispatch = useDispatch();  
   const tokenSignup = useSelector((state) => state.signup.token);
  
     if (token || tokenSignup) {
@@ -33,6 +31,7 @@ export default function Login() {
         </Link>
       </LoginLink>
       <Heading3>Iniciar Sesion</Heading3>
+      <p>Bienvenido, Ingresa tu correo y tu contrasena</p>
       <SessionError/>
       <LoginForm />
     </ContainerLogin>
@@ -71,4 +70,5 @@ const LoginLink = styled.div`
   width: 387px;
   height: auto;
   justify-content: space-between;
+  margin:0 0 30px 0;
 `;

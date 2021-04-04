@@ -18,7 +18,6 @@ function SelectCountry({ name, children, onChange }) {
 }
 
 const StyledSelect = styled.select`
-  // A reset of styles, including removing the default dropdown arrow
   appearance: none;
   background: ${colors.white2};
   border: none;

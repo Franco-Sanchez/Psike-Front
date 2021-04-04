@@ -24,14 +24,14 @@ const StyledInput = styled.input`
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 300;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 21px;
   color: ${colors.black};
-  padding: 13px 35px;
+  padding: 0 15px;
   border-radius: 10px;
   border: none;
   width: auto;
-  background: white;
+  background: ${colors.white};
 
   &::placeholder {
     color: ${colors.gray_ligth2};
