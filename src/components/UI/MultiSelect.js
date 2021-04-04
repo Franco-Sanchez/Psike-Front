@@ -3,20 +3,6 @@ import React from "react";
 import Select, { components } from "react-select";
 import { colors } from "../../ui";
 import Icon from "./Icon";
-
-// const options = [
-//   { value: "chocolate", label: "Chocolate" },
-//   { value: "strawberry", label: "Strawberry" },
-//   { value: "vanilla1", label: "Vanilla1" },
-//   { value: "vanilla2", label: "Vanilla2" },
-//   { value: "vanilla3", label: "Vanilla3" },
-//   { value: "vanilla4", label: "Vanilla4" },
-//   { value: "vanilla5", label: "Vanilla5" },
-//   { value: "vanilla6", label: "Vanilla6" },
-//   { value: "vanilla7", label: "Vanilla7" },
-//   { value: "vanilla8", label: "Vanilla8" },
-// ];
-// TODO: Recibir las options y el setSelectedOption que es el metodo on change
 export default function MultiSelect({ options, defaultValue, onChange }) {
   const colourStyles = {
     control: (styles) => ({

@@ -5,9 +5,7 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import Documentation from "./components/Documentation";
 import PageContent from "./components/layout/PageContent";
-import showAppointmentsSlice from "./features/psychologist/showAppointmentsSlice";
 import Dashboard from "./pages/Dashboard";
 import HistoryPage from "./pages/History";
 import Home from "./pages/Home";
@@ -18,7 +16,6 @@ import Psychologists from "./pages/Psychologists";
 import ShowAppointment from "./pages/ShowAppointment";
 import ShowPsychologist from "./pages/ShowPsychologist";
 import SignUp from "./pages/SignUp";
-import { colors } from "./ui";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function App() {
@@ -138,7 +135,6 @@ function App() {
         <PageContent>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/documentation" component={Documentation} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
             <Route path="/psychologists/:id" component={ShowPsychologist} />

@@ -1,11 +1,9 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { colors } from "../../ui";
 import Paypal from "../payment/Paypal";
-import { Content, ContentS, ContentSB } from "../text/Content";
-import { Heading3, Heading4, Heading5, Heading6 } from "../text/Heading";
+import { ContentSB } from "../text/Content";
+import { Heading4, Heading5 } from "../text/Heading";
 import Modal from "./Modal";
 import { useHistory } from "react-router";
 import { resetPayment } from "../../features/appointment/createAppointmentSlice";
@@ -21,11 +19,6 @@ export default function PaymentModal({ isOpen, toggle, schedule, day }) {
 
   function handleOpenModal(open) {
     toggle(open);
-  }
-
-  if (statusCreateAppointment === "succeeded") {
-    dispatch(resetPayment())
-    history.push("/dashboard");
   }
 
   useEffect(() => {}, [reason]);
@@ -44,23 +37,11 @@ export default function PaymentModal({ isOpen, toggle, schedule, day }) {
     return time.toString().length === 1 ? `0${time.toString()}` : time;
   };
 
-  const LoadingPayment = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 12px;
-    width: 100%;
-    height: 100%;
-    z-index: 10000;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    img {
-      margin-bottom: 20px;
-    }
-  `;
+  if (statusCreateAppointment === "succeeded") {
+    dispatch(resetPayment());
+    history.push("/dashboard");
+  }
+
   return (
     <>
       <Modal isOpen={isOpen} handleClose={() => handleOpenModal(false)}>
@@ -121,6 +102,24 @@ export default function PaymentModal({ isOpen, toggle, schedule, day }) {
     </>
   );
 }
+
+const LoadingPayment = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    margin-bottom: 20px;
+  }
+`;
 
 const SectionPayment = styled.div`
   margin: 20px 0;

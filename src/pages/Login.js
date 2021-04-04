@@ -13,8 +13,6 @@ import { colors } from "../ui";
 export default function Login() {
   const history = useHistory();
   const token = useSelector((state) => state.session.token);
-  const error = useSelector((state)=>state.session.error)
-  const dispatch = useDispatch();  
   const tokenSignup = useSelector((state) => state.signup.token);
  
     if (token || tokenSignup) {

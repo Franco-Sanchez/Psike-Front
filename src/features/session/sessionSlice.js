@@ -25,14 +25,17 @@ const sessionSlice = createSlice({
   initialState: {
     token: sessionStorage.getItem("token"),
     error: null,
+    status: "idle"
   },
   reducers: {
     cleanError(state) {
       state.error = null;
+      state.status =  "idle"
     },
     killToken: (state) => {
       sessionStorage.removeItem("token");
       state.token = null;
+      state.status = "idle"
     },
   },
   extraReducers: {

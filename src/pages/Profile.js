@@ -25,7 +25,6 @@ export default function Profile() {
   const status = useSelector((state) => state.profile.status);
   const tokenLogin = useSelector((state) => state.session.token);
   const tokenSignup = useSelector((state) => state.signup.token);
-  const fileInputRef = useRef();
   const dispatch = useDispatch();
   const infoUser = useSelector((state) => state.profile.userdata);
   if (status === "idle") {

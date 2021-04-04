@@ -26,18 +26,6 @@ export default function LoginForm() {
     }
   };
 
-  // if(status === "succeeded"){
-  //   toast.success("Inicio de sesion exitoso!", {
-  //     position: "bottom-center",
-  //     autoClose: 5000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //   });
-  // }
-
   function validLogin(email, password) {
     function validEmail(email) {
       if (/\S+@gmail\.com/i.test(email)){

@@ -38,15 +38,7 @@ export default function Paypal({ idSchedule, day, psychologist, reason }) {
             monthC.toString().padStart(2, 0) +
             "-" +
             dayC.toString().padStart(2, 0);
-          console.log(data);
-          console.log(newdate);
-          console.log({
-            reason: reason,
-            day: newdate,
-            paypal_token: data.orderID,
-            schedule_id: idSchedule,
-            psychologist_id: psychologist.id,
-          });
+  
           dispatch(
             fetchCreateAppointment({
               appointment: {

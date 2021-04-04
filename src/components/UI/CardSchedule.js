@@ -60,14 +60,12 @@ export default function CardSchedule({ schedules, appointments, styles }) {
   };
 
   const filterAppointments = appointments.filter((appointment) => {
-    console.log(appointment);
+
     let splitDate = appointment.date.split(/\D/);
     let convertDate = new Date(splitDate[0], splitDate[1] - 1, splitDate[2]);
     let valuesToCompare = arrToCompareDates(day, convertDate);
     if (valuesToCompare[0] === valuesToCompare[1]) return appointment;
   });
-
-  console.log(filterAppointments);
 
   const goPastDay = () => setDay(new Date(day.setDate(day.getDate() - 1)));
 

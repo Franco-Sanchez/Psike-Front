@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import React from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { colors } from "../../../ui";
-import CardContainer from "../../Containers/CardContainer";
 
 const ITEMSLOADER = [1, 2, 3];
 
