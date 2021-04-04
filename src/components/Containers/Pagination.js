@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { colors } from "../../ui";
 
-export default function Pagination({ limit, total, page, onSelectPage }) {
+export default function Pagination({ limit, total, page, onSelectPage, css }) {
   const pages = Math.ceil(total / limit);
   const listItems = [];
 
@@ -18,7 +18,7 @@ export default function Pagination({ limit, total, page, onSelectPage }) {
     );
   }
 
-  return <UlStyle>{listItems}</UlStyle>;
+  return <UlStyle css={css}>{listItems}</UlStyle>;
 }
 
 const selected = css`
@@ -30,6 +30,7 @@ const UlStyle = styled.ul`
   display: flex;
   align-items: center;
   flex-direction: row;
+  ${props => props.css};
 `;
 const LiStyle = styled.li`
   width: 20px;

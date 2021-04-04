@@ -1,13 +1,14 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { colors } from "../../ui";
 import Paypal from "../payment/Paypal";
 import { Content, ContentS, ContentSB } from "../text/Content";
 import { Heading3, Heading4, Heading5, Heading6 } from "../text/Heading";
 import Modal from "./Modal";
 import { useHistory } from "react-router";
+import { resetPayment } from "../../features/appointment/createAppointmentSlice";
 export default function PaymentModal({ isOpen, toggle, schedule, day }) {
   const history = useHistory();
   const [reason, setReason] = useState("");
@@ -15,11 +16,17 @@ export default function PaymentModal({ isOpen, toggle, schedule, day }) {
   const statusCreateAppointment = useSelector(
     (state) => state.createAppointment.status
   );
+
+  const dispatch = useDispatch();
+
   function handleOpenModal(open) {
     toggle(open);
   }
 
-
+  if (statusCreateAppointment === "succeeded") {
+    dispatch(resetPayment())
+    history.push("/dashboard");
+  }
 
   useEffect(() => {}, [reason]);
 

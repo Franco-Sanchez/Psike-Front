@@ -15,7 +15,6 @@ export const fetchCreateAppointment = createAsyncThunk(
     });
 
     const data = await response.json();
-    console.log(data);
     if(!response.ok) {
       throw new Error(data);
     }
@@ -32,7 +31,11 @@ const createAppointmentSlice = createSlice({
     error: null,
     reason:""
   },
-  reducers: {},
+  reducers: {
+    resetPayment:(state,action)=>{
+      state.status = "idle"
+    }
+  },
   extraReducers: {
     [fetchCreateAppointment.pending]: (state) => {
       state.status = "loading";
@@ -41,6 +44,7 @@ const createAppointmentSlice = createSlice({
       state.status = "succeeded";
       state.item = action.payload.data;
       state.error = null;
+     
 
     },
     [fetchCreateAppointment.rejected]: (state, action) => {
@@ -50,4 +54,5 @@ const createAppointmentSlice = createSlice({
   },
 });
 
+export const { resetPayment } = createAppointmentSlice.actions;
 export default createAppointmentSlice.reducer;

@@ -15,10 +15,8 @@ export default function CardHistory({
   status,
   date,
 }) {
-  const d = new Date(`${date}`);
-  const year = d.getFullYear();
-  const month = d.getMonth();
-  const day = d.getUTCDate();
+  const [year, month, day] = date.split("-");
+  const d = new Date(year, month, day);
   const months = [
     "Enero",
     "Febrero",
@@ -34,9 +32,8 @@ export default function CardHistory({
     "Deciembre",
   ];
   console.log("date api", date);
-  console.log("day", day);
 
-  const monthName = months[month];
+  const monthName = months[Number(month)-1];
   const formattedDate = `${day} de ${monthName} del ${year}`;
   return (
     <CardContainer key={key} type="history">

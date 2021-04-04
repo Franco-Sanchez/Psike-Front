@@ -16,8 +16,8 @@ import { colors } from "../../ui";
 import Button from "./Button";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import PaymentModal from "../UI/PaymentModal";
-export default function CardSchedule({ schedules, appointments }) {
+import PaymentModal from "../UI/PaymentModal"
+export default function CardSchedule({ schedules, appointments, styles }) {
   const history = useHistory();
   const [day, setDay] = useState(new Date());
   const [selectSchedule, setSelectSchedule] = useState(null);
@@ -97,7 +97,7 @@ export default function CardSchedule({ schedules, appointments }) {
         />
       )}
 
-      <CardContainer type="schedule">
+      <CardContainer type="schedule" css={styles}>
         <ContentL>Horarios</ContentL>
         <StyledCard>
           <ContainerCalendar>
@@ -183,7 +183,15 @@ export default function CardSchedule({ schedules, appointments }) {
 const StyledCard = styled.div`
   width: 100%;
   display: flex;
-  gap: 100px;
+  gap: 50px;
+
+  @media screen and (max-width: 650px) {
+    flex-direction: column;
+  }
+`;
+
+const NotSchedule = styled.p`
+  text-align: center;
 `;
 
 const dateFormat = css`

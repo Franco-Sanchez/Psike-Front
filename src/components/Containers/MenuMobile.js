@@ -9,7 +9,6 @@ export default function MenuMobile({}) {
   const [sidebar, setSidebar] = useState(true);
   const showSidebar = () => setSidebar(!sidebar);
   const token = sessionStorage.getItem("token");
-  console.log(token);
   return (
     <StyledMenuMobile>
       <div className="navbar">

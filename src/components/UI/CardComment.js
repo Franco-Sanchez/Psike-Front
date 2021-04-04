@@ -8,9 +8,9 @@ export default function CardComment({ comment }) {
   const imgDefault = 'https://bit.ly/31GAc24'
   
   return (
-    <CardContainer type="comment" css={css`padding: 0;`}>
+    <CardContainer type="comment" css={card}>
       <StyledCard>
-        <Content css={css`color: ${colors.gray}; margin: 86px 50px 0 50px;`}>
+        <Content css={description}>
           {comment.description}
         </Content>
         <ContainerPatient>
@@ -52,4 +52,20 @@ const StyledPicture = styled.div`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+`
+
+const card = css`
+  padding: 0;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
+` 
+
+const description = css`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 5px 50px;
+  color: ${colors.gray};
 `

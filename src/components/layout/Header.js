@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { colors } from "../../ui";
 import Button from "../UI/Button";
 import styled from "@emotion/styled";
 import { NavLink, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import MenuMobile from "../Containers/MenuMobile";
 
 export default function Header() {
   const history = useHistory();
+  const token = useSelector((state)=>state.session.token);
+  const tokenSignup = useSelector((state)=>state.signup.token);
+
   return (
     <StyledHeader className="header">
       <div className="logo">
@@ -18,18 +22,38 @@ export default function Header() {
           P<span>SIKE</span>
         </a>
       </div>
+      <div className="menu-mobile">hamburguesa</div>
+
+      <div className="navigation">
+        <NavLink to="/" activeClassName="selected">
+          Inicio
+        </NavLink>
       <div className="menu-mobile" id="menu-mobile">
         <MenuMobile/>
       </div>
+      
       <div className="navigation" >
-        <NavLink to="/dashboard" activeClassName="selected">
-          Dashboard
-        </NavLink>
         <NavLink to="/psychologists" activeClassName="selected">
           Psicologos
         </NavLink>
-        <a>Mi Historial</a>
 
+        {(token || tokenSignup) &&
+        <>
+        <NavLink to="/dashboard" activeClassName="selected">
+        Dashboard
+        </NavLink> 
+
+        <NavLink to="/history" activeClassName="selected">
+        Historial
+        </NavLink>
+
+        <NavLink to="/profile" activeClassName="selected">
+        Perfil
+        </NavLink>
+        </>
+         }
+
+        {!(token || tokenSignup) &&
         <div className="actions">
           <Button
             size="small"
@@ -41,6 +65,8 @@ export default function Header() {
             Iniciar Sesion
           </Button>
         </div>
+        }
+      </div>
       </div>
     </StyledHeader>
   );

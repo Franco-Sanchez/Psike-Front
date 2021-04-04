@@ -9,9 +9,7 @@ export const fetchPsychologists = createAsyncThunk(
     });
 
     const data = await response.json();
-    console.log(data);
     if (!response.ok) {
-      console.log(data);
       throw new Error("Something went wrong");
     }
     return { psychologists: data };

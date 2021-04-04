@@ -1,4 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
+
+import quotesReducer from '../features/quotes/quotesSlice';
 import PsychologistsReducer from "../features/psychologists/PsychologistsSlice";
 import createAppointmentReducer from "../features/appointment/createAppointmentSlice";
 import showAppointmentsReducer from "../features/psychologist/showAppointmentsSlice";
@@ -16,7 +18,8 @@ export default configureStore({
     createAppointment: createAppointmentReducer,
     session: sessionReducer,
     signup: signReducer,
+    quotes: quotesReducer,
     profile: profileReducer,
-    appointment: appointmentReducer,
-  },
-});
+    appointment: appointmentReducer
+  }
+})
