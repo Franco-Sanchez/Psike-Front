@@ -1,6 +1,8 @@
 import React from "react";
 import PaymentModal from "./UI/PaymentModal";
 
+import CardSchedule from './UI/CardSchedule'
+
 export default function Documentation() {
   return (
     <div>
@@ -92,7 +94,7 @@ export default function Documentation() {
       {/* <CardSpecialties />
       <CardSchedule />
       <CardComent /> */}
-      {/* <CardSchedule /> */}
+      <CardSchedule />
       {/* <CardSpecialties /> */}
       {/* <CardShow></CardShow> */}
       {/* <CardComment/> */}
