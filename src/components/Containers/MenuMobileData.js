@@ -25,6 +25,12 @@ const SideBarDataLogin = [
     icon: <Icon type="dashboard" size={20} />,
     cName: "nav-text",
   },
+  {
+    title: "Psicologos",
+    path: "/psychologists",
+    icon: <Icon type="mind" size={20} />,
+    cName: "nav-text",
+  },
 ];
 
 const SideBarDataWhitoutLogin = [
