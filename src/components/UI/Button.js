@@ -44,6 +44,7 @@ export default function Button({
       onClick = {onClick}
       css={css}
       form={form}
+      className={className}
     >
       {children}
     </StyledButton>
@@ -80,8 +81,8 @@ const StyledButton = styled.button`
     opacity: 0.8;
   }
 
-  &:disabled {
+  &.schedule-disabled {
     border-color: rgba(94, 129, 244, 0.5);
-    /*color: rgba(94, 129, 244, 0.5);*/
+    color: rgba(94, 129, 244, 0.5);
   }
 `;

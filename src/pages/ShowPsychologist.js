@@ -12,7 +12,7 @@ import { css } from '@emotion/react';
 
 export default function ShowPsychologist() {
     const psychologistStatus = useSelector(state => state.showPsychologist.status);
-    const appointmentsStatus = useSelector(state => state.showAppointments.items);
+    const appointmentsStatus = useSelector(state => state.showAppointments.status);
     const psychologist = useSelector(state => state.showPsychologist.single);
     const schedules = useSelector((state) => state.showPsychologist.schedules);
     const appointments = useSelector((state) => state.showAppointments.items);
@@ -21,6 +21,10 @@ export default function ShowPsychologist() {
 
     if(psychologistStatus === 'idle') {
         dispatch(fetchShowPsychologist({ id: parseInt(pshychologistId.id) }))
+    }
+
+    if(appointmentsStatus === 'idle') {
+        dispatch(fetchShowAppointments({ id: parseInt(pshychologistId.id) }))
     }
     return (
         <StyledShow>

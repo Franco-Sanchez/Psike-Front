@@ -9,7 +9,7 @@ export const fetchShowAppointments = createAsyncThunk(
     if (!response.ok) {
       throw new Error(data);
     }
-
+    
     return { data };
   }
 );
