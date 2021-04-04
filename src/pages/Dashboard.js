@@ -17,7 +17,9 @@ import { cleanQuotes, fetchQuotes } from "../features/quotes/quotesSlice";
 import { killToken } from "../features/session/sessionSlice";
 import { killSign } from "../features/signup/signSlice";
 import { colors } from "../ui";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
+import LoaderDashboard from "../components/core/Dashboard/LoaderDashboard"
+import NotFoundItems from "../components/UI/NotFoundItems";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -26,7 +28,7 @@ export default function Dashboard() {
   const userLastName = useSelector((state) => state.signup.lastname);
   const email = useSelector((state) => state.session.email);
   const token = sessionStorage.getItem("token");
-  const state = useSelector((state) => state.quotes.status);
+  const status = useSelector((state) => state.quotes.status);
   const user = useSelector((state) => state.profile.userdata);
   const history = useHistory();
 
@@ -47,14 +49,6 @@ export default function Dashboard() {
 
   const transformTime = (time) =>
     time.toString().length === 1 ? `0${time.toString()}` : time;
-
-  
-
-  useEffect(() => {
-    console.log(quotes);
-    console.log(userName);
-    console.log(userLastName);
-  });
 
   if (!token) return <Redirect to="/login" />;
 
@@ -115,25 +109,32 @@ export default function Dashboard() {
         </DashboardUser>
 
         <Heading3>Tus proximas citas son:</Heading3>
+        <br/>
+        {status === "loading" && <LoaderDashboard/>}
 
-        <BodyBoard>
-          {orderBoard().map((quo) => {
-            return (
-              <CardDashBoard
-                name={quo.psychologist.name}
-                date={new Date(quo.date.concat("T00:00:00"))}
-                hora={transformTime(
-                  new Date(quo.schedule.hour.start_hour).getUTCHours()
-                )}
-                minutes={transformTime(
-                  new Date(quo.schedule.hour.start_hour).getUTCMinutes()
-                )}
-                reazon={quo.reason}
-                onClick={() => history.push(`/appoitments/${quo.id}`)}
-              />
-            );
-          })}
-        </BodyBoard>
+        {status === "succeeded" && (
+          <>
+          {orderBoard().length  === 0 ? <NotFoundItems message="No existen citas relacionadas"/> : <BodyBoard>
+              {orderBoard().map((quo) => {
+                return (
+                  <CardDashBoard
+                    name={quo.psychologist.name}
+                    date={new Date(quo.date.concat("T00:00:00"))}
+                    hora={transformTime(
+                      new Date(quo.schedule.hour.start_hour).getUTCHours()
+                    )}
+                    minutes={transformTime(
+                      new Date(quo.schedule.hour.start_hour).getUTCMinutes()
+                    )}
+                    reazon={quo.reason}
+                    onClick={() => history.push(`/appoitments/${quo.id}`)}
+                  />
+                );
+              })}
+            </BodyBoard>}
+            
+          </>
+        )}
       </DashboardStyled>
     </>
   );

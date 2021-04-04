@@ -11,6 +11,7 @@ import { colors } from "../ui";
 import { resetFilter } from "../features/appointment/appointmentSlice";
 import { Helmet } from "react-helmet";
 import LoaderAppointments from "../components/core/Appointments/LoaderAppointments";
+import NotFoundItems from "../components/UI/NotFoundItems";
 
 export default function HistoryPage() {
   const tokenLogin = useSelector((state) => state.session.token);
@@ -61,22 +62,12 @@ export default function HistoryPage() {
           <Button onClick={() => dispatch(resetFilter())}>Limpiar</Button>
         </div>
 
-        {status === "loading" && <LoaderAppointments/>}
+        {status === "loading" && <LoaderAppointments />}
 
         {status === "succeeded" && (
           <>
             {orderBoard().length === 0 ? (
-              <StyledNotFoundAppointments>
-                <img src="/images/doctor-man.svg" width="150" />
-                <p className="msg">No existen citas relacionadas</p>
-                <Button
-                  onClick={() => {
-                    history.push("psychologists");
-                  }}
-                >
-                  Buscar psicologos
-                </Button>
-              </StyledNotFoundAppointments>
+              <NotFoundItems message="No existen citas relacionadas" />
             ) : (
               <StyledContinerCard>
                 {orderBoard().map((appt) => (
@@ -98,18 +89,6 @@ export default function HistoryPage() {
     </>
   );
 }
-
-const StyledNotFoundAppointments = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-
-  .msg {
-    font-size: 1.2rem;
-  }
-`;
 
 const StyledContinerCard = styled.div`
   display: flex;
