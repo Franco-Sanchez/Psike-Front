@@ -22,11 +22,6 @@ export default function ShowPsychologist() {
     if(psychologistStatus === 'idle') {
         dispatch(fetchShowPsychologist({ id: parseInt(pshychologistId.id) }))
     }
-
-    if(appointmentsStatus === 'idle') {
-        dispatch(fetchShowAppointments({ id: parseInt(pshychologistId.id) }))
-    }
-
     return (
         <StyledShow>
             <CardShow psychologist={psychologist} styles={show}/>

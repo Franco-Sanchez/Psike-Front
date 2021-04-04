@@ -16,19 +16,21 @@ import { colors } from "../../ui";
 import Button from "./Button";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
-
+import PaymentModal from "../UI/PaymentModal"
 export default function CardSchedule({ schedules, appointments, styles }) {
   const history = useHistory();
   const [day, setDay] = useState(new Date());
-  const tokenLogin = useSelector(state => state.session.token);
-  const tokenSignup = useSelector(state => state.signup.token); 
-  
+  const [selectSchedule, setSelectSchedule] = useState(null);
+  const tokenLogin = useSelector((state) => state.session.token);
+  const tokenSignup = useSelector((state) => state.signup.token);
+
   const options = { weekday: "long", month: "long", day: "numeric" };
   const dateTimeFormat = new Intl.DateTimeFormat("es-ES", options);
 
   const filterSchedules = schedules.filter(
     (schedule) => schedule.day.day_number === day.getDay()
   );
+  const [isOpen, toggle] = useState(false);
 
   let orderedSchedules = [];
   for (let _element of filterSchedules) {
@@ -56,11 +58,7 @@ export default function CardSchedule({ schedules, appointments, styles }) {
 
   const filterAppointments = appointments.filter((appointment) => {
     let splitDate = appointment.date.split(/\D/);
-    let convertDate = new Date(
-      splitDate[0],
-      splitDate[1] - 1,
-      splitDate[2]
-    );
+    let convertDate = new Date(splitDate[0], splitDate[1] - 1, splitDate[2]);
     let valuesToCompare = arrToCompareDates(day, convertDate);
     if (valuesToCompare[0] === valuesToCompare[1]) return appointment;
   });
@@ -75,97 +73,110 @@ export default function CardSchedule({ schedules, appointments, styles }) {
   const isDisabled = (schedule) => {
     let now = new Date();
     let valuesToCompare = arrToCompareDates(day, now);
-    const sameHour = filterAppointments.filter(appointment => (
-      appointment.schedule.hour.start_hour === schedule.hour.start_hour
-    ))
+    const sameHour = filterAppointments.filter(
+      (appointment) =>
+        appointment.schedule.hour.start_hour === schedule.hour.start_hour
+    );
     return valuesToCompare[0] < valuesToCompare[1] || sameHour.length > 0;
   };
 
   const bookAppointment = (schedule) => {
-    if(!tokenLogin || !tokenSignup) history.push('/login');
-
-  }
+    if (!tokenLogin && !tokenSignup) history.push("/login");
+    toggle(true);
+    setSelectSchedule(schedule);
+  };
 
   return (
-    <CardContainer type="schedule" css={styles}>
-      <ContentL css={css`color: ${colors.black}; margin-bottom: 30px;`}>Horarios</ContentL>
-      <StyledCard>
-        <ContainerCalendar>
-          <SimpleReactComponent
-            selected={day}
-            onSelect={setDay}
-            headerPrevArrow={<Icon type={"arrowLeft"} size={25} />}
-            headerNextArrow={<Icon type={"arrow"} size={25} />}
-          />
-        </ContainerCalendar>
-        <ContainerSchedule>
-          <ContentL
-            css={css`
-              ${dateFormat}
-            `}
-          >
-            {dateTimeFormat.format(day)}
-          </ContentL>
-          <Content
-            css={css`
-              ${description}
-            `}
-          >
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s.
-          </Content>
-          <ContainerHours>
-            <Icon
-              onClick={goPastDay}
-              styles={arrow}
-              type="arrowLeft"
-              size={50}
-              fill={colors.orange}
+    <>
+      {selectSchedule && (
+        <PaymentModal
+          isOpen={isOpen}
+          toggle={toggle}
+          schedule={selectSchedule}
+          day={day}
+        />
+      )}
+
+      <CardContainer type="schedule" css={styles}>
+        <ContentL>Horarios</ContentL>
+        <StyledCard>
+          <ContainerCalendar>
+            <SimpleReactComponent
+              selected={day}
+              onSelect={setDay}
+              headerPrevArrow={<Icon type={"arrowLeft"} size={25} />}
+              headerNextArrow={<Icon type={"arrow"} size={25} />}
             />
-            <StyledOrderedSchedule>
-              {orderedSchedules.length === 0 && <NotSchedule>No hay horarios</NotSchedule>}
-              {orderedSchedules.map((schedules) => (
-                <StyledRow>
-                  {schedules.map((schedule) => (
-                    <Button
-                      size="small"
-                      outline
-                      disabled={isDisabled(schedule)}
-                      css={buttonHour}
-                      onClick={()=> bookAppointment(schedule)}
-                    >
-                      {transformTime(
-                        new Date(schedule.hour.start_hour).getUTCHours()
-                      )}
-                      :
-                      {transformTime(
-                        new Date(schedule.hour.start_hour).getUTCMinutes()
-                      )}{" "}
-                      a{" "}
-                      {transformTime(
-                        new Date(schedule.hour.end_hour).getUTCHours()
-                      )}
-                      :
-                      {transformTime(
-                        new Date(schedule.hour.end_hour).getUTCMinutes()
-                      )}
-                    </Button>
-                  ))}
-                </StyledRow>
-              ))}
-            </StyledOrderedSchedule>
-            <Icon
-              onClick={goNextDay}
-              styles={arrow}
-              type="arrow"
-              size={50}
-              fill={colors.orange}
-            />
-          </ContainerHours>
-        </ContainerSchedule>
-      </StyledCard>
-    </CardContainer>
+          </ContainerCalendar>
+          <ContainerSchedule>
+            <ContentL
+              css={css`
+                ${dateFormat}
+              `}
+            >
+              {dateTimeFormat.format(day)}
+            </ContentL>
+            <Content
+              css={css`
+                ${description}
+              `}
+            >
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s.
+            </Content>
+            <ContainerHours>
+              <Icon
+                onClick={goPastDay}
+                styles={arrow}
+                type="arrowLeft"
+                size={50}
+                fill={colors.orange}
+              />
+              <StyledOrderedSchedule>
+                {orderedSchedules.length === 0 && <p>No hay horarios</p>}
+                {orderedSchedules.map((schedules) => (
+                  <StyledRow>
+                    {schedules.map((schedule) => (
+                      <Button
+                        size="small"
+                        outline
+                        disabled={isDisabled(schedule)}
+                        css={buttonHour}
+                        onClick={() => bookAppointment(schedule)}
+                      >
+                        {transformTime(
+                          new Date(schedule.hour.start_hour).getUTCHours()
+                        )}
+                        :
+                        {transformTime(
+                          new Date(schedule.hour.start_hour).getUTCMinutes()
+                        )}{" "}
+                        a{" "}
+                        {transformTime(
+                          new Date(schedule.hour.end_hour).getUTCHours()
+                        )}
+                        :
+                        {transformTime(
+                          new Date(schedule.hour.end_hour).getUTCMinutes()
+                        )}
+                      </Button>
+                    ))}
+                  </StyledRow>
+                ))}
+              </StyledOrderedSchedule>
+              <Icon
+                onClick={goNextDay}
+                styles={arrow}
+                type="arrow"
+                size={50}
+                fill={colors.orange}
+              />
+            </ContainerHours>
+          </ContainerSchedule>
+        </StyledCard>
+      </CardContainer>
+    </>
   );
 }
 
@@ -181,7 +192,7 @@ const StyledCard = styled.div`
 
 const NotSchedule = styled.p`
   text-align: center;
-`
+`;
 
 const dateFormat = css`
   text-align: center;
