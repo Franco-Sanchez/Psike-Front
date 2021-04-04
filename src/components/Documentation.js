@@ -1,12 +1,12 @@
-import React from 'react'
-import PaymentModal from './UI/PaymentModal'
+import React from "react";
+import PaymentModal from "./UI/PaymentModal";
 
 import CardSchedule from './UI/CardSchedule'
 
 export default function Documentation() {
   return (
     <div>
-      <PaymentModal/>
+      <PaymentModal />
       {/* <MultiSelect /> */}
       {/* TITULOS */}
       {/* <Heading1>Heading1</Heading1>
@@ -32,7 +32,7 @@ export default function Documentation() {
       <hr /> */}
       {/* Form Field- Input with icon */}
       {/* <FormField>
-        -- CONVERT A TAG LABEL WITH THE SAME STYLES --
+        --CONVERT A TAG LABEL WITH THE SAME STYLES --
         const StyledLabel = ContentXSB.withComponent('label')
         <ContentXSB>Email</ContentXSB>
         <Icon type="email" />
@@ -100,5 +100,5 @@ export default function Documentation() {
       {/* <CardComment/> */}
       {/* <Button size="small" color={colors.orange} type="submit">Login</Button> */}
     </div>
-  )
+  );
 }
