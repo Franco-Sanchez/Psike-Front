@@ -17,7 +17,7 @@ import Button from "./Button";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
-export default function CardSchedule({ schedules, appointments }) {
+export default function CardSchedule({ schedules, appointments, styles }) {
   const history = useHistory();
   const [day, setDay] = useState(new Date());
   const tokenLogin = useSelector(state => state.session.token);
@@ -87,8 +87,8 @@ export default function CardSchedule({ schedules, appointments }) {
   }
 
   return (
-    <CardContainer type="schedule">
-      <ContentL>Horarios</ContentL>
+    <CardContainer type="schedule" css={styles}>
+      <ContentL css={css`color: ${colors.black}; margin-bottom: 30px;`}>Horarios</ContentL>
       <StyledCard>
         <ContainerCalendar>
           <SimpleReactComponent
@@ -124,7 +124,7 @@ export default function CardSchedule({ schedules, appointments }) {
               fill={colors.orange}
             />
             <StyledOrderedSchedule>
-              {orderedSchedules.length === 0 && <p>No hay horarios</p>}
+              {orderedSchedules.length === 0 && <NotSchedule>No hay horarios</NotSchedule>}
               {orderedSchedules.map((schedules) => (
                 <StyledRow>
                   {schedules.map((schedule) => (
@@ -172,8 +172,16 @@ export default function CardSchedule({ schedules, appointments }) {
 const StyledCard = styled.div`
   width: 100%;
   display: flex;
-  gap: 100px;
+  gap: 50px;
+
+  @media screen and (max-width: 650px) {
+    flex-direction: column;
+  }
 `;
+
+const NotSchedule = styled.p`
+  text-align: center;
+`
 
 const dateFormat = css`
   text-align: center;
