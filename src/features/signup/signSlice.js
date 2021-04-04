@@ -13,11 +13,9 @@ export const fetchSign = createAsyncThunk(
     });
 
     const data = await response.json();
-    /*console.log(data);*/
     if (!response.ok) {
       throw new Error("el correo ya ha sido tomado");
     }
-    console.log(data);
     return data;
   }
 );

@@ -82,7 +82,6 @@ export default function Profile() {
     birthdate,
     email,
   } = form;
-  console.log(form);
 
   if (!tokenLogin && !tokenSignup) return <Redirect to="/login" />;
 

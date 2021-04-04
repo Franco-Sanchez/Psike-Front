@@ -83,8 +83,7 @@ export default function CardSchedule({ schedules, appointments }) {
 
   const bookAppointment = (schedule) => {
     if(!tokenLogin || !tokenSignup) history.push('/login');
-    // obtener el formato de la fecha para la cita "dateTimeFormat.format(day)"
-    console.log(schedule);
+
   }
 
   return (

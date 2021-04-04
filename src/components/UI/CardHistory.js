@@ -34,7 +34,7 @@ export default function CardHistory({
     "Deciembre",
   ];
   console.log("date api", date);
-  console.log("day", day);
+  
 
   const monthName = months[month];
   const formattedDate = `${day} de ${monthName} del ${year}`;

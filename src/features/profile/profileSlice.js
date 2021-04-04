@@ -33,7 +33,6 @@ export const fetchUpdateProfile = createAsyncThunk(
       // body: formData,
     });
     const data = await response.json();
-    console.log("data de fetch update profile", data);
     if (!response.ok) {
       throw new Error(data.error);
     }
