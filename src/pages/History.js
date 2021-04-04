@@ -28,7 +28,7 @@ export default function HistoryPage() {
     dispatch(fetchAppointments(tokenLogin));
   }
 
-  if (!tokenLogin || !tokenSignup) return <Redirect to="/login" />;
+  if (!tokenLogin && !tokenSignup) return <Redirect to="/login" />;
 
   return (
     <StyledHistory>
