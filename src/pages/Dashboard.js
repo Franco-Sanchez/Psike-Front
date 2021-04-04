@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { ContentL, ContentM, ContentS } from "../components/text/Content";
 import { Heading1, Heading3 } from "../components/text/Heading";
 import Avatar from "../components/UI/Avatar";
@@ -21,7 +21,8 @@ export default function Dashboard() {
   const token = sessionStorage.getItem("token");
   const state = useSelector((state) => state.quotes.status);
   const user = useSelector((state) => state.profile.userdata);
-
+  const history = useHistory();
+  
   useEffect(() => {
     if (token) {
       dispatch(fetchShowProfile(token));
@@ -126,6 +127,7 @@ export default function Dashboard() {
                 new Date(quo.schedule.hour.start_hour).getUTCMinutes()
               )}
               reazon={quo.reason}
+              onClick={()=>history.push(`/appoitments/${quo.id}`)}
             />
           );
         })}
@@ -134,7 +136,7 @@ export default function Dashboard() {
   );
 }
 
-function AvatarHeader({ name, lastname, onClick, url }) {
+function AvatarHeader({ name, lastname, onClick }) {
   return (
     <DashboardHeader>
       <DashLogout>
@@ -229,7 +231,6 @@ const DashUserData = styled.div`
 const BodyBoard = styled.div`
   display: grid;
   grid-template-columns: 33% 33% 33%;
-  row-gap: 20px;
   margin-top: 20px;
   @media (max-width: 450px) {
     & {

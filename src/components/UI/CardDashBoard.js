@@ -5,12 +5,12 @@ import { Heading6 } from "../text/Heading"
 import Avatar from "./Avatar"
 import Icon from "./Icon"
 
-export default function CardDashBoard({name, date, hora, reazon,minutes}){
+export default function CardDashBoard({name, date, hora, reazon,minutes,onClick}){
 
 	const options = { weekday: "long", month: "long", day: "numeric" };
 	const dateTimeFormat = new Intl.DateTimeFormat("es-ES", options);
     return(
-			<CardStyled>
+			<CardStyled onClick={onClick}>
 					<CardHeader>
 							<Avatar/>
 							  <HeaderPsicology>
@@ -47,10 +47,11 @@ export default function CardDashBoard({name, date, hora, reazon,minutes}){
 
 const CardStyled = styled.div`
 width: 95%;
-height: 337px;
+height: /*337px;*/ auto;
 background-color:${colors.white2};
 border-radius:15px;
-padding: 35px 81px 0px 43px;
+padding: 35px 81px 81px 43px;
+margin-bottom:15px;
 display:flex;
 flex-direction:column;
 gap:40px;

@@ -68,8 +68,8 @@ export default function ShowAppointment() {
           </ContentIcons>
 
           <ContentIcons>
-            <Icon type={"circle"} fill={colors.green_ligth} size={31} />
-            <ContentM>completado</ContentM>
+            <Icon type={"circle"} fill={q.status == "taken" ? "yellow" : q.status == "completed" ? colors.green_ligth : "red" } size={31} />
+            <ContentM>{q.status}</ContentM>
           </ContentIcons>
 
           <ContentIcons>
