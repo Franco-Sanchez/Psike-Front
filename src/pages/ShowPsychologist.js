@@ -8,6 +8,7 @@ import { fetchShowAppointments } from '../features/psychologist/showAppointments
 import styled from '@emotion/styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import { css } from '@emotion/react';
 
 export default function ShowPsychologist() {
     const psychologistStatus = useSelector(state => state.showPsychologist.status);
@@ -27,19 +28,46 @@ export default function ShowPsychologist() {
     }
 
     return (
-        <div>
-            <CardShow psychologist={psychologist} />
+        <StyledShow>
+            <CardShow psychologist={psychologist} styles={show}/>
             <MiddleContainer>
-                <CardSpecialties specialties={psychologist.specialties || []} />
-                <CardSchedule schedules={schedules} appointments={appointments} />
+                <CardSpecialties specialties={psychologist.specialties || []} styles={specialties} />
+                <CardSchedule schedules={schedules} appointments={appointments} styles={schedule} />
             </MiddleContainer>
             <ContainerComments comments={psychologist.comments || []} />
-        </div>
+        </StyledShow>
     )
 }
 
+const StyledShow = styled.div`
+    padding-bottom: 20px;
+`
 const MiddleContainer = styled.div`
     display: flex;
-    gap: 30px;
     margin: 30px 0;
+    gap: 30px;
+
+    @media screen and (max-width: 1000px) {
+        flex-direction: column;
+    }
+`;
+
+const show = css`
+    height: auto; 
+    padding: 18px;
+`
+
+const specialties = css`
+    height: 430px;
+    padding: 18px;
+
+    @media screen and (max-width: 1000px) {
+        width: 100%;
+        height: 380px;
+    }
+`
+
+const schedule = css`
+    height: auto;
+    padding: 18px;
 `
