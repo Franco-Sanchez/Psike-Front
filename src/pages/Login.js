@@ -33,6 +33,7 @@ export default function Login() {
         </Link>
       </LoginLink>
       <Heading3>Iniciar Sesion</Heading3>
+      <p>Bienvenido, Ingresa tu correo y tu contrasena</p>
       <SessionError/>
       <LoginForm />
     </ContainerLogin>

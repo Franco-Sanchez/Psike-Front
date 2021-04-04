@@ -14,13 +14,13 @@ const sizes = {
     padding: "10px 20px",
   },
   large: {
-    size: "24px",
+    size: "18px",
     padding: "12px 25px",
   },
 };
 
 export default function Button({
-  color = colors.white2,
+  color = "white",
   bg = colors.orange,
   size = "medium",
   outline,

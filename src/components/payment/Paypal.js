@@ -18,7 +18,7 @@ export default function Paypal({ idSchedule, day, psychologist, reason }) {
           return actions.order.create({
             purchase_units: [
               {
-                description: reason,
+                description: `Cita con ${psychologist.name} + ${psychologist.lastname}`,
                 amount: {
                   currency_code: "USD",
                   value: psychologist.price,

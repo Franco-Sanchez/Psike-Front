@@ -33,6 +33,7 @@ export default function Dashboard() {
   useEffect(() => {
     if (token) {
       dispatch(fetchShowProfile(token));
+      dispatch(fetchQuotes(token));
     }
   }, [token]);
 
@@ -47,9 +48,7 @@ export default function Dashboard() {
   const transformTime = (time) =>
     time.toString().length === 1 ? `0${time.toString()}` : time;
 
-  if (state == "idle") {
-    dispatch(fetchQuotes(token));
-  }
+  
 
   useEffect(() => {
     console.log(quotes);

@@ -16,7 +16,9 @@ import { colors } from "../../ui";
 import Button from "./Button";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import PaymentModal from "../UI/PaymentModal"
+import PaymentModal from "../UI/PaymentModal";
+import { toast } from "react-toastify";
+
 export default function CardSchedule({ schedules, appointments, styles }) {
   const history = useHistory();
   const [day, setDay] = useState(new Date());
@@ -86,13 +88,26 @@ export default function CardSchedule({ schedules, appointments, styles }) {
   };
 
   const bookAppointment = (schedule) => {
-    if (!tokenLogin && !tokenSignup) history.push("/login");
+    if (!tokenLogin && !tokenSignup) {
+      toast.warn("Inicia sesion para reservar una cita!", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      history.push("/login");
+    }
     toggle(true);
     setSelectSchedule(schedule);
   };
 
   return (
     <>
+     
+
       {selectSchedule && (
         <PaymentModal
           isOpen={isOpen}
@@ -103,6 +118,7 @@ export default function CardSchedule({ schedules, appointments, styles }) {
       )}
 
       <CardContainer type="schedule" css={styles}>
+ 
         <ContentL>Horarios</ContentL>
         <StyledCard>
           <ContainerCalendar>
@@ -147,7 +163,9 @@ export default function CardSchedule({ schedules, appointments, styles }) {
                         size="small"
                         outline
                         disabled={isDisabled(schedule)}
-                        className={isDisabled(schedule) ? 'schedule-disabled' : ''}
+                        className={
+                          isDisabled(schedule) ? "schedule-disabled" : ""
+                        }
                         css={buttonHour}
                         onClick={() => bookAppointment(schedule)}
                       >

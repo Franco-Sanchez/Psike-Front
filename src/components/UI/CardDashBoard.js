@@ -55,6 +55,8 @@ margin-bottom:15px;
 display:flex;
 flex-direction:column;
 gap:40px;
+box-shadow: 0px 0px 18px 0px rgba(240,240,240,1);
+
 @media (max-width: 450px) {
     & {
       display: flex;

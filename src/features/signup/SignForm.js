@@ -60,7 +60,7 @@ export default function SignForm() {
         </ContentXS>
       </SignText>
       <ContainerInput>
-        <ContentXS>Nombre</ContentXS>
+        <ContentXS>Nombre :</ContentXS>
         <InputField
           type="text"
           placeholder="Nombre"
@@ -75,7 +75,7 @@ export default function SignForm() {
       </ContainerInput>
 
       <ContainerInput>
-        <ContentXS>Apellido</ContentXS>
+        <ContentXS>Apellido :</ContentXS>
         <InputField
           type="text"
           placeholder="Apellido"
@@ -89,10 +89,7 @@ export default function SignForm() {
       </ContainerInput>
 
       <ContainerInput>
-        <ContentXS>Correo Electronico</ContentXS>
-        <ContainerEmail>
-          <Icon type="email" size="18" fiil={colors.black} />
-        </ContainerEmail>
+        <ContentXS>Correo Electronico :</ContentXS>
         <InputField
           type="email"
           placeholder="Correo Electronico"
@@ -108,10 +105,10 @@ export default function SignForm() {
       </ContainerInput>
 
       <ContainerInput>
-        <ContentXS>Contraseña</ContentXS>
+        <ContentXS>Contraseña :</ContentXS>
         <InputField
           type="password"
-          placeholder="******"
+          placeholder="Contraseña"
           onChange={(e) => setPassword(e.target.value)}
         />
         {validPassword && (

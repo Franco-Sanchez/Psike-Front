@@ -12,7 +12,7 @@ const types = {
   specialties: { width: "340px", height: "390px" },
   schedule: { width: "100%", height: "400px" },
   comment: { width: "400px", height: "300px" },
-  history: { width: "350px", height: "170px" },
+  history: { width: "340px", height: "170px" },
 };
 
 const StyledDiv = styled.div`
@@ -22,9 +22,11 @@ const StyledDiv = styled.div`
   border-radius: 20px;
   padding: 14px;
   ${(props) => props.css}
+  box-shadow: 0px 0px 18px 0px rgba(240,240,240,1);
+
 
   :hover {
-    box-shadow: 8px 17px 14px rgba(0, 0, 0, 0.04);
+   
     transition: 300ms;
   }
   @media (max-width: 375px) {

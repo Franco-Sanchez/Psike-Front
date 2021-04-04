@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router";
 import FilterDate from "../components/core/Appointments/FilterDate";
@@ -10,6 +10,7 @@ import { fetchAppointments } from "../features/appointment/appointmentSlice";
 import { colors } from "../ui";
 import { resetFilter } from "../features/appointment/appointmentSlice";
 import { Helmet } from "react-helmet";
+import LoaderAppointments from "../components/core/Appointments/LoaderAppointments";
 
 export default function HistoryPage() {
   const tokenLogin = useSelector((state) => state.session.token);
@@ -21,9 +22,9 @@ export default function HistoryPage() {
   );
   const history = useHistory();
 
-  if (status === "idle") {
+  useEffect(() => {
     dispatch(fetchAppointments(tokenLogin));
-  }
+  }, []);
 
   if (!tokenLogin && !tokenSignup) return <Redirect to="/login" />;
 
@@ -59,23 +60,56 @@ export default function HistoryPage() {
           <FilterDate />
           <Button onClick={() => dispatch(resetFilter())}>Limpiar</Button>
         </div>
-        <StyledContinerCard>
-          {orderBoard().map((appt) => (
-            <CardHistory
-              key={appt.id}
-              avatar={appt.psychologist.avatar}
-              name={appt.psychologist.name}
-              lastname={appt.psychologist.lastname}
-              status={appt.status}
-              date={appt.date}
-              onClick={() => handleShowAppointment(appt.id)}
-            />
-          ))}
-        </StyledContinerCard>
+
+        {status === "loading" && <LoaderAppointments/>}
+
+        {status === "succeeded" && (
+          <>
+            {orderBoard().length === 0 ? (
+              <StyledNotFoundAppointments>
+                <img src="/images/doctor-man.svg" width="150" />
+                <p className="msg">No existen citas relacionadas</p>
+                <Button
+                  onClick={() => {
+                    history.push("psychologists");
+                  }}
+                >
+                  Buscar psicologos
+                </Button>
+              </StyledNotFoundAppointments>
+            ) : (
+              <StyledContinerCard>
+                {orderBoard().map((appt) => (
+                  <CardHistory
+                    key={appt.id}
+                    avatar={appt.psychologist.avatar}
+                    name={appt.psychologist.name}
+                    lastname={appt.psychologist.lastname}
+                    status={appt.status}
+                    date={appt.date}
+                    onClick={() => handleShowAppointment(appt.id)}
+                  />
+                ))}
+              </StyledContinerCard>
+            )}
+          </>
+        )}
       </StyledHistory>
     </>
   );
 }
+
+const StyledNotFoundAppointments = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  .msg {
+    font-size: 1.2rem;
+  }
+`;
 
 const StyledContinerCard = styled.div`
   display: flex;

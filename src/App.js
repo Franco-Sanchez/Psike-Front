@@ -19,7 +19,8 @@ import ShowAppointment from "./pages/ShowAppointment";
 import ShowPsychologist from "./pages/ShowPsychologist";
 import SignUp from "./pages/SignUp";
 import { colors } from "./ui";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   // let gapi = window.gapi;
   // let clientId =
@@ -118,7 +119,10 @@ function App() {
             font-family: Raleway;
           }
           body {
-            background: ${colors.white};
+            background-image:url("/images/bg.svg");
+            background-size: cover;
+            background-position:20px 20px 20px;
+            background-repeat:no-repeat;
             width: 100%;
           }
           a,
@@ -129,7 +133,7 @@ function App() {
       />
       {/*<button onClick={handleClick}>Separar cita</button>*/}
       {/* <button onClick={handleClick}>Separar cita</button> */}
-
+      <ToastContainer />
       <Router>
         <PageContent>
           <Switch>

@@ -44,9 +44,7 @@ export default function Header() {
       </div>
 
       <div className="navigation">
-        <NavLink to="/" activeClassName="selected">
-          Inicio
-        </NavLink>
+ 
         <div className="menu-mobile" id="menu-mobile">
           <MenuMobile />
         </div>
@@ -66,9 +64,6 @@ export default function Header() {
                 Historial
               </NavLink>
 
-              <NavLink to="/profile" activeClassName="selected">
-                Perfil
-              </NavLink>
               <AvatarHeader
                 name={user.name}
                 lastname={user.lastname}
@@ -83,7 +78,7 @@ export default function Header() {
                 size="small"
                 bg={colors.pink1}
                 onClick={() => {
-                  history.push(`login`);
+                  history.push("/login");
                 }}
               >
                 Iniciar Sesion

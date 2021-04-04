@@ -2,11 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 import { fetchLogin } from "./sessionSlice";
-import { ContentXS } from "../../components/text/Content";
+import { ContentXS, ContentXSB } from "../../components/text/Content";
 import InputField from "../../components/UI/Input";
 import styled from "@emotion/styled";
 import Button from "../../components/UI/Button";
 import { colors } from "../../ui";
+import { toast } from "react-toastify";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -24,6 +25,18 @@ export default function LoginForm() {
       //sessionStorage.setItem("email",email);
     }
   };
+
+  // if(status === "succeeded"){
+  //   toast.success("Inicio de sesion exitoso!", {
+  //     position: "bottom-center",
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //   });
+  // }
 
   function validLogin(email, password) {
     function validEmail(email) {
@@ -43,7 +56,7 @@ export default function LoginForm() {
   return (
     <FormLogin onSubmit={handleSubmit}>
       <ContainerInput>
-        <ContentXS>Correo Electronico</ContentXS>
+        <ContentXSB>Correo Electronico :</ContentXSB>
         <InputField
           type="email"
           placeholder="Correo Electronico"
@@ -59,10 +72,10 @@ export default function LoginForm() {
       </ContainerInput>
 
       <ContainerInput>
-        <ContentXS>Contraseña</ContentXS>
+        <ContentXSB>Contraseña :</ContentXSB>
         <InputField
           type="password"
-          placeholder="******"
+          placeholder="Contrasena"
           onChange={(e) => setPassword(e.target.value)}
         />
         {validPassword && (
@@ -76,7 +89,7 @@ export default function LoginForm() {
         size="medium"
         outline={false}
         bg={colors.blue_ligth}
-        color={colors.white}
+        color={"white"}
         type="submit"
         disabled={status === "loading" ? true : false}
       >
