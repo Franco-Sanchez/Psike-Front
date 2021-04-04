@@ -21,6 +21,7 @@ export default function LoginForm() {
     e.preventDefault();
     if (validLogin(email, password) === true) {
       dispatch(fetchLogin({ email, password }));
+      //sessionStorage.setItem("email",email);
     }
   };
 
@@ -79,7 +80,7 @@ export default function LoginForm() {
         type="submit"
         disabled={status === "loading" ? true : false}
       >
-        {status === "loading" ? "Ingresando..." : "Iniciar Session"}
+        {status === "loading" ? "cargando..." : "Iniciar Sesion"}
       </Button>
     </FormLogin>
   );

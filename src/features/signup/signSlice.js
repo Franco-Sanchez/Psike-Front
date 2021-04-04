@@ -32,6 +32,10 @@ const signSlice = createSlice({
     cleanError(state) {
       state.errors = null;
     },
+    killSign: (state) => {
+      sessionStorage.removeItem("token");
+      state.token = null;
+    },
   },
 
   extraReducers: {
@@ -40,6 +44,8 @@ const signSlice = createSlice({
     },
     [fetchSign.fulfilled]: (state, action) => {
       state.token = action.payload.token;
+      state.name = action.payload.name;
+      state.lastname = action.payload.lastname;
       state.status = "succeeded";
     },
     [fetchSign.rejected]: (state, action) => {
@@ -50,4 +56,4 @@ const signSlice = createSlice({
 });
 
 export default signSlice.reducer;
-export const { cleanError } = signSlice.actions;
+export const { cleanError,killSign } = signSlice.actions;

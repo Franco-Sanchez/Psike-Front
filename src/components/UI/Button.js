@@ -30,6 +30,7 @@ export default function Button({
   disabled = false,
   css,
   form,
+  className
 }) {
   if (!sizes[size]) size = "medium";
   return (
@@ -40,9 +41,7 @@ export default function Button({
       color={color}
       type={type}
       disabled={disabled}
-      css={css}
-      onClick={onClick}
-      disabled={disabled}
+      onClick = {onClick}
       css={css}
       form={form}
     >
@@ -83,6 +82,6 @@ const StyledButton = styled.button`
 
   &:disabled {
     border-color: rgba(94, 129, 244, 0.5);
-    color: rgba(94, 129, 244, 0.5);
+    /*color: rgba(94, 129, 244, 0.5);*/
   }
 `;
