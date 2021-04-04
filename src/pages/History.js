@@ -2,15 +2,10 @@ import styled from "@emotion/styled";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
-import CardContainer from "../components/Containers/CardContainer";
-import FormField from "../components/Containers/FormField";
 import FilterDate from "../components/core/Appointments/FilterDate";
-import { ContentXXS } from "../components/text/Content";
 import { Heading3 } from "../components/text/Heading";
 import Button from "../components/UI/Button";
 import CardHistory from "../components/UI/CardHistory";
-import Icon from "../components/UI/Icon";
-import InputField from "../components/UI/Input";
 import { fetchAppointments } from "../features/appointment/appointmentSlice";
 import { colors } from "../ui";
 import { resetFilter } from "../features/appointment/appointmentSlice";
@@ -30,7 +25,20 @@ export default function HistoryPage() {
 
   if (!tokenLogin && !tokenSignup) return <Redirect to="/login" />;
 
-  console.log(filterAppointments);
+  const today = new Date(Date.now());
+
+  function orderBoard() {
+    return filterAppointments
+      .filter((obj) => {
+        let [year, month, day] = obj.date.split("-");
+        let date = new Date(Number(year), Number(month) - 1, Number(day));
+        return date < today;
+      })
+      .sort((a, b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      });
+  }
+
   return (
     <StyledHistory>
       <Heading3>Tu historial de citas es: </Heading3>
@@ -39,7 +47,7 @@ export default function HistoryPage() {
         <Button onClick={() => dispatch(resetFilter())}>Limpiar</Button>
       </div>
       <StyledContinerCard>
-        {filterAppointments.map((appt) => (
+        {orderBoard().map((appt) => (
           <CardHistory
             key={appt.id}
             avatar={appt.psychologist.avatar}
