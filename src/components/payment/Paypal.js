@@ -4,6 +4,7 @@ import { fetchCreateAppointment } from "../../features/appointment/createAppoint
 import { fetchUpdateAppointment } from "../../features/appointment/updateAppointmentSlice";
 import { CLIENT_ID, API_KEY, DISCOVERY_DOCS, SCOPES } from "../../app/config";
 import { transformTime } from '../../utils/transformTime';
+import { updateStatus } from "../../features/psychologist/showAppointmentsSlice";
 
 export default function Paypal({ schedule, day, psychologist, patient, reason }) {
   const dispatch = useDispatch();
@@ -44,10 +45,10 @@ export default function Paypal({ schedule, day, psychologist, patient, reason })
               timeZone: "America/Lima",
             },
             attendees: [
-              // { email: psychologist.email },
-              // { email: patient.email },
-              { email: "diegopumacode@gmail.com" },
-              { email: "francorsr98@gmail.com" },
+              { email: psychologist.email },
+              { email: patient.email }
+              // { email: "diegopumacode@gmail.com" },
+              // { email: "francorsr98@gmail.com" },
             ],
             reminders: {
               useDefault: false,
@@ -139,6 +140,7 @@ export default function Paypal({ schedule, day, psychologist, patient, reason })
               token: tokenSession || tokenSignup,
             })
           );
+          dispatch(updateStatus())
         },
         onError: (err) => {
           setError(err);
