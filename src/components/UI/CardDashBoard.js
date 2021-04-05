@@ -52,8 +52,7 @@ export default function CardDashBoard({
 
 const CardStyled = styled.div`
   width: 100%;
-  //border:1px solid black;
-  height: /*337px;*/ auto;
+  height: auto;
   background-color: ${colors.white2};
   border-radius: 15px;
   padding: 35px 81px 81px 43px;
@@ -88,19 +87,16 @@ const CardDate = styled.div`
   display: flex;
   justify-content: space-between;
   width:100%;
-  border:1px solid black;
 `;
 const Date = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  border:1px solid black;
 `;
 const Hour = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  border:1px solid auto;
 `;
 const CardMotivo = styled.div`
   display: flex;
