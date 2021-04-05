@@ -12,9 +12,9 @@ import { colors } from "../../ui";
  * @param {*} color
  * @returns Component
  */
-export default function TabPrice({ price, size, bg, color }) {
+export default function TabPrice({ price, size, bg, color, css }) {
   return (
-    <StyledTabPrice size={size} bg={bg} color={color}>
+    <StyledTabPrice size={size} bg={bg} color={color} css={css}>
       <ContentXSB>Costo por cita:</ContentXSB>
       <ContentXL>${price}</ContentXL>
     </StyledTabPrice>
@@ -48,6 +48,8 @@ const StyledTabPrice = styled.div(
       line-height:20px;
      }
     `};
+
+    ${props.css}
   `
 );
 

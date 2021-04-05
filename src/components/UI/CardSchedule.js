@@ -115,7 +115,7 @@ export default function CardSchedule({ schedules, appointments, styles }) {
 
       <CardContainer type="schedule" css={styles}>
  
-        <ContentL>Horarios</ContentL>
+        <ContentL css={css`color: ${colors.black}; margin-bottom: 30px;`}>Horarios</ContentL>
         <StyledCard>
           <ContainerCalendar>
             <SimpleReactComponent

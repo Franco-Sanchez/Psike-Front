@@ -21,7 +21,6 @@ const StyledDiv = styled.div`
   background-color: #ffffff;
   border-radius: 20px;
   padding: 14px;
-  ${(props) => props.css}
   box-shadow: 0px 0px 18px 0px rgba(240,240,240,1);
 
 
@@ -33,4 +32,6 @@ const StyledDiv = styled.div`
     height: 100%;
     width: 100%;
   }
+
+  ${(props) => props.css}
 `;
