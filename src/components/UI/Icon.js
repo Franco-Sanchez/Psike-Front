@@ -64,7 +64,7 @@ const iconSet = {
   menu: RiMenuFoldLine,
   close: RiCloseLine,
   home: RiHome2Line,
-  /*dashborad: RiDashboardLine,*/
+  dashborad: RiDashboardLine,
   calend: RiCalendarCheckLine,
   circle:RiCheckboxBlankCircleFill,
   ticket:RiPriceTag3Line,

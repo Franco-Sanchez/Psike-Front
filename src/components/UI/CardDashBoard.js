@@ -51,8 +51,8 @@ export default function CardDashBoard({
 }
 
 const CardStyled = styled.div`
-  width: 95%;
-  height: /*337px;*/ auto;
+  width: 100%;
+  height: auto;
   background-color: ${colors.white2};
   border-radius: 15px;
   padding: 35px 81px 81px 43px;
@@ -62,7 +62,7 @@ const CardStyled = styled.div`
   gap: 40px;
   box-shadow: 0px 0px 18px 0px rgba(240, 240, 240, 1);
 
-  @media (max-width: 450px) {
+  @media (max-width: 500px) {
     & {
       display: flex;
       flex-direction: column;
@@ -86,6 +86,7 @@ const HeaderPsicology = styled.div`
 const CardDate = styled.div`
   display: flex;
   justify-content: space-between;
+  width:100%;
 `;
 const Date = styled.div`
   display: flex;
