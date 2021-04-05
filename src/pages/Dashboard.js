@@ -148,10 +148,11 @@ const DashboardStyled = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
+  border:1px solid black;
   & h3 {
     color: ${colors.black};
   }
-  @media (max-width: 450px) {
+  @media (max-width: 500px) {
     & {
       width: 100%;
       display: flex;
@@ -219,8 +220,14 @@ const DashUserData = styled.div`
 `;
 const BodyBoard = styled.div`
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  width:100%;
+  grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
   margin-top: 20px;
+  @media (max-width: 788px) {
+    & {
+      grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+    }
+  }
   @media (max-width: 450px) {
     & {
       display: flex;
