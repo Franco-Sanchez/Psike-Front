@@ -18,7 +18,8 @@ const StyledImage = styled.div`
     props.size === "large" || "square" || "circular"
       ? sizes[props.size].width
       : "100%"};
-  height: ${(props) => sizes[props.size].height};
+  /* height: ${(props) =>  props.size === "large" || "square" || "circular" ? sizes[props.size].height : "100%"}; */
+  height:100%;
   padding: 10px;
   border-radius: 20px;
 

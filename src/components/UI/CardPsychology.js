@@ -19,6 +19,7 @@ export default function CardPsychology({
   coments,
   ranking,
   specialties,
+  avatar
 }) {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ export default function CardPsychology({
         <StyledCardPsychology>
           <div className="hero-card">
             <Imagen
-              url="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg"
+              url={avatar}
               size="small"
               className={"image-psy"}
               onClick={navigateShowPsy}
@@ -93,11 +94,11 @@ const StyledCardPsychology = styled.div`
       flex-wrap: wrap;
     }
   }
-  /* 
+  
   & .bioContainer {
-    height: 40px;
-    overflow: hidden;
-  } */
+    height: 100%;
+    overflow: auto;
+  }
   & .stadisticsContainer {
     display: flex;
     justify-content: flex-end;
