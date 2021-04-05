@@ -14,6 +14,8 @@ export default function Paypal({ schedule, day, psychologist, patient, reason })
   const tokenSignup = useSelector((state) => state.signup.token);
   const appointment = useSelector((state) => state.createAppointment.item);
   const statusCreate = useSelector((state) => state.createAppointment.status);
+  const psychologistName = useSelector((state)=>state.showPsychologist.single.name)
+  const psychologistLastname = useSelector((state)=>state.showPsychologist.single.lastname)
 
   const addUrlToTheAppointment = () => {
     let gapi = window.gapi;
@@ -32,9 +34,9 @@ export default function Paypal({ schedule, day, psychologist, patient, reason })
         .signIn()
         .then(() => {
           let event = {
-            summary: "Google I/O 2021 PRUEBA GRECIAFINAL",
+            summary: `Pskique, cita con psicolo@: ${psychologistName} ${psychologistLastname}`,
             description:
-              "A chance to hear more about Google's developer products.",
+              "Cita generada por Psike para que puedas conectarte con tu psicologo escogido",
             start: {
               dateTime: `${appointment.day}T${transformTime(schedule.hour.start_hour)}:00`,
               timeZone: "America/Lima",
@@ -44,10 +46,10 @@ export default function Paypal({ schedule, day, psychologist, patient, reason })
               timeZone: "America/Lima",
             },
             attendees: [
-              // { email: psychologist.email },
-              // { email: patient.email },
-              { email: "diegopumacode@gmail.com" },
-              { email: "francorsr98@gmail.com" },
+              { email: psychologist.email },
+              { email: patient.email },
+              // { email: "diegopumacode@gmail.com" },
+              // { email: "francorsr98@gmail.com" },
             ],
             reminders: {
               useDefault: false,
