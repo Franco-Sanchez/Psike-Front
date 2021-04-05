@@ -1,15 +1,103 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCreateAppointment } from "../../features/appointment/createAppointmentSlice";
+import { fetchUpdateAppointment } from "../../features/appointment/updateAppointmentSlice";
+import { CLIENT_ID, API_KEY, DISCOVERY_DOCS, SCOPES } from "../../app/config";
+import { transformTime } from '../../utils/transformTime';
 
-export default function Paypal({ idSchedule, day, psychologist, reason }) {
+export default function Paypal({ schedule, day, psychologist, patient, reason }) {
   const dispatch = useDispatch();
   const [paidFor, setPaidFor] = useState(false);
   const [error, setError] = useState(null);
   const paypalRef = useRef();
-  const token = useSelector((state) => state.session.token);
+  const tokenSession = useSelector((state) => state.session.token);
+  const tokenSignup = useSelector((state) => state.signup.token);
+  const appointment = useSelector((state) => state.createAppointment.item);
+  const statusCreate = useSelector((state) => state.createAppointment.status);
 
-  
+  const addUrlToTheAppointment = () => {
+    let gapi = window.gapi;
+    gapi.load("client:auth2", () => {
+      gapi.client.init({
+        apiKey: API_KEY,
+        clientId: CLIENT_ID,
+        discoveryDocs: DISCOVERY_DOCS,
+        scope: SCOPES,
+      });
+
+      gapi.client.load("calendar", "v3", () => console.log("Version!"));
+
+      gapi.auth2
+        .getAuthInstance()
+        .signIn()
+        .then(() => {
+          let event = {
+            summary: "Google I/O 2021 PRUEBA GRECIAFINAL",
+            description:
+              "A chance to hear more about Google's developer products.",
+            start: {
+              dateTime: `${appointment.day}T${transformTime(schedule.hour.start_hour)}:00`,
+              timeZone: "America/Lima",
+            },
+            end: {
+              dateTime: `${appointment.day}T${transformTime(schedule.hour.end_hour)}:00`,
+              timeZone: "America/Lima",
+            },
+            attendees: [
+              // { email: psychologist.email },
+              // { email: patient.email },
+              { email: "diegopumacode@gmail.com" },
+              { email: "francorsr98@gmail.com" },
+            ],
+            reminders: {
+              useDefault: false,
+              overrides: [
+                { method: "email", minutes: 24 * 60 },
+                { method: "popup", minutes: 10 },
+              ],
+            },
+          };
+
+          let request = gapi.client.calendar.events.insert({
+            calendarId: "primary",
+            resource: event,
+          });
+
+          let eventPatch = {
+            conferenceData: {
+              createRequest: { requestId: "7qxalsvy0e" },
+            },
+          };
+
+          request.execute(function (event) {
+            console.log(event);
+
+            gapi.client.calendar.events
+              .patch({
+                calendarId: "primary",
+                eventId: `${event.id}`,
+                resource: eventPatch,
+                sendNotifications: true,
+                conferenceDataVersion: 1,
+              })
+              .execute(function (event) {
+                console.log(event.htmlLink);
+                dispatch(
+                  fetchUpdateAppointment({
+                    token: tokenSession || tokenSignup,
+                    id: appointment.id,
+                    url: event.htmlLink,
+                  })
+                );
+              });
+          });
+        });
+    });
+  };
+
+  if (statusCreate === "succeeded") {
+    addUrlToTheAppointment();
+  }
 
   useEffect(() => {
     window.paypal
@@ -38,17 +126,17 @@ export default function Paypal({ idSchedule, day, psychologist, reason }) {
             monthC.toString().padStart(2, 0) +
             "-" +
             dayC.toString().padStart(2, 0);
-  
+
           dispatch(
             fetchCreateAppointment({
               appointment: {
                 reason: reason,
                 day: newdate,
                 paypal_token: data.orderID,
-                schedule_id: idSchedule,
+                schedule_id: schedule.id,
                 psychologist_id: psychologist.id,
               },
-              token: token,
+              token: tokenSession || tokenSignup,
             })
           );
         },

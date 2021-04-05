@@ -7,12 +7,18 @@ import { Heading4, Heading5 } from "../text/Heading";
 import Modal from "./Modal";
 import { useHistory } from "react-router";
 import { resetPayment } from "../../features/appointment/createAppointmentSlice";
+import { resetPaymentUpdating } from "../../features/appointment/updateAppointmentSlice";
+
 export default function PaymentModal({ isOpen, toggle, schedule, day }) {
   const history = useHistory();
   const [reason, setReason] = useState("");
+  const patient = useSelector( state => state.profile.userdata);
   const psychologist = useSelector((state) => state.showPsychologist.single);
   const statusCreateAppointment = useSelector(
     (state) => state.createAppointment.status
+  );
+  const statusUpdateAppointment = useSelector(
+    (state) => state.updateAppointment.status
   );
 
   const dispatch = useDispatch();
@@ -37,8 +43,9 @@ export default function PaymentModal({ isOpen, toggle, schedule, day }) {
     return time.toString().length === 1 ? `0${time.toString()}` : time;
   };
 
-  if (statusCreateAppointment === "succeeded") {
+  if (statusUpdateAppointment === "succeeded") {
     dispatch(resetPayment());
+    dispatch(resetPaymentUpdating());
     history.push("/dashboard");
   }
 
@@ -52,6 +59,17 @@ export default function PaymentModal({ isOpen, toggle, schedule, day }) {
             <p>Espere un momento mientras se registra su cita</p>
           </LoadingPayment>
         )}
+        {statusCreateAppointment == "succeeded" &&
+          statusUpdateAppointment ==
+            "loading" && (
+              <LoadingPayment>
+                <img src="/images/doctor-woman.svg" width="80" />
+                <Heading4>Creando reunión</Heading4>
+                <p>
+                  Espere un momento mientras se crea la reunión para su cita
+                </p>
+              </LoadingPayment>
+            )}
         <Heading4>Reserva de cita :</Heading4>
         <SectionPayment>
           <Heading5>Motivo de Consulta :</Heading5>
@@ -89,9 +107,10 @@ export default function PaymentModal({ isOpen, toggle, schedule, day }) {
               <>
                 <small>*Seleccione el metodo de pago</small>
                 <Paypal
-                  idSchedule={schedule.id}
+                  schedule={schedule}
                   day={day}
                   psychologist={psychologist}
+                  patient={patient}
                   reason={reason}
                 />
               </>

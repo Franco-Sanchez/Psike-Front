@@ -19,7 +19,7 @@ export const fetchCreateAppointment = createAsyncThunk(
       throw new Error(data);
     }
 
-    return data;
+    return { data };
   }
 );
 
@@ -32,7 +32,7 @@ const createAppointmentSlice = createSlice({
     reason:""
   },
   reducers: {
-    resetPayment:(state,action)=>{
+    resetPayment:(state)=>{
       state.status = "idle"
     }
   },

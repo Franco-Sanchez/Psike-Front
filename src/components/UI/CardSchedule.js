@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import PaymentModal from "../UI/PaymentModal";
 import { toast } from "react-toastify";
+import { transformTime } from '../../utils/transformTime';
 
 export default function CardSchedule({ schedules, appointments, styles }) {
   const history = useHistory();
@@ -71,9 +72,6 @@ export default function CardSchedule({ schedules, appointments, styles }) {
 
   const goNextDay = () => setDay(new Date(day.setDate(day.getDate() + 1)));
 
-  const transformTime = (time) =>
-    time.toString().length === 1 ? `0${time.toString()}` : time;
-
   const isDisabled = (schedule) => {
     let now = new Date();
     let valuesToCompare = arrToCompareDates(day, now);
@@ -117,7 +115,7 @@ export default function CardSchedule({ schedules, appointments, styles }) {
 
       <CardContainer type="schedule" css={styles}>
  
-        <ContentL>Horarios</ContentL>
+        <ContentL css={css`color: ${colors.black}; margin-bottom: 30px;`}>Horarios</ContentL>
         <StyledCard>
           <ContainerCalendar>
             <SimpleReactComponent
@@ -167,21 +165,10 @@ export default function CardSchedule({ schedules, appointments, styles }) {
                         css={buttonHour}
                         onClick={() => bookAppointment(schedule)}
                       >
-                        {transformTime(
-                          new Date(schedule.hour.start_hour).getUTCHours()
-                        )}
-                        :
-                        {transformTime(
-                          new Date(schedule.hour.start_hour).getUTCMinutes()
-                        )}{" "}
+                        {transformTime(schedule.hour.start_hour)}
+                        {" "}
                         a{" "}
-                        {transformTime(
-                          new Date(schedule.hour.end_hour).getUTCHours()
-                        )}
-                        :
-                        {transformTime(
-                          new Date(schedule.hour.end_hour).getUTCMinutes()
-                        )}
+                        {transformTime(schedule.hour.end_hour)}
                       </Button>
                     ))}
                   </StyledRow>

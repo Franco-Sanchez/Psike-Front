@@ -89,6 +89,7 @@ export default function Psychologists() {
               coments={item.comments_total}
               ranking={item.ranking_total}
               specialties={item.specialties}
+              avatar={item.avatar}
             />
           ))}
         </StyledPsychologists>

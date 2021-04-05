@@ -4,14 +4,9 @@ import Pagination from "./Pagination";
 import styled from "@emotion/styled";
 import { css } from '@emotion/react';
 
-export default function ContainerComments({ _comments }) {
+export default function ContainerComments({ comments }) {
   const [currentPage, setCurrentPage] = useState(1);
-  // const mainComments = comments.filter(comment => comment.category === 'main_comment');
-  const mainComments = new Array(11).fill({
-    patient: { name: "Franco", lastname: "Sanchez", avatar: null },
-    description:
-      "usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen.",
-  });
+  const mainComments = comments.filter(comment => comment.category === 'main_comment');
   const limit = 3;
 
   return (
