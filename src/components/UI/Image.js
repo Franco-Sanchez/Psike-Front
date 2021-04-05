@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
-export default function Image({ url, size, children, className, onClick}) {
+export default function Image({ url, size, children, className, onClick, css}) {
   return (
-    <StyledImage onClick={onClick} className={className} url={url} size={size}>
+    <StyledImage css={css} onClick={onClick} className={className} url={url} size={size}>
       {children}
     </StyledImage>
   );
@@ -20,10 +20,8 @@ const StyledImage = styled.div`
       : "100%"};
   height: ${(props) => sizes[props.size].height};
   padding: 10px;
-  border-radius: ${(props) =>
-    props.size === "large" || "circular"
-      ? sizes[props.size].borderRadius
-      : "20px"};
+  border-radius: 20px;
+  ${props => props.css};
 
   @media (max-width: 768px) {
     & {

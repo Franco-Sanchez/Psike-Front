@@ -18,7 +18,7 @@ const StyledPageContent = styled.div`
   gap: 20px;
   margin-top: 20px;
   width: 100%;
-  padding: 0px 30px;
+  padding: 0px 60px;
   @media (max-width: 950px) {
     & {
       /* width: 100%; */

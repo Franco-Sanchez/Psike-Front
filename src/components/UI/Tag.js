@@ -25,6 +25,11 @@ const StyledDivFill = styled.div`
   padding: 12px 18px;
   display: flex;
   justify-content: center;
+
+  @media screen and (max-width: 365px) {
+    height: auto;
+  }
+
   p {
     color: ${colors.blue};
   }

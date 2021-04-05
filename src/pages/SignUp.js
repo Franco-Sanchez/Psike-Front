@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { ContentXS } from "../components/text/Content";
@@ -7,14 +7,11 @@ import { Heading3 } from "../components/text/Heading";
 import Tabsession from "../components/UI/Tabsession";
 import SingError from "../features/signup/SignError";
 import SignForm from "../features/signup/SignForm";
-import { cleanError } from "../features/signup/signSlice";
 import { colors } from "../ui";
 
 export default function SignUp() {
   const token = useSelector((state) => state.signup.token);
   const history = useHistory();
-  const error = useSelector((state) => state.signup.errors);
-  const dispatch = useDispatch();
 
     if (token) {
       sessionStorage.setItem("token", token);

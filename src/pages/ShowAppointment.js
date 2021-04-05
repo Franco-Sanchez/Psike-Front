@@ -16,7 +16,6 @@ import { AvatarHeader } from "./Dashboard";
 export default function ShowAppointment() {
   const quotes = useSelector((state) => state.quotes.items);
   const token = sessionStorage.getItem("token");
-  const user = useSelector((state) => state.profile.userdata);
   const state = useSelector((state) => state.quotes.status);
   const dispatch = useDispatch();
   const url = useParams();
@@ -27,11 +26,7 @@ export default function ShowAppointment() {
     }
   }, [token]);
 
-  function Kill() {
-    return dispatch(killToken()), dispatch(killSign()), dispatch(cleanQuotes());
-  }
-
-  if (state == "idle") {
+  if (state === "idle") {
     dispatch(fetchQuotes(token));
   }
 
@@ -41,19 +36,12 @@ export default function ShowAppointment() {
     return quotes.filter((quo) => quo.id == id);
   }
 
-  useEffect(() => {
-    console.log(FindAppointment());
-  }, [token]);
+  useEffect(() => {}, [token]);
 
   if (!token) return <Redirect to="/login" />;
 
   return (
     <StyledAppoitment>
-      <AvatarHeader
-        name={user.name}
-        lastname={user.lastname}
-        onClick={() => Kill()}
-      />
       {FindAppointment().map((q) => (
         <Heading3>
           Datos sobre tu cita con <span>{q.psychologist.name}</span>:
@@ -68,7 +56,17 @@ export default function ShowAppointment() {
           </ContentIcons>
 
           <ContentIcons>
-            <Icon type={"circle"} fill={q.status == "taken" ? "yellow" : q.status == "completed" ? colors.green_ligth : "red" } size={31} />
+            <Icon
+              type={"circle"}
+              fill={
+                q.status == "taken"
+                  ? "yellow"
+                  : q.status == "completed"
+                  ? colors.green_ligth
+                  : "red"
+              }
+              size={31}
+            />
             <ContentM>{q.status}</ContentM>
           </ContentIcons>
 
@@ -89,23 +87,7 @@ export default function ShowAppointment() {
 
       <PsicologyComent>
         {FindAppointment().map((q) => (
-          <ContentM>
-            {q.feedback}
-            Lorem ipsum dolor sit amet consectetur adipiscing, elit sociis
-            magnis donec velit iaculis, inceptos montes purus nascetur
-            elementum. Habitasse commodo himenaeos imperdiet nisi dignissim
-            accumsan, faucibus ridiculus ad vehicula erat, scelerisque convallis
-            penatibus lobortis fusce. Ac cursus vel litora arcu porta magna
-            pretium mi ante eu laoreet tellus, nibh condimentum cubilia
-            pellentesque nulla pulvinar sapien diam tristique varius consequat.
-            Augue luctu phasellus facilisi nullam fames a sem, nunc nam in dis
-            leo lectus. Parturient aliquam congue platea ornare quam, taciti
-            conubia metus hendrerit fringilla, curabitur interdum sed facilisis.
-            Class eleifend molestie orci enim porttitor posuere tempor vitae
-            nostra, fermentum quisque natoque id volutpat cum primis turpis, dui
-            venenatis egestas aliquet ultrices ullamcorper nisl dictumst.
-            Integer mus mattis tortor, mollis aptent.
-          </ContentM>
+          <ContentM>{q.feedback}</ContentM>
         ))}
       </PsicologyComent>
     </StyledAppoitment>
@@ -132,6 +114,12 @@ const AppoIcons = styled.div`
   width: auto;
   height: auto;
   align-items: center;
+  @media (max-width: 575px) {
+    & {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
 `;
 const ContentIcons = styled.div`
   display: flex;

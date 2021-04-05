@@ -9,7 +9,7 @@ const SideBarDataLogin = [
   },
   {
     title: "Historial",
-    path: "/history",
+    path: "/appoitments",
     icon: <Icon type="survey" size={20} />,
     cName: "nav-text",
   },
@@ -23,6 +23,12 @@ const SideBarDataLogin = [
     title: "Dashboard",
     path: "/dashboard",
     icon: <Icon type="dashboard" size={20} />,
+    cName: "nav-text",
+  },
+  {
+    title: "Psicologos",
+    path: "/psychologists",
+    icon: <Icon type="mind" size={20} />,
     cName: "nav-text",
   },
 ];

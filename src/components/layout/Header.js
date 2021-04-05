@@ -3,13 +3,30 @@ import { colors } from "../../ui";
 import Button from "../UI/Button";
 import styled from "@emotion/styled";
 import { NavLink, useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MenuMobile from "../Containers/MenuMobile";
+import { AvatarHeader } from "../../pages/Dashboard";
+import { fetchShowProfile } from "../../features/profile/profileSlice";
+import { killToken } from "../../features/session/sessionSlice";
+import { killSign } from "../../features/signup/signSlice";
+import { cleanQuotes } from "../../features/quotes/quotesSlice";
 
 export default function Header() {
   const history = useHistory();
-  const token = useSelector((state)=>state.session.token);
-  const tokenSignup = useSelector((state)=>state.signup.token);
+  const dispatch = useDispatch();
+
+  const token = useSelector((state) => state.session.token);
+  const tokenSignup = useSelector((state) => state.signup.token);
+  const user = useSelector((state) => state.profile.userdata);
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchShowProfile(token));
+    }
+  }, []);
+
+  function kill() {
+    return dispatch(killToken()), dispatch(killSign()), dispatch(cleanQuotes());
+  }
 
   return (
     <StyledHeader className="header">
@@ -22,51 +39,53 @@ export default function Header() {
           P<span>SIKE</span>
         </a>
       </div>
-      <div className="menu-mobile">hamburguesa</div>
+      <div className="menu-mobile">
+        <MenuMobile />
+      </div>
 
       <div className="navigation">
-        <NavLink to="/" activeClassName="selected">
-          Inicio
-        </NavLink>
-      <div className="menu-mobile" id="menu-mobile">
-        <MenuMobile/>
-      </div>
-      
-      <div className="navigation" >
-        <NavLink to="/psychologists" activeClassName="selected">
-          Psicologos
-        </NavLink>
-
-        {(token || tokenSignup) &&
-        <>
-        <NavLink to="/dashboard" activeClassName="selected">
-        Dashboard
-        </NavLink> 
-
-        <NavLink to="/history" activeClassName="selected">
-        Historial
-        </NavLink>
-
-        <NavLink to="/profile" activeClassName="selected">
-        Perfil
-        </NavLink>
-        </>
-         }
-
-        {!(token || tokenSignup) &&
-        <div className="actions">
-          <Button
-            size="small"
-            bg={colors.pink1}
-            onClick={() => {
-              history.push(`login`);
-            }}
-          >
-            Iniciar Sesion
-          </Button>
+ 
+        <div className="menu-mobile" id="menu-mobile">
+          <MenuMobile />
         </div>
-        }
-      </div>
+
+        <div className="navigation">
+          <NavLink to="/psychologists" activeClassName="selected">
+            Psicologos
+          </NavLink>
+
+          {(token || tokenSignup) && (
+            <>
+              <NavLink to="/dashboard" activeClassName="selected">
+                Dashboard
+              </NavLink>
+
+              <NavLink to="/appoitments" activeClassName="selected">
+                Historial
+              </NavLink>
+
+              <AvatarHeader
+                name={user.name}
+                lastname={user.lastname}
+                onClick={() => dispatch(kill())}
+              />
+            </>
+          )}
+
+          {!(token || tokenSignup) && (
+            <div className="actions">
+              <Button
+                size="small"
+                bg={colors.pink1}
+                onClick={() => {
+                  history.push("/login");
+                }}
+              >
+                Iniciar Sesion
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
     </StyledHeader>
   );

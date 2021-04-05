@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import {  useHistory } from "react-router-dom";
 import { colors } from "../../ui";
 import { ContentMB, ContentS } from "../text/Content";
 import { Heading1 } from "../text/Heading";
@@ -7,6 +8,11 @@ import Icon from "../UI/Icon";
 import Image from "../UI/Image";
 
 export default function LandingContent() {
+  const history = useHistory();
+
+  const handleRedirect = () => {
+    return history.push("/psychologists");
+  };
   return (
     <StyledLanding>
       <div className="landing">
@@ -31,7 +37,9 @@ export default function LandingContent() {
               <ContentS>Seleciona tu psicologo segun tus necesidades</ContentS>
             </div>
           </div>
-          <Button>Encuentra a tu psicologo</Button>
+          <Button size="large" onClick={handleRedirect}>
+            Encuentra a tu psicologo
+          </Button>
         </div>
 
         <div className="landing-image">

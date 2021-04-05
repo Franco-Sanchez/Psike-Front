@@ -4,7 +4,6 @@ import { BASE_URI } from "../../app/config";
 export const fetchLogin = createAsyncThunk(
   "session/fetchLogin",
   async (credentials) => {
-    console.log(credentials);
     const response = await fetch(`${BASE_URI}/login`, {
       method: "POST",
       headers: {
@@ -14,7 +13,6 @@ export const fetchLogin = createAsyncThunk(
     });
 
     const data = await response.json();
-    console.log(data);
     if (!response.ok) {
       throw new Error(data.errors.message);
     }
@@ -27,14 +25,17 @@ const sessionSlice = createSlice({
   initialState: {
     token: sessionStorage.getItem("token"),
     error: null,
+    status: "idle"
   },
   reducers: {
     cleanError(state) {
       state.error = null;
+      state.status =  "idle"
     },
     killToken: (state) => {
       sessionStorage.removeItem("token");
       state.token = null;
+      state.status = "idle"
     },
   },
   extraReducers: {

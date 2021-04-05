@@ -1,24 +1,25 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
 import { BASE_URI } from "../../app/config";
 
 export const fetchCreateAppointment = createAsyncThunk(
   "createAppointment/fetchCreateAppointment",
-  async ({ token }) => {
-    const response = await fetch(`${BASE_URI}/appointments`, {
+  async ({ appointment,token }) => {
+    const response = await fetch(`${BASE_URI}appointments`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
-      }
+      },
+      body: JSON.stringify(appointment)
     });
 
     const data = await response.json();
-    console.log(data);
     if(!response.ok) {
       throw new Error(data);
     }
 
-    return data;
+    return { data };
   }
 );
 
@@ -28,8 +29,13 @@ const createAppointmentSlice = createSlice({
     item: {},
     status: "idle",
     error: null,
+    reason:""
   },
-  reducers: {},
+  reducers: {
+    resetPayment:(state)=>{
+      state.status = "idle"
+    }
+  },
   extraReducers: {
     [fetchCreateAppointment.pending]: (state) => {
       state.status = "loading";
@@ -38,6 +44,8 @@ const createAppointmentSlice = createSlice({
       state.status = "succeeded";
       state.item = action.payload.data;
       state.error = null;
+     
+
     },
     [fetchCreateAppointment.rejected]: (state, action) => {
       state.status = "failed";
@@ -46,4 +54,5 @@ const createAppointmentSlice = createSlice({
   },
 });
 
+export const { resetPayment } = createAppointmentSlice.actions;
 export default createAppointmentSlice.reducer;

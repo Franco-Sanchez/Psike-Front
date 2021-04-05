@@ -1,19 +1,17 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router";
-import CardContainer from "../components/Containers/CardContainer";
-import FormField from "../components/Containers/FormField";
+import { Redirect, useHistory } from "react-router";
 import FilterDate from "../components/core/Appointments/FilterDate";
-import { ContentXXS } from "../components/text/Content";
 import { Heading3 } from "../components/text/Heading";
 import Button from "../components/UI/Button";
 import CardHistory from "../components/UI/CardHistory";
-import Icon from "../components/UI/Icon";
-import InputField from "../components/UI/Input";
 import { fetchAppointments } from "../features/appointment/appointmentSlice";
 import { colors } from "../ui";
 import { resetFilter } from "../features/appointment/appointmentSlice";
+import { Helmet } from "react-helmet";
+import LoaderAppointments from "../components/core/Appointments/LoaderAppointments";
+import NotFoundItems from "../components/UI/NotFoundItems";
 
 export default function HistoryPage() {
   const tokenLogin = useSelector((state) => state.session.token);
@@ -23,33 +21,72 @@ export default function HistoryPage() {
   const filterAppointments = useSelector(
     (state) => state.appointment.filterAppointments
   );
+  const history = useHistory();
 
-  if (status === "idle") {
+  useEffect(() => {
     dispatch(fetchAppointments(tokenLogin));
-  }
+  }, []);
 
   if (!tokenLogin && !tokenSignup) return <Redirect to="/login" />;
 
+  const today = new Date(Date.now());
+
+  function orderBoard() {
+    return filterAppointments
+      .filter((obj) => {
+        let [year, month, day] = obj.date.split("-");
+        let date = new Date(Number(year), Number(month) - 1, Number(day));
+        return date < today;
+      })
+      .sort((a, b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      });
+  }
+
+  function handleShowAppointment(id) {
+    history.push(`/appoitments/${id}`);
+  }
   return (
-    <StyledHistory>
-      <Heading3>Tu historial de citas es: </Heading3>
-      <div className="filterSection">
-        <FilterDate />
-        <Button onClick={() => dispatch(resetFilter())}>Limpiar</Button>
-      </div>
-      <StyledContinerCard>
-        {filterAppointments.map((appt) => (
-          <CardHistory
-            key={appt.id}
-            avatar={appt.psychologist.avatar}
-            name={appt.psychologist.name}
-            lastname={appt.psychologist.lastname}
-            status={appt.status}
-            date={appt.date}
-          />
-        ))}
-      </StyledContinerCard>
-    </StyledHistory>
+    <>
+      <Helmet>
+        <title>Historial de tus citas</title>
+        <meta
+          name="Busca & Encuentra el psicologo para ti"
+          content="Busca & Encuentra el psicologo para ti"
+        />
+      </Helmet>
+      <StyledHistory>
+        <Heading3>Tu historial de citas es: </Heading3>
+        <div className="filterSection">
+          <FilterDate />
+          <Button onClick={() => dispatch(resetFilter())}>Limpiar</Button>
+        </div>
+
+        {status === "loading" && <LoaderAppointments />}
+
+        {status === "succeeded" && (
+          <>
+            {orderBoard().length === 0 ? (
+              <NotFoundItems message="No existen citas relacionadas" />
+            ) : (
+              <StyledContinerCard>
+                {orderBoard().map((appt) => (
+                  <CardHistory
+                    key={appt.id}
+                    avatar={appt.psychologist.avatar}
+                    name={appt.psychologist.name}
+                    lastname={appt.psychologist.lastname}
+                    status={appt.status}
+                    date={appt.date}
+                    onClick={() => handleShowAppointment(appt.id)}
+                  />
+                ))}
+              </StyledContinerCard>
+            )}
+          </>
+        )}
+      </StyledHistory>
+    </>
   );
 }
 

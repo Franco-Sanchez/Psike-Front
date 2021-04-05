@@ -5,9 +5,7 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import Documentation from "./components/Documentation";
 import PageContent from "./components/layout/PageContent";
-import showAppointmentsSlice from "./features/psychologist/showAppointmentsSlice";
 import Dashboard from "./pages/Dashboard";
 import HistoryPage from "./pages/History";
 import Home from "./pages/Home";
@@ -18,8 +16,8 @@ import Psychologists from "./pages/Psychologists";
 import ShowAppointment from "./pages/ShowAppointment";
 import ShowPsychologist from "./pages/ShowPsychologist";
 import SignUp from "./pages/SignUp";
-import { colors } from "./ui";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   // let gapi = window.gapi;
   // let clientId =
@@ -105,8 +103,6 @@ function App() {
   //   });
   // };
 
-  
-
   return (
     <div id="App">
       <Global
@@ -118,7 +114,10 @@ function App() {
             font-family: Raleway;
           }
           body {
-            background: ${colors.white};
+            background-image:url("/images/bg.svg");
+            background-size: cover;
+            background-position:20px 20px 20px;
+            background-repeat:no-repeat;
             width: 100%;
           }
           a,
@@ -129,12 +128,11 @@ function App() {
       />
       {/*<button onClick={handleClick}>Separar cita</button>*/}
       {/* <button onClick={handleClick}>Separar cita</button> */}
-
+      <ToastContainer />
       <Router>
         <PageContent>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/documentation" component={Documentation} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
             <Route path="/psychologists/:id" component={ShowPsychologist} />
@@ -147,7 +145,7 @@ function App() {
             />
             <Route path="/profile" component={Profile} />
             <Route path="/dashboard" component={Dashboard} />
-            <Route path="/history" component={HistoryPage} />
+            <Route path="/appoitments" component={HistoryPage} />
             <Route path="/404" component={NotFound} />
             <Redirect from="*" to="/404" />
           </Switch>

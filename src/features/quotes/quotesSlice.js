@@ -12,7 +12,7 @@ export const fetchQuotes = createAsyncThunk(
     });
 
     const data = await response.json();
-    console.log(data);
+  
     if (!response.ok) {
       throw new Error("Something went wrong");
     }
@@ -40,7 +40,6 @@ const quotesSlice = createSlice({
     [fetchQuotes.fulfilled]: (state, action) => {
       state.status = "succeeded";
       state.items = action.payload.quotes;
-      console.log(state.items);
     },
     [fetchQuotes.rejected]: (state, action) => {
       state.status = "failed";

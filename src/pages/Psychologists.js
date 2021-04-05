@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect } from "react";
 import { colors } from "../ui";
 import CardPsychology from "../components/UI/CardPsychology";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,23 +9,29 @@ import {
 } from "../features/psychologists/PsychologistsSlice";
 import FilterByCategories from "../components/core/Psychologits/FilterCategories";
 import FilterRanking from "../components/core/Psychologits/FilterRanking";
-import FilterPrice from "../components/core/Psychologits/FilterPrice";
 import Button from "../components/UI/Button";
+import LoaderPsychologists from "../components/core/Psychologits/LoaderPsychologists";
+import { Helmet } from "react-helmet";
 
 export default function Psychologists() {
   const dispatch = useDispatch();
   const psychologists = useSelector((state) => state.psychologists.items);
-  const filterCategories = useSelector((state) => state.psychologists.filterCategories);
+  const filterCategories = useSelector(
+    (state) => state.psychologists.filterCategories
+  );
   const filterItems = useSelector((state) => state.psychologists.filterItems);
-  const filterRanking = useSelector((state) => state.psychologists.filterRanking);
+  const filterRanking = useSelector(
+    (state) => state.psychologists.filterRanking
+  );
   const status = useSelector((state) => state.psychologists.status);
 
-  if (status === "idle") {
+  useEffect(() => {
     dispatch(fetchPsychologists());
-  }
+  }, []);
 
   let submitPsychologists = () => {
-    let filterCatSubmit = filterCategories.length > 0 ? filterByCategory() : psychologists;
+    let filterCatSubmit =
+      filterCategories.length > 0 ? filterByCategory() : psychologists;
     let filterByRanking = orderArray(filterCatSubmit, filterRanking);
     dispatch(setFilters({ name: "filterItems", value: filterByRanking }));
   };
@@ -56,6 +62,10 @@ export default function Psychologists() {
 
   return (
     <>
+     <Helmet>
+        <title>Nuestros Psicologos</title>
+        <meta name="Encuentra el psicologo para ti" content="Encuentra el psicologo para ti" />
+      </Helmet>
       <StyledFilterSection>
         <FilterByCategories />
         <FilterSelects>
@@ -65,20 +75,25 @@ export default function Psychologists() {
           Filtrar
         </Button>
       </StyledFilterSection>
-      <StyledPsychologists>
-        {filterItems.map((item) => (
-          <CardPsychology
-            key={item.id}
-            id={item.id}
-            name={item.name + " " + item.lastname}
-            bio={item.biography}
-            price={item.price}
-            coments={item.comments_total}
-            ranking={item.ranking_total}
-            specialties={item.specialties}
-          />
-        ))}
-      </StyledPsychologists>
+      {status === "loading" ? (
+        <LoaderPsychologists />
+      ) : (
+        <StyledPsychologists>
+          {filterItems.map((item) => (
+            <CardPsychology
+              key={item.id}
+              id={item.id}
+              name={item.name + " " + item.lastname}
+              bio={item.biography}
+              price={item.price}
+              coments={item.comments_total}
+              ranking={item.ranking_total}
+              specialties={item.specialties}
+              avatar={item.avatar}
+            />
+          ))}
+        </StyledPsychologists>
+      )}
     </>
   );
 }
@@ -105,7 +120,7 @@ const StyledPsychologists = styled.div`
   margin: 20px 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  grid-gap:20px;
+  grid-gap: 20px;
   justify-content: center;
   align-items: center;
 `;
