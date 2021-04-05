@@ -103,8 +103,6 @@ function App() {
   //   });
   // };
 
-  
-
   return (
     <div id="App">
       <Global
