@@ -105,6 +105,7 @@ export default function Dashboard() {
                     <CardDashBoard
                       name={quo.psychologist.name}
                       date={new Date(quo.date.concat("T00:00:00"))}
+                      url={quo.psychologist.avatar}
                       hora={transformTime(
                         new Date(quo.schedule.hour.start_hour).getUTCHours()
                       )}

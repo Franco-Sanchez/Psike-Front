@@ -8,6 +8,7 @@ import Icon from "./Icon";
 export default function CardDashBoard({
   name,
   date,
+  url,
   hora,
   reazon,
   minutes,
@@ -18,7 +19,7 @@ export default function CardDashBoard({
   return (
     <CardStyled onClick={onClick}>
       <CardHeader>
-        <Avatar />
+        <Avatar url={url} />
         <HeaderPsicology>
           <Heading6>{name}</Heading6>
           <ContentS>Psicologo clinico</ContentS>
