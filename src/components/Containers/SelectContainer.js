@@ -8,6 +8,6 @@ const StyledDiv = styled.div`
   svg {
     position: absolute;
     top: 30%;
-    left: ${(props) => (props.type == "profile" ? "90%" : "80%")};
+    left: ${(props) => (props.type === "profile" ? "90%" : "80%")};
   }
 `;

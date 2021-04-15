@@ -100,6 +100,7 @@ export default function CardSchedule({ schedules, appointments, styles }) {
     setSelectSchedule(schedule);
   };
 
+  console.log("grecia", orderedSchedules)
   return (
     <>
      
@@ -151,9 +152,10 @@ export default function CardSchedule({ schedules, appointments, styles }) {
               <StyledOrderedSchedule>
                 {orderedSchedules.length === 0 && <p>No hay horarios</p>}
                 {orderedSchedules.map((schedules) => (
-                  <StyledRow>
+                  <StyledRow key={schedules.id}>
                     {schedules.map((schedule) => (
                       <Button
+                        key={schedule.id}
                         size="small"
                         outline
                         disabled={isDisabled(schedule)}

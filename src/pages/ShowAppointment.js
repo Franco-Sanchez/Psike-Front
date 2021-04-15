@@ -33,7 +33,7 @@ export default function ShowAppointment() {
   let id = url.id;
 
   function FindAppointment() {
-    return quotes.filter((quo) => quo.id == id);
+    return quotes.filter((quo) => quo.id === id);
   }
 
   useEffect(() => {}, [token]);
@@ -59,9 +59,9 @@ export default function ShowAppointment() {
             <Icon
               type={"circle"}
               fill={
-                q.status == "taken"
+                q.status === "taken"
                   ? "yellow"
-                  : q.status == "completed"
+                  : q.status === "completed"
                   ? colors.green_ligth
                   : "red"
               }
