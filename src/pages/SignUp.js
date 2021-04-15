@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { ContentXS } from "../components/text/Content";
 import { Heading3 } from "../components/text/Heading";

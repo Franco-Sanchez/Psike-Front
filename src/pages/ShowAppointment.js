@@ -4,14 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import { ContentM, ContentS } from "../components/text/Content";
 import { Heading3, Heading5 } from "../components/text/Heading";
-import Avatar from "../components/UI/Avatar";
 import Icon from "../components/UI/Icon";
 import { fetchShowProfile } from "../features/profile/profileSlice";
-import { cleanQuotes, fetchQuotes } from "../features/quotes/quotesSlice";
-import { killToken } from "../features/session/sessionSlice";
-import { killSign } from "../features/signup/signSlice";
+import { fetchQuotes } from "../features/quotes/quotesSlice";
 import { colors } from "../ui";
-import { AvatarHeader } from "./Dashboard";
 
 export default function ShowAppointment() {
   const quotes = useSelector((state) => state.quotes.items);
