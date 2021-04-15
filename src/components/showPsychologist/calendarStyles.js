@@ -19,8 +19,12 @@ const gridColumns = css`
 `
 
 export const ContainerCalendar = styled.div`
-  width: 100%;
+  width: 50%;
   padding: 0 15px;
+
+  @media screen and (max-width: 810px) {
+    width: 100%;
+  }
 
   & .calendar {
     ${gridGap};
