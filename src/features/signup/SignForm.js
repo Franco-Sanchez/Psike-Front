@@ -7,7 +7,6 @@ import styled from "@emotion/styled";
 import { fetchSign } from "./signSlice";
 import { ContentXS } from "../../components/text/Content";
 import InputField from "../../components/UI/Input";
-import Icon from "../../components/UI/Icon";
 import { SpanError } from "../session/LoginForm";
 
 export default function SignForm() {
