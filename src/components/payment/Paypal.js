@@ -4,7 +4,7 @@ import { fetchCreateAppointment } from "../../features/appointment/createAppoint
 import { fetchUpdateAppointment } from "../../features/appointment/updateAppointmentSlice";
 import { CLIENT_ID, API_KEY, DISCOVERY_DOCS, SCOPES } from "../../app/config";
 import { transformTime } from '../../utils/transformTime';
-import { updateStatus } from "../../features/psychologist/showAppointmentsSlice";
+import { resetAppointments } from "../../features/psychologist/showAppointmentsSlice";
 
 export default function Paypal({ schedule, day, psychologist, patient, reason }) {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ export default function Paypal({ schedule, day, psychologist, patient, reason })
         .signIn()
         .then(() => {
           let event = {
-            summary: `Pskique, cita con psicolo@: ${psychologistName} ${psychologistLastname}`,
+            summary: `Pskique, cita con psicolog@: ${psychologistName} ${psychologistLastname}`,
             description:
               "Cita generada por Psike para que puedas conectarte con tu psicologo escogido",
             start: {
@@ -49,8 +49,6 @@ export default function Paypal({ schedule, day, psychologist, patient, reason })
             attendees: [
               { email: psychologist.email },
               { email: patient.email }
-              // { email: "diegopumacode@gmail.com" },
-              // { email: "francorsr98@gmail.com" },
             ],
             reminders: {
               useDefault: false,
@@ -73,8 +71,6 @@ export default function Paypal({ schedule, day, psychologist, patient, reason })
           };
 
           request.execute(function (event) {
-            console.log(event);
-
             gapi.client.calendar.events
               .patch({
                 calendarId: "primary",
@@ -84,7 +80,6 @@ export default function Paypal({ schedule, day, psychologist, patient, reason })
                 conferenceDataVersion: 1,
               })
               .execute(function (event) {
-                console.log(event.htmlLink);
                 dispatch(
                   fetchUpdateAppointment({
                     token: tokenSession || tokenSignup,
@@ -92,6 +87,8 @@ export default function Paypal({ schedule, day, psychologist, patient, reason })
                     url: event.htmlLink,
                   })
                 );
+
+                dispatch(resetAppointments())
               });
           });
         });
@@ -142,7 +139,6 @@ export default function Paypal({ schedule, day, psychologist, patient, reason })
               token: tokenSession || tokenSignup,
             })
           );
-          dispatch(updateStatus())
         },
         onError: (err) => {
           setError(err);

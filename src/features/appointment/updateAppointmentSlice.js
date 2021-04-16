@@ -41,7 +41,6 @@ const updateAppointmentSlice = createSlice({
     [fetchUpdateAppointment.fulfilled]: (state, action) => {
       state.status = "succeeded";
       state.item = action.payload.data;
-      console.log(state.item);
       state.error = null;
     },
     [fetchUpdateAppointment.rejected]: (state, action) => {

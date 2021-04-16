@@ -60,6 +60,12 @@ export default function CardSchedule({ schedules, appointments, styles }) {
     return [firstDate, secondDate];
   };
 
+  const compareHours = (appointment, now) => {
+    const timeSelected = (appointment.getUTCHours() * 60) + appointment.getUTCMinutes();
+    const currentTime = (now.getHours() * 60) + now.getMinutes();
+    return currentTime > timeSelected 
+  } 
+
   const filterAppointments = appointments.filter((appointment) => {
 
     let splitDate = appointment.date.split(/\D/);
@@ -73,14 +79,16 @@ export default function CardSchedule({ schedules, appointments, styles }) {
   const goNextDay = () => setDay(new Date(day.setDate(day.getDate() + 1)));
 
   const isDisabled = (schedule) => {
-    let now = new Date();
-    let valuesToCompare = arrToCompareDates(day, now);
+    const now = new Date();
+    const valuesToCompare = arrToCompareDates(day, now);
+    const appointmentHour = new Date(schedule.hour.start_hour)
     const sameHour = filterAppointments.filter(
-      (appointment) =>
+      (appointment) => 
         appointment.schedule.hour.start_hour === schedule.hour.start_hour
     );
-
-    return valuesToCompare[0] < valuesToCompare[1] || sameHour.length > 0;
+    return  valuesToCompare[0] < valuesToCompare[1] ||
+            sameHour.length > 0 ||
+            (valuesToCompare[0] == valuesToCompare[1] && compareHours(appointmentHour, now))
   };
 
   const bookAppointment = (schedule) => {

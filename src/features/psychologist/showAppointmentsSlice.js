@@ -22,7 +22,7 @@ const showAppointmentsSlice = createSlice({
     error: null,
   },
   reducers: {
-    updateStatus(state) {
+    resetAppointments(state) {
       state.status = 'idle';
     }
   },
@@ -42,5 +42,5 @@ const showAppointmentsSlice = createSlice({
   },
 });
 
-export const { updateStatus } = showAppointmentsSlice.actions;
+export const { resetAppointments } = showAppointmentsSlice.actions;
 export default showAppointmentsSlice.reducer;
