@@ -54,7 +54,7 @@ export default function Dashboard() {
         )
       ).getTime();
       if (
-        thirDate == now &&
+        thirDate === now &&
         new Date(quo.schedule.hour.start_hour).getUTCHours() >=
           new Date().getHours()
       ) {
