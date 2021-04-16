@@ -52,15 +52,15 @@ export default function PaymentModal({ isOpen, toggle, schedule, day }) {
   return (
     <>
       <Modal isOpen={isOpen} handleClose={() => handleOpenModal(false)}>
-        {statusCreateAppointment == "loading" && (
+        {statusCreateAppointment === "loading" && (
           <LoadingPayment>
             <img src="/images/doctor-woman.svg" width="80" />
             <Heading4>Reservando la cita</Heading4>
             <p>Espere un momento mientras se registra su cita</p>
           </LoadingPayment>
         )}
-        {statusCreateAppointment == "succeeded" &&
-          statusUpdateAppointment ==
+        {statusCreateAppointment === "succeeded" &&
+          statusUpdateAppointment ===
             "loading" && (
               <LoadingPayment>
                 <img src="/images/doctor-woman.svg" width="80" />

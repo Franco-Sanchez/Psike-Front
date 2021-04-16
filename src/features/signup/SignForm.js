@@ -7,7 +7,6 @@ import styled from "@emotion/styled";
 import { fetchSign } from "./signSlice";
 import { ContentXS } from "../../components/text/Content";
 import InputField from "../../components/UI/Input";
-import Icon from "../../components/UI/Icon";
 import { SpanError } from "../session/LoginForm";
 
 export default function SignForm() {
@@ -32,10 +31,10 @@ export default function SignForm() {
 
   const validSign = (name, lastname, email, password) => {
     function validName(name) {
-      return !name.length == 0 ? true : setValidName(true)
+      return !name.length === 0 ? true : setValidName(true)
     }
     function validLastName(lastname) {
-      return !lastname.length == 0 ? true : setValidLast(true)
+      return !lastname.length === 0 ? true : setValidLast(true)
     }
     function validEmail(email) {
       return (/\S+@gmail\.com/i.test(email)) || !email.length == 0  ? true : setValidEmail(true)
